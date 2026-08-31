@@ -332,6 +332,76 @@ footer {
 footer a { color: var(--text-faint); }
 footer a:hover { color: var(--accent); }
 
+
+/* ---- Season / weekly stats block (standard for every issue) ---- */
+.stats-section { margin: 0 0 48px; }
+.stats-subhead {
+  font-family: "Noto Serif JP", serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--navy);
+  margin: 0 0 4px;
+}
+.stats-lede {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 12.5px;
+  color: var(--text-faint);
+  margin: 0 0 18px;
+}
+.stat-block { margin-bottom: 16px; }
+.stat-block-label {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 11.5px; font-weight: 700; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 10px;
+}
+.stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+@media (max-width: 640px) { .stat-grid { grid-template-columns: repeat(2, 1fr); } }
+.stat-cell {
+  background: var(--bg-off);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 8px;
+  text-align: center;
+}
+.stat-num {
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  font-size: 19px;
+  color: var(--navy);
+  font-variant-numeric: tabular-nums;
+  display: block;
+}
+.stat-label {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 10px; color: var(--text-faint); margin-top: 3px;
+}
+.war-strip {
+  display: flex; align-items: baseline; gap: 10px;
+  margin-top: 12px; padding: 12px 18px;
+  background: var(--bg-off);
+  border-left: 3px solid var(--accent);
+  border-radius: 8px;
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 12.5px; color: var(--text-muted);
+}
+.war-strip b { font-family: "Playfair Display", serif; color: var(--navy); font-size: 17px; }
+.games { display: flex; flex-direction: column; margin-top: 4px; }
+.game {
+  display: grid;
+  grid-template-columns: 54px 1fr auto;
+  align-items: baseline;
+  gap: 12px;
+  padding: 11px 0;
+  border-top: 1px solid var(--border);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 13.5px;
+}
+.games .game:first-child { border-top: none; }
+.game-date { font-size: 11.5px; color: var(--text-faint); }
+.game-opp { color: var(--text); }
+.game-score { font-variant-numeric: tabular-nums; font-size: 12.5px; }
+.game-score.win { color: var(--accent); font-weight: 700; }
+.game-score.loss { color: var(--text-faint); }
+.game-note { grid-column: 2 / 4; font-size: 12px; color: var(--text-muted); margin-top: 2px; }
 </style>
 </head>
 <body>
@@ -361,23 +431,72 @@ footer a:hover { color: var(--accent); }
     <div class="hero-photo-caption">現地観戦にて(2025年8月・読者提供)</div>
   </div>
 
-  <div class="kpi-row">
-    <div class="kpi-card">
-      <div class="kpi-label util">打率 / OPS+</div>
-      <div class="kpi-value serif-en">.287<span class="arrow">/</span>158</div>
-      <div class="kpi-sub util">リーグ屈指の水準を維持</div>
+  <div class="stats-section">
+    <div class="stats-subhead">今シーズンの成績</div>
+    <p class="stats-lede util">577打席・14先発。投げても打っても、規格外の一年になっている。</p>
+
+    <div class="stat-block">
+      <div class="stat-block-label util">打撃</div>
+      <div class="stat-grid">
+        <div class="stat-cell"><span class="stat-num">.283</span><span class="stat-label util">打率</span></div>
+        <div class="stat-cell"><span class="stat-num">.383</span><span class="stat-label util">出塁率</span></div>
+        <div class="stat-cell"><span class="stat-num">.535</span><span class="stat-label util">長打率</span></div>
+        <div class="stat-cell"><span class="stat-num">146</span><span class="stat-label util">wRC+</span></div>
+        <div class="stat-cell"><span class="stat-num">30</span><span class="stat-label util">本塁打</span></div>
+        <div class="stat-cell"><span class="stat-num">80</span><span class="stat-label util">打点</span></div>
+        <div class="stat-cell"><span class="stat-num">10</span><span class="stat-label util">盗塁</span></div>
+        <div class="stat-cell"><span class="stat-num">577</span><span class="stat-label util">打席</span></div>
+      </div>
     </div>
-    <div class="kpi-card">
-      <div class="kpi-label util">MVPオッズ推移</div>
-      <div class="kpi-value serif-en">-1500<span class="arrow">→</span>+125</div>
-      <div class="kpi-sub util">7月中旬から8月末にかけて後退</div>
+
+    <div class="stat-block">
+      <div class="stat-block-label util">投球</div>
+      <div class="stat-grid">
+        <div class="stat-cell"><span class="stat-num">1.79</span><span class="stat-label util">防御率</span></div>
+        <div class="stat-cell"><span class="stat-num">0.95</span><span class="stat-label util">WHIP</span></div>
+        <div class="stat-cell"><span class="stat-num">9.98</span><span class="stat-label util">K/9</span></div>
+        <div class="stat-cell"><span class="stat-num">8-2</span><span class="stat-label util">勝敗</span></div>
+        <div class="stat-cell"><span class="stat-num">95</span><span class="stat-label util">奪三振</span></div>
+        <div class="stat-cell"><span class="stat-num">26</span><span class="stat-label util">与四球</span></div>
+        <div class="stat-cell"><span class="stat-num">85.2</span><span class="stat-label util">投球回</span></div>
+        <div class="stat-cell"><span class="stat-num">14</span><span class="stat-label util">先発</span></div>
+      </div>
     </div>
-    <div class="kpi-card">
-      <div class="kpi-label util">投手不在期間</div>
-      <div class="kpi-value serif-en">約1.5<span class="arrow">ヶ月</span></div>
-      <div class="kpi-sub util">7月3日の登板を最後に離脱中</div>
+
+    <div class="war-strip util">
+      <span>投打合算WAR</span>
+      <b>6.9</b>
+      <span>(打撃4.0+投球2.9)</span>
+    </div>
+
+    <div class="stats-subhead" style="margin-top:32px;">今週の試合結果</div>
+    <p class="stats-lede util">8月25日〜30日、ブレーブス戦とタイガース戦。大谷は指名打者として出場を続けた。</p>
+
+    <div class="games util">
+      <div class="game">
+        <span class="game-date">8/25</span>
+        <span class="game-opp">vs ブレーブス</span>
+        <span class="game-score loss">3–4 L</span>
+        <span class="game-note">大谷、盗塁を記録(通算5個目)</span>
+      </div>
+      <div class="game">
+        <span class="game-date">8/26</span>
+        <span class="game-opp">vs ブレーブス</span>
+        <span class="game-score loss">5–6 L</span>
+      </div>
+      <div class="game">
+        <span class="game-date">8/28</span>
+        <span class="game-opp">vs タイガース</span>
+        <span class="game-score win">2–1 W</span>
+      </div>
+      <div class="game">
+        <span class="game-date">8/29</span>
+        <span class="game-opp">vs タイガース</span>
+        <span class="game-score loss">1–2 L</span>
+      </div>
     </div>
   </div>
+
 
   <div class="layout">
 
