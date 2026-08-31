@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weekly Ohtani</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700;800&family=Noto+Serif+JP:wght@400;500;600;700&display=swap">
+<style>
+  :root {
+    --bg: #f1efe9; --surface: #e8e4da; --text: #1a1816; --text-muted: #55503f;
+    --text-faint: #8b8271; --accent: #a8241f; --accent-soft: rgba(168, 36, 31, 0.08);
+    --border: #d4cebd; --rule: #1a1816;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #131210; --surface: #1c1a16; --text: #ece7db; --text-muted: #b0a68f;
+      --text-faint: #6f6858; --accent: #d4453d; --accent-soft: rgba(212, 69, 61, 0.14);
+      --border: #322d24; --rule: #ece7db;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #131210; --surface: #1c1a16; --text: #ece7db; --text-muted: #b0a68f;
+    --text-faint: #6f6858; --accent: #d4453d; --accent-soft: rgba(212, 69, 61, 0.14);
+    --border: #322d24; --rule: #ece7db;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: "Noto Serif JP", "Hiragino Mincho ProN", serif;
+    line-height: 1.95; -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  .util { font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif; }
+  .page { max-width: 720px; margin: 0 auto; padding: 0 28px 120px; }
+  .nav { display: flex; align-items: center; justify-content: space-between; padding: 26px 0; font-size: 12.5px; letter-spacing: 0.04em; }
+  .nav-brand { text-decoration: none; font-weight: 600; }
+  .nav-links { display: flex; gap: 20px; }
+  .nav-link { color: var(--text-muted); text-decoration: none; }
+  .nav-link:hover { color: var(--accent); }
+  .stat-link { text-decoration: underline; text-decoration-color: var(--border); text-underline-offset: 3px; }
+  .stat-link:hover { color: var(--accent); text-decoration-color: var(--accent); }
+  .masthead { position: relative; padding: 20px 0 54px; margin-bottom: 60px; border-bottom: 1px solid var(--border); }
+  .masthead-num {
+    font-family: "Shippori Mincho", serif; font-weight: 800; font-size: 168px; line-height: 1;
+    position: absolute; top: -10px; right: -6px; color: transparent;
+    -webkit-text-stroke: 1px var(--border); z-index: 0; user-select: none; pointer-events: none;
+  }
+  .masthead-inner { position: relative; z-index: 1; max-width: 480px; }
+  .kicker { font-size: 12px; font-weight: 600; letter-spacing: 0.14em; color: var(--accent); margin-bottom: 22px; }
+  .kicker::before { content: ""; display: inline-block; width: 22px; height: 1px; background: var(--accent); margin-right: 10px; vertical-align: middle; }
+  .headline { font-family: "Shippori Mincho", serif; font-weight: 800; font-size: clamp(38px, 7vw, 54px); line-height: 1.35; letter-spacing: 0.01em; margin: 0 0 22px; text-wrap: balance; }
+  .dek { font-size: 16px; color: var(--text-muted); line-height: 1.9; margin: 0 0 20px; }
+  .masthead-meta { font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif; font-size: 12px; color: var(--text-faint); letter-spacing: 0.03em; }
+  article { font-size: 17px; }
+  article p { margin: 0 0 30px; }
+  .lede { font-size: 19px; line-height: 2; }
+  .lede::first-letter { font-family: "Shippori Mincho", serif; font-size: 2.6em; font-weight: 800; color: var(--accent); float: left; line-height: 0.8; padding: 0.06em 0.08em 0 0; }
+  .pull { margin: 48px 0; padding: 4px 0 4px 26px; border-left: 3px solid var(--accent); font-family: "Shippori Mincho", serif; font-size: 22px; font-weight: 600; line-height: 1.7; color: var(--text); }
+  .divider { width: 40px; height: 1px; background: var(--rule); opacity: 0.4; margin: 52px 0; }
+  .summary { margin-top: 72px; padding-top: 40px; border-top: 1px solid var(--border); }
+  .summary-title { font-family: "Shippori Mincho", serif; font-weight: 700; font-size: 24px; margin: 0 0 6px; }
+  .summary-lede { font-size: 14px; color: var(--text-faint); margin: 0 0 28px; }
+  .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media (max-width: 560px) { .summary-grid { grid-template-columns: 1fr; } .masthead-num { font-size: 110px; top: -4px; } }
+  .summary-lane { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px 20px 4px; }
+  .summary-lane-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 14px; }
+  .summary-item { position: relative; padding: 14px 0; border-top: 1px solid var(--border); }
+  .summary-lane .summary-item:first-child { border-top: none; padding-top: 0; }
+  .summary-headline { display: block; font-family: "Shippori Mincho", serif; font-weight: 600; font-size: 15.5px; line-height: 1.6; text-decoration: none; margin-bottom: 6px; }
+  .summary-headline::after { content: ""; position: absolute; inset: 0; }
+  .summary-headline:hover { color: var(--accent); }
+  .summary-text { font-size: 13.5px; color: var(--text-muted); line-height: 1.8; margin-bottom: 6px; }
+  .summary-source { font-size: 11.5px; color: var(--text-faint); }
+  .notes { margin-top: 72px; padding-top: 28px; border-top: 1px solid var(--border); }
+  .notes-label { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; color: var(--text-faint); margin-bottom: 16px; }
+  .notes ol { margin: 0; padding-left: 20px; font-size: 13px; color: var(--text-muted); line-height: 1.9; }
+  .notes li { margin-bottom: 8px; }
+  .notes a { text-decoration: underline; text-decoration-color: var(--border); text-underline-offset: 3px; }
+  .notes a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+  footer { margin-top: 64px; font-size: 12px; color: var(--text-faint); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+  footer a { color: var(--text-faint); }
+  footer a:hover { color: var(--accent); }
+</style>
+</head>
+<body>
+
+
+<div class="page">
+
+  <div class="nav util">
+    <a class="nav-brand" href="/">Weekly Ohtani</a>
+    <div class="nav-links">
+      <a class="nav-link" href="/stats.html">成績</a>
+      <a class="nav-link" href="/glossary.html">用語ガイド</a>
+      <a class="nav-link" href="/archive.html">バックナンバー</a>
+    </div>
+  </div>
+
+  <div class="masthead">
+    <div class="masthead-num">04</div>
+    <div class="masthead-inner">
+      <div class="kicker util">VOL.4 — 2026年7月</div>
+      <h1 class="headline">334万票、それでも見られなかった夏</h1>
+      <p class="dek">ファン投票では誰よりも多くの票を集めながら、大谷はオールスターのグラウンドに立たなかった。二刀流を支えてきた膝という弱点が、初めて表に出た月。</p>
+      <div class="masthead-meta">オールスター辞退・膝の処置・前半戦の総括</div>
+    </div>
+  </div>
+
+  <article>
+    <p class="lede">ファン投票の第一段階で、大谷は全選手中もっとも多い334万票超を集めていた。それでも、7月のオールスターゲームに、彼の姿はなかった。理由は左膝の違和感。Yahoo Sportsは、その決断を「後半戦を見据えた長期的な判断」と、わりあい冷静に伝えている。</p>
+
+    <p>休止期間に入る前、大谷は左膝の水を抜き、注射を受けた。2019年に手術を受けた分裂膝蓋骨——古くからの持病だという。「一時的な張り」ではなく、構造的に付き合っていくべき弱点として扱われ始めたのは、この月からだった。</p>
+
+    <p class="pull">「後半戦を見据えた長期的な判断」</p>
+
+    <p>米メディアが休養の合理性を淡々と説明する一方で、ファンの反応はもっと単純だった。「見たかった」——それだけだ。打率.290、出塁率.405、長打率.534、20本塁打56打点。前半戦をこれだけの数字で終えていただけに、休むことの正しさよりも、見られないことの寂しさが、素直に先に立った。</p>
+
+    <div class="divider"></div>
+
+    <p>この時点では、まだ誰も大ごとだとは思っていなかったはずだ。けれど結果として、この膝の違和感は、8月にかけての投手離脱と、MVP争いの潮目を変える、小さな伏線になっていく。</p>
+  </article>
+
+  <div class="summary">
+    <h2 class="summary-title">この号のサマリー</h2>
+    <p class="summary-lede util">専門メディアの論調と、海外ファンの熱量を、要点だけ並べておく。</p>
+
+    <div class="summary-grid">
+
+      <div class="summary-lane">
+        <div class="summary-lane-label util">米スポーツメディア</div>
+
+        <div class="summary-item">
+          <a class="summary-headline" href="https://sports.yahoo.com/articles/why-shohei-ohtani-missing-2026-190000553.html">ファン投票1位でも、オールスター出場を辞退</a>
+          <p class="summary-text util">334万票超を集めながら左膝の違和感で欠場。「長期的な判断」と冷静に評価する論調が中心。</p>
+          <div class="summary-source util">Yahoo Sports・2026年7月</div>
+        </div>
+
+        <div class="summary-item">
+          <a class="summary-headline" href="https://dodgersnation.com/shohei-ohtani-undergoes-planned-knee-procedure-before-all-star-break/2026/07/12/">オールスター前に膝の処置——2019年から続く持病</a>
+          <p class="summary-text util">左膝の水を抜き注射。2019年の分裂膝蓋骨手術以来の持病と報じられた。</p>
+          <div class="summary-source util">DodgersNation・2026年7月12日</div>
+        </div>
+      </div>
+
+      <div class="summary-lane">
+        <div class="summary-lane-label util">海外ファンの反応</div>
+
+        <div class="summary-item">
+          <a class="summary-headline" href="https://www.espn.com/mlb/story/_/id/49249891/mlb-2026-all-star-game-roster-al-nl-reaction-snubs-takeaways-turang-contreras">「見たかった」——辞退にファンは素直に落胆</a>
+          <p class="summary-text util">冷静な米メディアに対し、ファンの反応はシンプルな落胆が中心だった。</p>
+          <div class="summary-source util">SNS反応まとめ・2026年7月</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="notes">
+    <div class="notes-label util">取材ノート</div>
+    <ol>
+      <li><a href="https://sports.yahoo.com/articles/why-shohei-ohtani-missing-2026-190000553.html">Why Shohei Ohtani Is Missing The 2026 MLB All Star Game — Yahoo Sports</a></li>
+      <li><a href="https://dodgersnation.com/shohei-ohtani-undergoes-planned-knee-procedure-before-all-star-break/2026/07/12/">Shohei Ohtani Undergoes Planned Knee Procedure — DodgersNation, 2026年7月12日</a></li>
+      <li><a href="https://www.espn.com/mlb/story/_/id/49249891/mlb-2026-all-star-game-roster-al-nl-reaction-snubs-takeaways-turang-contreras">2026 MLB All-Star Game rosters: Snubs, other takeaways — ESPN</a></li>
+    </ol>
+  </div>
+
+  <footer class="util">
+    <span>本文は各記事の事実関係に基づく独自のノンフィクション構成。引用符付きの語句のみ原文からの直接引用。</span>
+    <a href="/archive.html">← バックナンバー</a>
+  </footer>
+
+</div>
+
+</body>
+</html>

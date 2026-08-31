@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weekly Ohtani</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700;800&family=Noto+Serif+JP:wght@400;500;600;700&display=swap">
+<style>
+  :root {
+    --bg: #f1efe9;
+    --surface: #e8e4da;
+    --text: #1a1816;
+    --text-muted: #55503f;
+    --text-faint: #8b8271;
+    --accent: #a8241f;
+    --accent-soft: rgba(168, 36, 31, 0.08);
+    --border: #d4cebd;
+    --rule: #1a1816;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #131210;
+      --surface: #1c1a16;
+      --text: #ece7db;
+      --text-muted: #b0a68f;
+      --text-faint: #6f6858;
+      --accent: #d4453d;
+      --accent-soft: rgba(212, 69, 61, 0.14);
+      --border: #322d24;
+      --rule: #ece7db;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #131210;
+    --surface: #1c1a16;
+    --text: #ece7db;
+    --text-muted: #b0a68f;
+    --text-faint: #6f6858;
+    --accent: #d4453d;
+    --accent-soft: rgba(212, 69, 61, 0.14);
+    --border: #322d24;
+    --rule: #ece7db;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Noto Serif JP", "Hiragino Mincho ProN", serif;
+    line-height: 1.95;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+
+  .util {
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  }
+
+  .page { max-width: 720px; margin: 0 auto; padding: 0 28px 120px; }
+
+  /* ---- Nav ---- */
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 26px 0;
+    font-size: 12.5px;
+    letter-spacing: 0.04em;
+  }
+
+  .nav-brand { text-decoration: none; font-weight: 600; }
+  .nav-links { display: flex; gap: 20px; }
+  .nav-link { color: var(--text-muted); text-decoration: none; }
+  .nav-link:hover { color: var(--accent); }
+
+  .stat-link {
+    text-decoration: underline;
+    text-decoration-color: var(--border);
+    text-underline-offset: 3px;
+  }
+  .stat-link:hover { color: var(--accent); text-decoration-color: var(--accent); }
+
+  /* ---- Masthead ---- */
+  .masthead {
+    position: relative;
+    padding: 20px 0 54px;
+    margin-bottom: 60px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .masthead-num {
+    font-family: "Shippori Mincho", serif;
+    font-weight: 800;
+    font-size: 168px;
+    line-height: 1;
+    position: absolute;
+    top: -10px;
+    right: -6px;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--border);
+    z-index: 0;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .masthead-inner { position: relative; z-index: 1; max-width: 480px; }
+
+  .kicker {
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    margin-bottom: 22px;
+  }
+
+  .kicker::before {
+    content: "";
+    display: inline-block;
+    width: 22px;
+    height: 1px;
+    background: var(--accent);
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+
+  .headline {
+    font-family: "Shippori Mincho", serif;
+    font-weight: 800;
+    font-size: clamp(38px, 7vw, 54px);
+    line-height: 1.35;
+    letter-spacing: 0.01em;
+    margin: 0 0 22px;
+    text-wrap: balance;
+  }
+
+  .dek {
+    font-size: 16px;
+    color: var(--text-muted);
+    line-height: 1.9;
+    margin: 0 0 20px;
+  }
+
+  .masthead-meta {
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+    font-size: 12px;
+    color: var(--text-faint);
+    letter-spacing: 0.03em;
+  }
+
+  /* ---- Article body ---- */
+  article { font-size: 17px; }
+
+  article p {
+    margin: 0 0 30px;
+  }
+
+  .lede {
+    font-size: 19px;
+    line-height: 2;
+  }
+
+  .lede::first-letter {
+    font-family: "Shippori Mincho", serif;
+    font-size: 2.6em;
+    font-weight: 800;
+    color: var(--accent);
+    float: left;
+    line-height: 0.8;
+    padding: 0.06em 0.08em 0 0;
+  }
+
+  .pull {
+    margin: 48px 0;
+    padding: 4px 0 4px 26px;
+    border-left: 3px solid var(--accent);
+    font-family: "Shippori Mincho", serif;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.7;
+    color: var(--text);
+  }
+
+  .divider {
+    width: 40px;
+    height: 1px;
+    background: var(--rule);
+    opacity: 0.4;
+    margin: 52px 0;
+  }
+
+  /* ---- Notes / sources ---- */
+  .notes {
+    margin-top: 72px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+  }
+
+  .notes-label {
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--text-faint);
+    margin-bottom: 16px;
+  }
+
+  .notes ol {
+    margin: 0;
+    padding-left: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.9;
+  }
+
+  .notes li { margin-bottom: 8px; }
+  .notes a { text-decoration: underline; text-decoration-color: var(--border); text-underline-offset: 3px; }
+  .notes a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+
+  /* ---- Summary module ---- */
+  .summary {
+    margin-top: 72px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border);
+  }
+
+  .summary-title {
+    font-family: "Shippori Mincho", serif;
+    font-weight: 700;
+    font-size: 24px;
+    margin: 0 0 6px;
+  }
+
+  .summary-lede {
+    font-size: 14px;
+    color: var(--text-faint);
+    margin: 0 0 28px;
+  }
+
+  .summary-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+
+  @media (max-width: 560px) {
+    .summary-grid { grid-template-columns: 1fr; }
+  }
+
+  .summary-lane {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 20px 4px;
+  }
+
+  .summary-lane-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+
+  .summary-item {
+    position: relative;
+    padding: 14px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .summary-lane .summary-item:first-child { border-top: none; padding-top: 0; }
+
+  .summary-headline {
+    display: block;
+    font-family: "Shippori Mincho", serif;
+    font-weight: 600;
+    font-size: 15.5px;
+    line-height: 1.6;
+    text-decoration: none;
+    margin-bottom: 6px;
+  }
+
+  .summary-headline::after { content: ""; position: absolute; inset: 0; }
+  .summary-headline:hover { color: var(--accent); }
+
+  .summary-text {
+    font-size: 13.5px;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 6px;
+  }
+
+  .summary-source {
+    font-size: 11.5px;
+    color: var(--text-faint);
+  }
+
+  footer {
+    margin-top: 64px;
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+    font-size: 12px;
+    color: var(--text-faint);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  footer a { color: var(--text-faint); }
+  footer a:hover { color: var(--accent); }
+
+  @media (max-width: 560px) {
+    .masthead-num { font-size: 110px; top: -4px; }
+  }
+</style>
+</head>
+<body>
+
+
+<div class="page">
+
+  <div class="nav util">
+    <a class="nav-brand" href="/">Weekly Ohtani</a>
+    <div class="nav-links">
+      <a class="nav-link" href="/stats.html">成績</a>
+      <a class="nav-link" href="/glossary.html">用語ガイド</a>
+      <a class="nav-link" href="/archive.html">バックナンバー</a>
+    </div>
+  </div>
+
+  <div class="masthead">
+    <div class="masthead-num">06</div>
+    <div class="masthead-inner">
+      <div class="kicker util">VOL.6 — 2026年8月25日–30日</div>
+      <h1 class="headline">親指を立てた男</h1>
+      <p class="dek">34度の炎天下で30球を投げ終えた大谷翔平は、ただ、親指を立てただけだった。二刀流の"半分"が止まったこの夏、彼を見る目は少しずつ変わり始めている。</p>
+      <div class="masthead-meta">NLMVP争い・投手復帰・日米の報道格差</div>
+    </div>
+  </div>
+
+  <article>
+    <p class="lede">8月22日、ロサンゼルスは93華氏——摂氏にして34度に達していた。ダグアウト脇のブルペンで、大谷翔平は30球を投げ終え、集まった記者たちに向かって親指を立てた。それだけだった。AP通信はその日の出来事を、飾らない書き方で伝えている。暑さの数字、投げた球数、そして親指。感情の色は、ほとんどついていない。</p>
+
+    <p>7月3日を最後に、大谷はマウンドに立っていない。左ひざの張りが長引き、投手として休んでいる期間は、もう一ヶ月半になる。打者としての数字だけを見れば、<a class="stat-link" href="/glossary.html#daritsu">打率.287</a>、<a class="stat-link" href="/glossary.html#shutsuiritsu">出塁率.388</a>、<a class="stat-link" href="/glossary.html#choudaritsu">長打率.546</a>、<a class="stat-link" href="/glossary.html#ops-plus">OPS+158</a>——普通の年なら、リーグ屈指と言っていい成績だ。それでも今年は、少し様子が違うらしい。</p>
+
+    <p>ESPNは今季のナ・リーグMVP争いを、大谷とカブスのピート・クロウ゠アームストロングとの「熾烈な争い」と書いた。ただその書き方には、大谷にだけ、そっと条件がついている。「投げていれば、彼が本命だろう」——同僚の一人はそう語ったという。二刀流の片方が止まっている間は、なかなか満票をもらえない。7月中旬にはオッズ-1500という圧倒的な本命だった大谷は、8月末には+125まで後退し、クロウ゠アームストロングの-155に順位を譲った。FOX Sportsが伝える数字の推移は、感情を挟まず、ただ淡々と、この変化を記録していく。</p>
+
+    <p class="pull">「投げていれば、彼が本命だろう」</p>
+
+    <p>けれど、その変化を、そこまで深刻に受け止めていない人たちもいる。日本のスポーツ紙は、今も、ほぼ毎日のように大谷を一面に置き続けている——野球史研究家ロバート・ホワイティングは、そう指摘する。米国では、なかなか起こらない現象だという。記者たちが数字で線を引こうとする一方で、大衆の熱は、その線とは関係なく、変わらず高いところにとどまっている。</p>
+
+    <div class="divider"></div>
+
+    <p>30球投げて、親指を立てた。その仕草に、特別な意味なんてなかったのかもしれない。それでも見る側は、そこに何かを読み取ろうとしてしまうものだ。復帰の日程は、まだ決まっていない。決まっているのは、この小さな仕草を、記者は淡々と記録し、ファンはそこにそっと希望を見出す、ということだけだ。</p>
+  </article>
+
+  <div class="summary">
+    <h2 class="summary-title">この号のサマリー</h2>
+    <p class="summary-lede util">専門メディアの論調と、日本メディア・ファンの熱量を、要点だけ並べておく。</p>
+
+    <div class="summary-grid">
+
+      <div class="summary-lane">
+        <div class="summary-lane-label util">米スポーツメディア</div>
+
+        <div class="summary-item">
+          <a class="summary-headline" href="https://www.espn.com/mlb/story/_/id/49648813/2026-national-league-mvp-shohei-ohtani-pete-crow-armstrong-pca-award">「投げられない大谷」がMVP評価を割り引く</a>
+          <p class="summary-text util">ESPNは、7月3日以降ひざの張りで登板がないことを弱点として明記。「投げていれば彼が本命だろう」という関係者コメントを引いている。</p>
+          <div class="summary-source util">ESPN・2026年8月</div>
+        </div>
+
+        <div class="summary-item">
+          <a class="summary-headline" href="https://www.foxsports.com/stories/mlb/mlb-mvp-race">打率.287でも「谷間の年」と形容</a>
+          <p class="summary-text util">7月中旬に-1500だった優勝オッズは8月末には+125まで後退し、PCAが-155で逆転したと数字で淡々と伝える。</p>
+          <div class="summary-source util">FOX Sports・2026年8月</div>
+        </div>
+      </div>
+
+      <div class="summary-lane">
+        <div class="summary-lane-label util">日本メディア・ファンの熱量</div>
+
+        <div class="summary-item">
+          <a class="summary-headline" href="https://robertwhiting.substack.com/p/media-coverage-of-shohei-ohtani-increasingly">「ほぼ毎日一面」——日本の過熱ぶり</a>
+          <p class="summary-text util">野球史研究家ロバート・ホワイティング氏は、日本のスポーツ紙が大谷を「ほぼ毎日のように一面」で扱う過熱ぶりを指摘。米国では起きていない現象だと対比している。</p>
+          <div class="summary-source util">Robert Whiting's Japan・Substack</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="notes">
+    <div class="notes-label util">取材ノート</div>
+    <ol>
+      <li><a href="https://ny1.com/nyc/all-boroughs/ap-top-news/2026/08/22/a-thumbs-up-and-30-pitches-ohtanis-latest-step-back-toward-the-dodgers-mound">A thumbs-up and 30 pitches — AP / NY1, 2026年8月22日</a></li>
+      <li><a href="https://www.espn.com/mlb/story/_/id/49648813/2026-national-league-mvp-shohei-ohtani-pete-crow-armstrong-pca-award">Crow-Armstrong vs. Ohtani — ESPN, 2026年8月</a></li>
+      <li><a href="https://www.foxsports.com/stories/mlb/mlb-mvp-race">MLB MVP Race: Walk-Off Homer Propels PCA — FOX Sports, 2026年8月</a></li>
+      <li><a href="https://robertwhiting.substack.com/p/media-coverage-of-shohei-ohtani-increasingly">Media coverage of Shohei Ohtani — Robert Whiting's Japan</a></li>
+    </ol>
+  </div>
+
+  <footer class="util">
+    <span>本文は各記事の事実関係に基づく独自のノンフィクション構成。引用符付きの語句のみ原文からの直接引用。</span>
+    <a href="/archive.html">← バックナンバー</a>
+  </footer>
+
+</div>
+
+</body>
+</html>

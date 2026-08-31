@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weekly Ohtani — 用語ガイド</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700;800&family=Noto+Serif+JP:wght@400;500;600;700&display=swap">
+<style>
+  :root {
+    --bg: #f1efe9;
+    --surface: #e8e4da;
+    --text: #1a1816;
+    --text-muted: #55503f;
+    --text-faint: #8b8271;
+    --accent: #a8241f;
+    --accent-soft: rgba(168, 36, 31, 0.08);
+    --border: #d4cebd;
+    --rule: #1a1816;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #131210;
+      --surface: #1c1a16;
+      --text: #ece7db;
+      --text-muted: #b0a68f;
+      --text-faint: #6f6858;
+      --accent: #d4453d;
+      --accent-soft: rgba(212, 69, 61, 0.14);
+      --border: #322d24;
+      --rule: #ece7db;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #131210;
+    --surface: #1c1a16;
+    --text: #ece7db;
+    --text-muted: #b0a68f;
+    --text-faint: #6f6858;
+    --accent: #d4453d;
+    --accent-soft: rgba(212, 69, 61, 0.14);
+    --border: #322d24;
+    --rule: #ece7db;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Noto Serif JP", "Hiragino Mincho ProN", serif;
+    line-height: 1.95;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+
+  .util {
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  }
+
+  .page { max-width: 720px; margin: 0 auto; padding: 0 28px 120px; }
+
+  .nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 26px 0; font-size: 12.5px; letter-spacing: 0.04em;
+  }
+  .nav-brand { text-decoration: none; font-weight: 600; }
+  .nav-link { color: var(--text-muted); text-decoration: none; }
+  .nav-link:hover { color: var(--accent); }
+  .nav-links { display: flex; gap: 20px; }
+
+  .masthead {
+    padding: 20px 0 46px;
+    margin-bottom: 48px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .kicker {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.14em;
+    color: var(--accent); margin-bottom: 22px;
+  }
+  .kicker::before {
+    content: ""; display: inline-block; width: 22px; height: 1px;
+    background: var(--accent); margin-right: 10px; vertical-align: middle;
+  }
+
+  .headline {
+    font-family: "Shippori Mincho", serif;
+    font-weight: 800;
+    font-size: clamp(32px, 6vw, 44px);
+    line-height: 1.4;
+    margin: 0 0 20px;
+    text-wrap: balance;
+  }
+
+  .dek {
+    font-size: 16px;
+    color: var(--text-muted);
+    line-height: 1.9;
+    max-width: 52ch;
+  }
+
+  .term {
+    padding: 40px 0;
+    border-top: 1px solid var(--border);
+    scroll-margin-top: 24px;
+  }
+  .page > article > .term:first-child { border-top: none; padding-top: 0; }
+
+  .term-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+  }
+
+  .term-name {
+    font-family: "Shippori Mincho", serif;
+    font-weight: 700;
+    font-size: 24px;
+  }
+
+  .term-kana {
+    font-size: 13px;
+    color: var(--text-faint);
+  }
+
+  .term-example {
+    display: inline-block;
+    margin-left: auto;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--accent-soft);
+    padding: 3px 10px;
+    border-radius: 999px;
+  }
+
+  .term p { font-size: 16px; margin: 0 0 14px; }
+  .term p:last-child { margin-bottom: 0; }
+
+  .term-note {
+    font-size: 14px;
+    color: var(--text-muted);
+  }
+
+  footer {
+    margin-top: 64px;
+    font-size: 12px;
+    color: var(--text-faint);
+  }
+  footer a { color: var(--text-faint); }
+  footer a:hover { color: var(--accent); }
+</style>
+</head>
+<body>
+
+
+<div class="page">
+
+  <div class="nav util">
+    <a class="nav-brand" href="/">Weekly Ohtani</a>
+    <div class="nav-links">
+      <a class="nav-link" href="/stats.html">成績</a>
+      <a class="nav-link" href="/archive.html">バックナンバー</a>
+      <a class="nav-link" href="/">最新号</a>
+    </div>
+  </div>
+
+  <div class="masthead">
+    <div class="kicker util">GUIDE</div>
+    <h1 class="headline">野球を知らなくても読める、数字の話</h1>
+    <p class="dek">記事の中に出てくる打率やOPS+のような数字、実はそこまで難しくありません。ここでは、野球にあまり馴染みのない方向けに、ひとつずつゆっくり説明します。</p>
+  </div>
+
+  <article>
+
+    <div class="term" id="daritsu">
+      <div class="term-head">
+        <span class="term-name">打率</span>
+        <span class="term-kana util">だりつ / Batting Average</span>
+        <span class="term-example util">例:.287</span>
+      </div>
+      <p>10回打席に立って、そのうち何回ヒットを打てたか、を表す数字です。.287なら、だいたい10回に3回弱、ヒットが出ている計算になります(正確には四球などを除いた「打数」が基準)。</p>
+      <p class="term-note">目安として、3割(.300)を打てれば「いい打者」と言われます。.287はそのすぐ手前——十分に立派な数字です。</p>
+    </div>
+
+    <div class="term" id="shutsuiritsu">
+      <div class="term-head">
+        <span class="term-name">出塁率</span>
+        <span class="term-kana util">しゅつるいりつ / On-Base Percentage</span>
+        <span class="term-example util">例:.388</span>
+      </div>
+      <p>打率は「ヒットの数」しか数えませんが、出塁率は四球(フォアボール)や死球も含めて、「とにかく塁に出た回数」を数えます。.388なら、10回のうち約3.9回は、ヒットでも四球でも、何らかの形で塁に出ている、ということです。</p>
+      <p class="term-note">リーグ全体の平均はだいたい.320前後。.388はかなり高い部類に入ります。</p>
+    </div>
+
+    <div class="term" id="choudaritsu">
+      <div class="term-head">
+        <span class="term-name">長打率</span>
+        <span class="term-kana util">ちょうだりつ / Slugging Percentage</span>
+        <span class="term-example util">例:.546</span>
+      </div>
+      <p>ヒットの「価値」まで加味した数字です。シングルヒットは1点、二塁打は2点、三塁打は3点、本塁打は4点として、1打数あたりの平均を出します。.546なら、1打数ごとに平均0.546塁分、進んでいる計算になります。</p>
+      <p class="term-note">本塁打の多い、パワーのある打者ほど高くなる数字です。リーグ平均は.400前後、.500を超えると「長距離砲」と呼べる水準になります。</p>
+    </div>
+
+    <div class="term" id="ops-plus">
+      <div class="term-head">
+        <span class="term-name">OPS+</span>
+        <span class="term-kana util">オーピーエスプラス</span>
+        <span class="term-example util">例:158</span>
+      </div>
+      <p>出塁率と長打率を足した「OPS」という総合力の指標を、さらに「リーグ平均を100とした場合、何%上か下か」で表したものです。158なら、リーグ平均の打者より58%優れている、という意味になります。</p>
+      <p class="term-note">球場や年度による有利・不利まで補正してあるので、時代や球場が違う選手同士を比べるときにも便利な数字です。100がちょうど平均、と覚えておけば十分です。</p>
+    </div>
+
+    <div class="term" id="woba">
+      <div class="term-head">
+        <span class="term-name">wOBA</span>
+        <span class="term-kana util">ダブリューオーバ / Weighted On-Base Average</span>
+      </div>
+      <p>出塁率と長打率を、もう少し精密に組み合わせた指標です。単打・二塁打・本塁打・四球など、それぞれの出来事に「実際どれだけ得点に結びつきやすいか」で重みをつけて計算します。</p>
+      <p class="term-note">計算はOPSより複雑ですが、その分、実際の得点への貢献度を正確に表すとされています。リーグ平均はだいたい.320前後、.400を超えると球界トップクラスの打者と言えます。</p>
+    </div>
+
+    <div class="term" id="bougyoritsu">
+      <div class="term-head">
+        <span class="term-name">防御率</span>
+        <span class="term-kana util">ぼうぎょりつ / ERA</span>
+        <span class="term-example util">例:1.79</span>
+      </div>
+      <p>投手が9イニング投げたとして、平均何点、自分の責任とされる失点(自責点)を許すか、という数字です。低いほど良い投手ということになります。</p>
+      <p class="term-note">1.79という数字は、9イニングでほぼ2点も取られない計算——リーグでも屈指のエース級です。</p>
+    </div>
+
+    <div class="term" id="whip">
+      <div class="term-head">
+        <span class="term-name">WHIP</span>
+        <span class="term-kana util">ダブリューエイチアイピー / Walks plus Hits per Inning Pitched</span>
+        <span class="term-example util">例:0.95</span>
+      </div>
+      <p>1イニングあたり、四球と被安打を合わせて何人の走者を出したか、を表す数字です。防御率が「結果としての失点」を見るのに対し、WHIPはその手前——「そもそも走者をどれだけ出さずに済んだか」を見ています。</p>
+      <p class="term-note">1.00を切ると、かなり優秀な部類。0.95という数字は、1イニングあたりの走者がほぼ1人未満というペースで、リーグでも屈指の低さです。</p>
+    </div>
+
+    <div class="term" id="k9">
+      <div class="term-head">
+        <span class="term-name">奪三振率</span>
+        <span class="term-kana util">だつさんしんりつ / K/9</span>
+        <span class="term-example util">例:9.98</span>
+      </div>
+      <p>9イニング投げたと仮定した場合、平均で何人の打者を三振に取れるか、という数字です。多いほど、打たせて取るタイプではなく、力でねじ伏せるタイプの投手だと言えます。</p>
+      <p class="term-note">9.0を超えると「奪三振能力の高い投手」とされる目安。9.98という数字は、ほぼ1イニングに1つ以上のペースで三振を奪っている計算になります。</p>
+    </div>
+
+    <div class="term" id="qs">
+      <div class="term-head">
+        <span class="term-name">クオリティスタート</span>
+        <span class="term-kana util">Quality Start / QS</span>
+      </div>
+      <p>先発投手が「6イニング以上を投げ、自責点を3以内に抑えた」試合のことです。派手な指標ではありませんが、「試合を壊さずにチームへ渡せたかどうか」を測る、昔からある実用的な物差しです。</p>
+      <p class="term-note">シーズンを通してQSの数が多い投手ほど、安定して試合を作れている、と評価されます。</p>
+    </div>
+
+    <div class="term" id="wrc-plus">
+      <div class="term-head">
+        <span class="term-name">wRC+</span>
+        <span class="term-kana util">ダブルアールシープラス</span>
+        <span class="term-example util">例:234</span>
+      </div>
+      <p>打撃だけでなく、球場の広さのような環境の違いまで補正して、「どれだけチームの得点に貢献したか」を測る指標です。考え方はOPS+に近く、100がリーグ平均になります。</p>
+      <p class="term-note">234という数字は、平均的な打者の2倍以上、得点に貢献していたということ——一時的とはいえ、驚異的な水準でした。</p>
+    </div>
+
+    <div class="term" id="war">
+      <div class="term-head">
+        <span class="term-name">WAR</span>
+        <span class="term-kana util">ダブリューエーアール / Wins Above Replacement</span>
+        <span class="term-example util">例:6.9(投打合算)</span>
+      </div>
+      <p>「控え選手が代わりに出ていたら」と比べて、その選手がチームの勝ち星を何勝分積み増したか、を表す指標です。打撃・走塁・守備・投球——あらゆる貢献を「勝利数」というひとつの物差しに変換して、ポジションの違う選手同士も比べられるようにしています。</p>
+      <p class="term-note">目安として、2.0前後で「レギュラー級」、5.0を超えると「オールスター級」、8.0に達すると「MVP級」と言われます。大谷は投手と打者、それぞれのWARを別々に計算したうえで合算できるのが特徴で、2026年8月時点では打撃4.0+投球2.9=合計6.9。ひとりで二人分働いている、というのが数字にもそのまま表れています。</p>
+    </div>
+
+  </article>
+
+  <footer class="util">
+    数字の目安は一般的な理解を助けるための簡略化した説明です。<a href="/">← 最新号に戻る</a>
+  </footer>
+
+</div>
+
+</body>
+</html>

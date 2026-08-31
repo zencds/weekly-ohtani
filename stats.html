@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weekly Ohtani — 成績</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700;800&family=Noto+Serif+JP:wght@400;500;600;700&display=swap">
+<style>
+  :root {
+    --bg: #f1efe9; --surface: #e8e4da; --text: #1a1816; --text-muted: #55503f;
+    --text-faint: #8b8271; --accent: #a8241f; --accent-soft: rgba(168, 36, 31, 0.08);
+    --border: #d4cebd; --rule: #1a1816; --win: #2f6b3a; --loss: #8b8271;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #131210; --surface: #1c1a16; --text: #ece7db; --text-muted: #b0a68f;
+      --text-faint: #6f6858; --accent: #d4453d; --accent-soft: rgba(212, 69, 61, 0.14);
+      --border: #322d24; --rule: #ece7db; --win: #6fae7a; --loss: #6f6858;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #131210; --surface: #1c1a16; --text: #ece7db; --text-muted: #b0a68f;
+    --text-faint: #6f6858; --accent: #d4453d; --accent-soft: rgba(212, 69, 61, 0.14);
+    --border: #322d24; --rule: #ece7db; --win: #6fae7a; --loss: #6f6858;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: "Noto Serif JP", "Hiragino Mincho ProN", serif;
+    line-height: 1.95; -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  .util { font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif; }
+  .page { max-width: 720px; margin: 0 auto; padding: 0 28px 120px; }
+
+  .nav { display: flex; align-items: center; justify-content: space-between; padding: 26px 0; font-size: 12.5px; letter-spacing: 0.04em; }
+  .nav-brand { text-decoration: none; font-weight: 600; }
+  .nav-links { display: flex; gap: 20px; }
+  .nav-link { color: var(--text-muted); text-decoration: none; }
+  .nav-link:hover { color: var(--accent); }
+
+  .masthead { padding: 20px 0 46px; margin-bottom: 48px; border-bottom: 1px solid var(--border); }
+  .kicker { font-size: 12px; font-weight: 600; letter-spacing: 0.14em; color: var(--accent); margin-bottom: 22px; }
+  .kicker::before { content: ""; display: inline-block; width: 22px; height: 1px; background: var(--accent); margin-right: 10px; vertical-align: middle; }
+  .headline { font-family: "Shippori Mincho", serif; font-weight: 800; font-size: clamp(32px, 6vw, 44px); line-height: 1.4; margin: 0 0 20px; text-wrap: balance; }
+  .dek { font-size: 16px; color: var(--text-muted); line-height: 1.9; max-width: 54ch; margin: 0 0 18px; }
+  .asof { font-size: 12px; color: var(--text-faint); }
+
+  .section { margin-bottom: 60px; }
+  .section-title { font-family: "Shippori Mincho", serif; font-weight: 700; font-size: 22px; margin: 0 0 6px; }
+  .section-lede { font-size: 13.5px; color: var(--text-faint); margin: 0 0 24px; }
+
+  .stat-block { margin-bottom: 28px; }
+  .stat-block-label { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 14px; }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  @media (max-width: 560px) { .stat-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .stat-cell { background: var(--surface); padding: 16px 12px; text-align: center; }
+  .stat-num {
+    font-family: "Shippori Mincho", serif;
+    font-weight: 700;
+    font-size: 21px;
+    font-variant-numeric: tabular-nums;
+    display: block;
+  }
+  .stat-label { font-size: 11px; color: var(--text-faint); margin-top: 4px; }
+
+  .war-strip {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-top: 16px;
+    padding: 14px 18px;
+    background: var(--accent-soft);
+    border-radius: 8px;
+    font-size: 13.5px;
+    color: var(--text-muted);
+  }
+  .war-strip b { font-family: "Shippori Mincho", serif; color: var(--accent); font-size: 17px; }
+
+  .games {
+    display: flex;
+    flex-direction: column;
+  }
+  .game {
+    display: grid;
+    grid-template-columns: 74px 1fr auto;
+    align-items: baseline;
+    gap: 14px;
+    padding: 13px 0;
+    border-top: 1px solid var(--border);
+    font-size: 14px;
+  }
+  .games .game:first-child { border-top: none; }
+  .game-date { font-size: 12px; color: var(--text-faint); }
+  .game-opp { color: var(--text); }
+  .game-score { font-variant-numeric: tabular-nums; font-size: 13px; }
+  .game-score.win { color: var(--win); font-weight: 600; }
+  .game-score.loss { color: var(--text-faint); }
+  .game-note { grid-column: 2 / 4; font-size: 12.5px; color: var(--text-muted); margin-top: 2px; }
+
+  .week-note {
+    margin-top: 24px;
+    padding: 18px 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.9;
+  }
+  .week-note a { text-decoration: underline; text-decoration-color: var(--border); text-underline-offset: 3px; }
+  .week-note a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+
+  .notes { margin-top: 60px; padding-top: 28px; border-top: 1px solid var(--border); }
+  .notes-label { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; color: var(--text-faint); margin-bottom: 16px; }
+  .notes ol { margin: 0; padding-left: 20px; font-size: 13px; color: var(--text-muted); line-height: 1.9; }
+  .notes li { margin-bottom: 8px; }
+  .notes a { text-decoration: underline; text-decoration-color: var(--border); text-underline-offset: 3px; }
+  .notes a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+
+  footer { margin-top: 48px; font-size: 12px; color: var(--text-faint); }
+  footer a { color: var(--text-faint); }
+  footer a:hover { color: var(--accent); }
+</style>
+</head>
+<body>
+
+
+<div class="page">
+
+  <div class="nav util">
+    <a class="nav-brand" href="/">Weekly Ohtani</a>
+    <div class="nav-links">
+      <a class="nav-link" href="/glossary.html">用語ガイド</a>
+      <a class="nav-link" href="/archive.html">バックナンバー</a>
+    </div>
+  </div>
+
+  <div class="masthead">
+    <div class="kicker util">STATS</div>
+    <h1 class="headline">成績</h1>
+    <p class="dek">今シーズンの通算成績と、直近の試合結果をまとめておく。数字の意味が分からない項目は<a href="/glossary.html" style="text-decoration:underline;text-decoration-color:var(--border);">用語ガイド</a>へ。</p>
+    <div class="asof util">2026年8月30日時点</div>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">今シーズンの成績</h2>
+    <p class="section-lede util">577打席・14先発。投げても打っても、規格外の一年になっている。</p>
+
+    <div class="stat-block">
+      <div class="stat-block-label util">打撃</div>
+      <div class="stat-grid">
+        <div class="stat-cell"><span class="stat-num">.283</span><span class="stat-label util">打率</span></div>
+        <div class="stat-cell"><span class="stat-num">.383</span><span class="stat-label util">出塁率</span></div>
+        <div class="stat-cell"><span class="stat-num">.535</span><span class="stat-label util">長打率</span></div>
+        <div class="stat-cell"><span class="stat-num">146</span><span class="stat-label util">wRC+</span></div>
+        <div class="stat-cell"><span class="stat-num">30</span><span class="stat-label util">本塁打</span></div>
+        <div class="stat-cell"><span class="stat-num">80</span><span class="stat-label util">打点</span></div>
+        <div class="stat-cell"><span class="stat-num">10</span><span class="stat-label util">盗塁</span></div>
+        <div class="stat-cell"><span class="stat-num">577</span><span class="stat-label util">打席</span></div>
+      </div>
+    </div>
+
+    <div class="stat-block">
+      <div class="stat-block-label util">投球</div>
+      <div class="stat-grid">
+        <div class="stat-cell"><span class="stat-num">1.79</span><span class="stat-label util">防御率</span></div>
+        <div class="stat-cell"><span class="stat-num">0.95</span><span class="stat-label util">WHIP</span></div>
+        <div class="stat-cell"><span class="stat-num">9.98</span><span class="stat-label util">K/9</span></div>
+        <div class="stat-cell"><span class="stat-num">8-2</span><span class="stat-label util">勝敗</span></div>
+        <div class="stat-cell"><span class="stat-num">95</span><span class="stat-label util">奪三振</span></div>
+        <div class="stat-cell"><span class="stat-num">26</span><span class="stat-label util">与四球</span></div>
+        <div class="stat-cell"><span class="stat-num">85.2</span><span class="stat-label util">投球回</span></div>
+        <div class="stat-cell"><span class="stat-num">14</span><span class="stat-label util">先発</span></div>
+      </div>
+    </div>
+
+    <div class="war-strip util">
+      <span>投打合算WAR</span>
+      <b>6.9</b>
+      <span>(打撃4.0+投球2.9)</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">今週の試合結果</h2>
+    <p class="section-lede util">8月25日〜30日、ブレーブス戦とタイガース戦。大谷は指名打者として出場を続けた。</p>
+
+    <div class="games util">
+      <div class="game">
+        <span class="game-date">8/25</span>
+        <span class="game-opp">vs ブレーブス</span>
+        <span class="game-score loss">3–4 L</span>
+        <span class="game-note">大谷、盗塁を記録(通算5個目)</span>
+      </div>
+      <div class="game">
+        <span class="game-date">8/26</span>
+        <span class="game-opp">vs ブレーブス</span>
+        <span class="game-score loss">5–6 L</span>
+      </div>
+      <div class="game">
+        <span class="game-date">8/28</span>
+        <span class="game-opp">vs タイガース</span>
+        <span class="game-score win">2–1 W</span>
+      </div>
+      <div class="game">
+        <span class="game-date">8/29</span>
+        <span class="game-opp">vs タイガース</span>
+        <span class="game-score loss">1–2 L</span>
+      </div>
+    </div>
+
+    <div class="week-note">
+      投手としての実戦復帰はまだで、この週も指名打者としての出場が続いた。ブルペンでの調整の様子は<a href="/vol6.html">Vol.6「親指を立てた男」</a>に詳しい。8月30日の試合結果は、確度の高い情報が見つからなかったため、ここには含めていない。
+    </div>
+  </div>
+
+  <div class="notes">
+    <div class="notes-label util">取材ノート</div>
+    <ol>
+      <li><a href="https://www.espn.com/mlb/boxscore/_/gameId/401816669">Braves 4-3 Dodgers — ESPN, 2026年8月25日</a></li>
+      <li><a href="https://www.espn.com/mlb/boxscore/_/gameId/401816684">Braves 6-5 Dodgers — ESPN, 2026年8月26日</a></li>
+      <li><a href="https://www.espn.com/mlb/boxscore/_/gameId/401816706">Dodgers 2-1 Tigers — ESPN, 2026年8月28日</a></li>
+      <li><a href="https://www.espn.com/mlb/boxscore/_/gameId/401816721">Tigers 2-1 Dodgers — ESPN, 2026年8月29日</a></li>
+      <li><a href="https://pitcherstat.com/pitcher/shohei-ohtani">Shohei Ohtani 2026 pitching stats — pitcherstat.com</a></li>
+    </ol>
+  </div>
+
+  <footer class="util">
+    数字はシーズン中随時更新される速報値。取得時点でのスナップショットのため、他の号と多少前後することがある。
+  </footer>
+
+</div>
+
+</body>
+</html>
