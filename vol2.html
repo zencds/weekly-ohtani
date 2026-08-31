@@ -3,111 +3,377 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Weekly Ohtani</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700;800&family=Noto+Serif+JP:wght@400;500;600;700&display=swap">
+<title>Weekly Ohtani — 5月12日、バットが目を覚ました</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Noto+Serif+JP:wght@400;500;600;700&display=swap">
 <style>
-  :root {
-    --bg: #f1efe9; --surface: #e8e4da; --text: #1a1816; --text-muted: #55503f;
-    --text-faint: #8b8271; --accent: #a8241f; --accent-soft: rgba(168, 36, 31, 0.08);
-    --border: #d4cebd; --rule: #1a1816;
+:root {
+  --navy: #0f172a;
+  --accent: #1e3a8a;
+  --accent-light: #3b5bc7;
+  --bg: #ffffff;
+  --bg-off: #f8fafc;
+  --text: #0f172a;
+  --text-muted: #475569;
+  --text-faint: #94a3b8;
+  --border: #e2e8f0;
+  --shadow: 0 20px 40px -16px rgba(15, 23, 42, 0.22);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --navy: #e6e9f0;
+    --accent: #7b9aff;
+    --accent-light: #a9bdff;
+    --bg: #0b1120;
+    --bg-off: #131b2e;
+    --text: #e6e9f0;
+    --text-muted: #a3adc2;
+    --text-faint: #6b7488;
+    --border: #253046;
+    --shadow: 0 20px 40px -16px rgba(0, 0, 0, 0.5);
   }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #131210; --surface: #1c1a16; --text: #ece7db; --text-muted: #b0a68f;
-      --text-faint: #6f6858; --accent: #d4453d; --accent-soft: rgba(212, 69, 61, 0.14);
-      --border: #322d24; --rule: #ece7db;
-    }
-  }
-  :root[data-theme="dark"] {
-    --bg: #131210; --surface: #1c1a16; --text: #ece7db; --text-muted: #b0a68f;
-    --text-faint: #6f6858; --accent: #d4453d; --accent-soft: rgba(212, 69, 61, 0.14);
-    --border: #322d24; --rule: #ece7db;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0; background: var(--bg); color: var(--text);
-    font-family: "Noto Serif JP", "Hiragino Mincho ProN", serif;
-    line-height: 1.95; -webkit-font-smoothing: antialiased;
-  }
-  a { color: inherit; }
-  .util { font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif; }
-  .page { max-width: 720px; margin: 0 auto; padding: 0 28px 120px; }
-  .nav { display: flex; align-items: center; justify-content: space-between; padding: 26px 0; font-size: 12.5px; letter-spacing: 0.04em; }
-  .nav-brand { text-decoration: none; font-weight: 600; }
-  .nav-links { display: flex; gap: 20px; }
-  .nav-link { color: var(--text-muted); text-decoration: none; }
-  .nav-link:hover { color: var(--accent); }
-  .stat-link { text-decoration: underline; text-decoration-color: var(--border); text-underline-offset: 3px; }
-  .stat-link:hover { color: var(--accent); text-decoration-color: var(--accent); }
-  .masthead { position: relative; padding: 20px 0 54px; margin-bottom: 60px; border-bottom: 1px solid var(--border); }
-  .masthead-num {
-    font-family: "Shippori Mincho", serif; font-weight: 800; font-size: 168px; line-height: 1;
-    position: absolute; top: -10px; right: -6px; color: transparent;
-    -webkit-text-stroke: 1px var(--border); z-index: 0; user-select: none; pointer-events: none;
-  }
-  .masthead-inner { position: relative; z-index: 1; max-width: 480px; }
-  .kicker { font-size: 12px; font-weight: 600; letter-spacing: 0.14em; color: var(--accent); margin-bottom: 22px; }
-  .kicker::before { content: ""; display: inline-block; width: 22px; height: 1px; background: var(--accent); margin-right: 10px; vertical-align: middle; }
-  .headline { font-family: "Shippori Mincho", serif; font-weight: 800; font-size: clamp(38px, 7vw, 54px); line-height: 1.35; letter-spacing: 0.01em; margin: 0 0 22px; text-wrap: balance; }
-  .dek { font-size: 16px; color: var(--text-muted); line-height: 1.9; margin: 0 0 20px; }
-  .masthead-meta { font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif; font-size: 12px; color: var(--text-faint); letter-spacing: 0.03em; }
-  article { font-size: 17px; }
-  article p { margin: 0 0 30px; }
-  .lede { font-size: 19px; line-height: 2; }
-  .lede::first-letter { font-family: "Shippori Mincho", serif; font-size: 2.6em; font-weight: 800; color: var(--accent); float: left; line-height: 0.8; padding: 0.06em 0.08em 0 0; }
-  .pull { margin: 48px 0; padding: 4px 0 4px 26px; border-left: 3px solid var(--accent); font-family: "Shippori Mincho", serif; font-size: 22px; font-weight: 600; line-height: 1.7; color: var(--text); }
-  .divider { width: 40px; height: 1px; background: var(--rule); opacity: 0.4; margin: 52px 0; }
-  .summary { margin-top: 72px; padding-top: 40px; border-top: 1px solid var(--border); }
-  .summary-title { font-family: "Shippori Mincho", serif; font-weight: 700; font-size: 24px; margin: 0 0 6px; }
-  .summary-lede { font-size: 14px; color: var(--text-faint); margin: 0 0 28px; }
-  .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-  @media (max-width: 560px) { .summary-grid { grid-template-columns: 1fr; } .masthead-num { font-size: 110px; top: -4px; } }
-  .summary-lane { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px 20px 4px; }
-  .summary-lane-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 14px; }
-  .summary-item { position: relative; padding: 14px 0; border-top: 1px solid var(--border); }
-  .summary-lane .summary-item:first-child { border-top: none; padding-top: 0; }
-  .summary-headline { display: block; font-family: "Shippori Mincho", serif; font-weight: 600; font-size: 15.5px; line-height: 1.6; text-decoration: none; margin-bottom: 6px; }
-  .summary-headline::after { content: ""; position: absolute; inset: 0; }
-  .summary-headline:hover { color: var(--accent); }
-  .summary-text { font-size: 13.5px; color: var(--text-muted); line-height: 1.8; margin-bottom: 6px; }
-  .summary-source { font-size: 11.5px; color: var(--text-faint); }
-  .notes { margin-top: 72px; padding-top: 28px; border-top: 1px solid var(--border); }
-  .notes-label { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; color: var(--text-faint); margin-bottom: 16px; }
-  .notes ol { margin: 0; padding-left: 20px; font-size: 13px; color: var(--text-muted); line-height: 1.9; }
-  .notes li { margin-bottom: 8px; }
-  .notes a { text-decoration: underline; text-decoration-color: var(--border); text-underline-offset: 3px; }
-  .notes a:hover { color: var(--accent); text-decoration-color: var(--accent); }
-  footer { margin-top: 64px; font-size: 12px; color: var(--text-faint); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
-  footer a { color: var(--text-faint); }
-  footer a:hover { color: var(--accent); }
+}
+
+:root[data-theme="dark"] {
+  --navy: #e6e9f0;
+  --accent: #7b9aff;
+  --accent-light: #a9bdff;
+  --bg: #0b1120;
+  --bg-off: #131b2e;
+  --text: #e6e9f0;
+  --text-muted: #a3adc2;
+  --text-faint: #6b7488;
+  --border: #253046;
+  --shadow: 0 20px 40px -16px rgba(0, 0, 0, 0.5);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Noto Serif JP", "Hiragino Mincho ProN", serif;
+  line-height: 1.85;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; }
+
+.serif-en { font-family: "Playfair Display", "Noto Serif JP", serif; }
+.util {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+}
+
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 32px 120px; }
+
+/* ---- Nav ---- */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 48px;
+}
+.nav-brand {
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  color: var(--navy);
+}
+.nav-links { display: flex; gap: 28px; }
+.nav-link {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+.nav-link:hover { color: var(--accent); }
+
+/* ---- Masthead ---- */
+.masthead { max-width: 760px; margin: 0 0 40px; }
+.kicker {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 18px;
+}
+.headline {
+  font-family: "Noto Serif JP", serif;
+  font-weight: 700;
+  font-size: clamp(34px, 5vw, 48px);
+  line-height: 1.4;
+  color: var(--navy);
+  margin: 0 0 20px;
+  text-wrap: balance;
+}
+.dek {
+  font-size: 17px;
+  color: var(--text-muted);
+  line-height: 1.9;
+  margin: 0 0 18px;
+}
+.masthead-meta {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 12.5px;
+  color: var(--text-faint);
+  letter-spacing: 0.03em;
+}
+
+/* ---- Hero photo ---- */
+.hero-photo { margin: 0 0 44px; }
+.hero-photo .frame {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+}
+.hero-photo-caption {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 12px;
+  color: var(--text-faint);
+  margin-top: 10px;
+  text-align: right;
+}
+
+/* ---- KPI stat row ---- */
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 0 0 48px;
+}
+@media (max-width: 640px) { .kpi-row { grid-template-columns: 1fr 1fr; } }
+.kpi-card {
+  background: var(--bg-off);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px 20px 18px;
+}
+.kpi-label {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--text-faint);
+  margin-bottom: 8px;
+}
+.kpi-value {
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  font-size: 28px;
+  color: var(--navy);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+.kpi-value .arrow { color: var(--accent); font-size: 20px; margin: 0 4px; }
+.kpi-sub {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
+/* ---- Two column layout ---- */
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 56px;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; }
+}
+
+/* ---- Article ---- */
+article { font-size: 17px; }
+article p { margin: 0 0 28px; }
+.lede { font-size: 19px; }
+.lede::first-letter {
+  font-family: "Playfair Display", serif;
+  font-size: 2.5em;
+  font-weight: 700;
+  color: var(--accent);
+  float: left;
+  line-height: 0.85;
+  padding: 0.05em 0.08em 0 0;
+}
+.pull {
+  margin: 40px 0;
+  padding: 6px 0 6px 24px;
+  border-left: 3px solid var(--accent);
+  font-family: "Noto Serif JP", serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.7;
+  color: var(--navy);
+}
+.divider { width: 36px; height: 2px; background: var(--accent); margin: 44px 0; }
+.stat-link {
+  text-decoration: underline;
+  text-decoration-color: var(--border);
+  text-underline-offset: 3px;
+}
+.stat-link:hover { color: var(--accent); text-decoration-color: var(--accent); }
+
+/* ---- Aside / sidebar ---- */
+aside { position: sticky; top: 32px; }
+.aside-block {
+  background: var(--bg-off);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 10px;
+  padding: 24px 24px 6px;
+  margin-bottom: 24px;
+}
+.aside-title {
+  font-family: "Noto Serif JP", serif;
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--navy);
+  margin: 0 0 4px;
+}
+.aside-lede {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 12.5px;
+  color: var(--text-faint);
+  margin: 0 0 18px;
+}
+.summary-lane-label {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin: 20px 0 12px;
+}
+.summary-lane-label:first-of-type { margin-top: 0; }
+.summary-item { position: relative; padding: 14px 0; border-top: 1px solid var(--border); }
+.aside-block .summary-item:first-of-type { border-top: none; padding-top: 0; }
+.summary-headline {
+  display: block;
+  font-family: "Noto Serif JP", serif;
+  font-weight: 600;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--navy);
+  text-decoration: none;
+  margin-bottom: 5px;
+}
+.summary-headline::after { content: ""; position: absolute; inset: 0; }
+.summary-headline:hover { color: var(--accent); }
+.summary-text {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: 5px;
+}
+.summary-source {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 11px;
+  color: var(--text-faint);
+}
+
+.notes-block {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 22px 22px 20px;
+}
+.notes-label {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--text-faint);
+  margin-bottom: 14px;
+}
+.notes-block ol {
+  margin: 0;
+  padding-left: 18px;
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  line-height: 1.85;
+}
+.notes-block li { margin-bottom: 8px; }
+.notes-block a { text-decoration: underline; text-decoration-color: var(--border); text-underline-offset: 3px; }
+.notes-block a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+
+footer {
+  margin-top: 64px;
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 12px;
+  color: var(--text-faint);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  border-top: 1px solid var(--border);
+  padding-top: 24px;
+}
+footer a { color: var(--text-faint); }
+footer a:hover { color: var(--accent); }
+
 </style>
 </head>
 <body>
 
+<div class="wrap">
 
-<div class="page">
-
-  <div class="nav util">
+  <div class="nav">
     <a class="nav-brand" href="/">Weekly Ohtani</a>
     <div class="nav-links">
-      <a class="nav-link" href="/stats.html">成績</a>
-      <a class="nav-link" href="/glossary.html">用語ガイド</a>
-      <a class="nav-link" href="/archive.html">バックナンバー</a>
+      <a class="nav-link util" href="/stats.html">成績</a>
+      <a class="nav-link util" href="/glossary.html">用語ガイド</a>
+      <a class="nav-link util" href="/archive.html">バックナンバー</a>
     </div>
   </div>
 
   <div class="masthead">
-    <div class="masthead-num">02</div>
-    <div class="masthead-inner">
-      <div class="kicker util">VOL.2 — 2026年5月</div>
-      <h1 class="headline">5月12日、バットが目を覚ました</h1>
-      <p class="dek">開幕から41試合、どこか噛み合わなかった打撃が、ある日を境に別人のようになった。</p>
-      <div class="masthead-meta">打撃急反転・ローテーション調整・大量得点試合</div>
+    <div class="kicker">VOL.2 — 2026年5月</div>
+    <h1 class="headline">5月12日、バットが目を覚ました</h1>
+    <p class="dek">開幕から41試合、どこか噛み合わなかった打撃が、ある日を境に別人のようになった。</p>
+    <div class="masthead-meta util">打撃急反転・ローテーション調整・大量得点試合</div>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <div class="kpi-label util">wRC+</div>
+      <div class="kpi-value serif-en">113<span class="arrow">→</span>234</div>
+      <div class="kpi-sub util">5月12日を境に急上昇</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label util">打率(5/12以降)</div>
+      <div class="kpi-value serif-en">.414</div>
+      <div class="kpi-sub util">出塁率.505 / 長打率.711</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label util">打点</div>
+      <div class="kpi-value serif-en">6</div>
+      <div class="kpi-sub util">5/15アスレチックス戦</div>
     </div>
   </div>
 
-  <article>
-    <p class="lede">開幕から41試合、大谷のwRC+は113にとどまっていた。悪くはない。ただ、大谷にしては、少し物足りない数字だった。それが5月12日を境に、まるでスイッチが入ったように変わる。そこから先の打率は.414、出塁率.505、長打率.711。ESPNの月間総括は、その変化をシンプルに「バットが目覚めた」と表現している。</p>
+  <div class="layout">
+
+    <article>
+<p class="lede">開幕から41試合、大谷のwRC+は113にとどまっていた。悪くはない。ただ、大谷にしては、少し物足りない数字だった。それが5月12日を境に、まるでスイッチが入ったように変わる。そこから先の打率は.414、出塁率.505、長打率.711。ESPNの月間総括は、その変化をシンプルに「バットが目覚めた」と表現している。</p>
 
     <p>5月15日のアスレチックス戦では、2本塁打と犠飛を含む6打点を記録し、チームは19-2の大勝。開幕直後の物足りなさを知っているファンほど、この一夜の爆発を素直に喜んだようだった。</p>
 
@@ -118,50 +384,47 @@
     <div class="divider"></div>
 
     <p>4月の不調を知っていたからこそ、5月の反転は際立って見えた。数字がどちらに転ぶかは、誰にも分からない。ただ、大谷の場合、その振れ幅そのものが、見る側の楽しみになっているのかもしれない。</p>
-  </article>
+    </article>
 
-  <div class="summary">
-    <h2 class="summary-title">この号のサマリー</h2>
-    <p class="summary-lede util">専門メディアの論調と、海外ファンの熱量を、要点だけ並べておく。</p>
-
-    <div class="summary-grid">
-
-      <div class="summary-lane">
-        <div class="summary-lane-label util">米スポーツメディア</div>
+    <aside>
+      <div class="aside-block">
+        <h2 class="aside-title">この号のサマリー</h2>
+        <p class="aside-lede">専門メディアの論調と、海外ファンの熱量。</p>
+<div class="summary-lane-label">米スポーツメディア</div>
 
         <div class="summary-item">
           <a class="summary-headline" href="https://www.espn.com/mlb/story/_/id/48939028/mlb-2026-winners-losers-shohei-ohtani-dodgers-white-sox-brewers-mets-angels-tigers-skubal">「バットが目覚めた」——ESPNが月間総括で表現</a>
-          <p class="summary-text util">開幕41試合でwRC+113だった打撃が、5/12以降はwRC+234まで急上昇したと総括。</p>
-          <div class="summary-source util">ESPN・2026年5月</div>
+          <p class="summary-text">開幕41試合でwRC+113だった打撃が、5/12以降はwRC+234まで急上昇したと総括。</p>
+          <div class="summary-source">ESPN・2026年5月</div>
         </div>
 
         <div class="summary-item">
           <a class="summary-headline" href="https://dodgersnation.com/dodgers-shohei-ohtani-rotation-rockies/2026/05/24/">ロッキーズ戦前に、投手ローテーションを調整</a>
-          <p class="summary-text util">打撃絶好調を受け、ロバーツ監督が登板順を入れ替え。負荷管理の一手として淡々と報道された。</p>
-          <div class="summary-source util">DodgersNation・2026年5月24日</div>
+          <p class="summary-text">打撃絶好調を受け、ロバーツ監督が登板順を入れ替え。負荷管理の一手として淡々と報道された。</p>
+          <div class="summary-source">DodgersNation・2026年5月24日</div>
         </div>
       </div>
 
-      <div class="summary-lane">
-        <div class="summary-lane-label util">海外ファンの反応</div>
+      
+        <div class="summary-lane-label">海外ファンの反応</div>
 
         <div class="summary-item">
           <a class="summary-headline" href="https://www.mlb.com/dodgers/news/shohei-ohtani-2026-home-run-total-overall-production">19-2快勝の夜、6打点に沸くファン</a>
-          <p class="summary-text util">5/15アスレチックス戦で2本塁打・6打点の固め打ち。不振を知るファンほど熱狂的に受け止めた。</p>
-          <div class="summary-source util">現地報道・2026年5月15日</div>
+          <p class="summary-text">5/15アスレチックス戦で2本塁打・6打点の固め打ち。不振を知るファンほど熱狂的に受け止めた。</p>
+          <div class="summary-source">現地報道・2026年5月15日</div>
         </div>
       </div>
 
-    </div>
-  </div>
-
-  <div class="notes">
-    <div class="notes-label util">取材ノート</div>
-    <ol>
-      <li><a href="https://www.espn.com/mlb/story/_/id/48939028/mlb-2026-winners-losers-shohei-ohtani-dodgers-white-sox-brewers-mets-angels-tigers-skubal">MLB 2026 winners and losers — ESPN, 2026年5月</a></li>
+      <div class="notes-block">
+        <div class="notes-label">取材ノート</div>
+        <ol>
+<li><a href="https://www.espn.com/mlb/story/_/id/48939028/mlb-2026-winners-losers-shohei-ohtani-dodgers-white-sox-brewers-mets-angels-tigers-skubal">MLB 2026 winners and losers — ESPN, 2026年5月</a></li>
       <li><a href="https://dodgersnation.com/dodgers-shohei-ohtani-rotation-rockies/2026/05/24/">Dave Roberts Shifts Shohei Ohtani in Rotation — DodgersNation, 2026年5月24日</a></li>
       <li><a href="https://www.mlb.com/dodgers/news/shohei-ohtani-2026-home-run-total-overall-production">Shohei Ohtani just as good in 2026 — MLB.com</a></li>
-    </ol>
+        </ol>
+      </div>
+    </aside>
+
   </div>
 
   <footer class="util">

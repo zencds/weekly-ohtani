@@ -4,174 +4,377 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Weekly Ohtani — 用語ガイド</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700;800&family=Noto+Serif+JP:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Noto+Serif+JP:wght@400;500;600;700&display=swap">
 <style>
-  :root {
-    --bg: #f1efe9;
-    --surface: #e8e4da;
-    --text: #1a1816;
-    --text-muted: #55503f;
-    --text-faint: #8b8271;
-    --accent: #a8241f;
-    --accent-soft: rgba(168, 36, 31, 0.08);
-    --border: #d4cebd;
-    --rule: #1a1816;
+:root {
+  --navy: #0f172a;
+  --accent: #1e3a8a;
+  --accent-light: #3b5bc7;
+  --bg: #ffffff;
+  --bg-off: #f8fafc;
+  --text: #0f172a;
+  --text-muted: #475569;
+  --text-faint: #94a3b8;
+  --border: #e2e8f0;
+  --shadow: 0 20px 40px -16px rgba(15, 23, 42, 0.22);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --navy: #e6e9f0;
+    --accent: #7b9aff;
+    --accent-light: #a9bdff;
+    --bg: #0b1120;
+    --bg-off: #131b2e;
+    --text: #e6e9f0;
+    --text-muted: #a3adc2;
+    --text-faint: #6b7488;
+    --border: #253046;
+    --shadow: 0 20px 40px -16px rgba(0, 0, 0, 0.5);
   }
+}
 
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #131210;
-      --surface: #1c1a16;
-      --text: #ece7db;
-      --text-muted: #b0a68f;
-      --text-faint: #6f6858;
-      --accent: #d4453d;
-      --accent-soft: rgba(212, 69, 61, 0.14);
-      --border: #322d24;
-      --rule: #ece7db;
-    }
-  }
+:root[data-theme="dark"] {
+  --navy: #e6e9f0;
+  --accent: #7b9aff;
+  --accent-light: #a9bdff;
+  --bg: #0b1120;
+  --bg-off: #131b2e;
+  --text: #e6e9f0;
+  --text-muted: #a3adc2;
+  --text-faint: #6b7488;
+  --border: #253046;
+  --shadow: 0 20px 40px -16px rgba(0, 0, 0, 0.5);
+}
 
-  :root[data-theme="dark"] {
-    --bg: #131210;
-    --surface: #1c1a16;
-    --text: #ece7db;
-    --text-muted: #b0a68f;
-    --text-faint: #6f6858;
-    --accent: #d4453d;
-    --accent-soft: rgba(212, 69, 61, 0.14);
-    --border: #322d24;
-    --rule: #ece7db;
-  }
+* { box-sizing: border-box; }
 
-  * { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Noto Serif JP", "Hiragino Mincho ProN", serif;
+  line-height: 1.85;
+  -webkit-font-smoothing: antialiased;
+}
 
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: "Noto Serif JP", "Hiragino Mincho ProN", serif;
-    line-height: 1.95;
-    -webkit-font-smoothing: antialiased;
-  }
+a { color: inherit; }
 
-  a { color: inherit; }
+.serif-en { font-family: "Playfair Display", "Noto Serif JP", serif; }
+.util {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+}
 
-  .util {
-    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
-  }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 32px 120px; }
 
-  .page { max-width: 720px; margin: 0 auto; padding: 0 28px 120px; }
+/* ---- Nav ---- */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 48px;
+}
+.nav-brand {
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  color: var(--navy);
+}
+.nav-links { display: flex; gap: 28px; }
+.nav-link {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+.nav-link:hover { color: var(--accent); }
 
-  .nav {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 26px 0; font-size: 12.5px; letter-spacing: 0.04em;
-  }
-  .nav-brand { text-decoration: none; font-weight: 600; }
-  .nav-link { color: var(--text-muted); text-decoration: none; }
-  .nav-link:hover { color: var(--accent); }
-  .nav-links { display: flex; gap: 20px; }
+/* ---- Masthead ---- */
+.masthead { max-width: 760px; margin: 0 0 40px; }
+.kicker {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 18px;
+}
+.headline {
+  font-family: "Noto Serif JP", serif;
+  font-weight: 700;
+  font-size: clamp(34px, 5vw, 48px);
+  line-height: 1.4;
+  color: var(--navy);
+  margin: 0 0 20px;
+  text-wrap: balance;
+}
+.dek {
+  font-size: 17px;
+  color: var(--text-muted);
+  line-height: 1.9;
+  margin: 0 0 18px;
+}
+.masthead-meta {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 12.5px;
+  color: var(--text-faint);
+  letter-spacing: 0.03em;
+}
 
-  .masthead {
-    padding: 20px 0 46px;
-    margin-bottom: 48px;
-    border-bottom: 1px solid var(--border);
-  }
+/* ---- Hero photo ---- */
+.hero-photo { margin: 0 0 44px; }
+.hero-photo .frame {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+}
+.hero-photo-caption {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 12px;
+  color: var(--text-faint);
+  margin-top: 10px;
+  text-align: right;
+}
 
-  .kicker {
-    font-size: 12px; font-weight: 600; letter-spacing: 0.14em;
-    color: var(--accent); margin-bottom: 22px;
-  }
-  .kicker::before {
-    content: ""; display: inline-block; width: 22px; height: 1px;
-    background: var(--accent); margin-right: 10px; vertical-align: middle;
-  }
+/* ---- KPI stat row ---- */
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 0 0 48px;
+}
+@media (max-width: 640px) { .kpi-row { grid-template-columns: 1fr 1fr; } }
+.kpi-card {
+  background: var(--bg-off);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px 20px 18px;
+}
+.kpi-label {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--text-faint);
+  margin-bottom: 8px;
+}
+.kpi-value {
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  font-size: 28px;
+  color: var(--navy);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+.kpi-value .arrow { color: var(--accent); font-size: 20px; margin: 0 4px; }
+.kpi-sub {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
 
-  .headline {
-    font-family: "Shippori Mincho", serif;
-    font-weight: 800;
-    font-size: clamp(32px, 6vw, 44px);
-    line-height: 1.4;
-    margin: 0 0 20px;
-    text-wrap: balance;
-  }
+/* ---- Two column layout ---- */
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 56px;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; }
+}
 
-  .dek {
-    font-size: 16px;
-    color: var(--text-muted);
-    line-height: 1.9;
-    max-width: 52ch;
-  }
+/* ---- Article ---- */
+article { font-size: 17px; }
+article p { margin: 0 0 28px; }
+.lede { font-size: 19px; }
+.lede::first-letter {
+  font-family: "Playfair Display", serif;
+  font-size: 2.5em;
+  font-weight: 700;
+  color: var(--accent);
+  float: left;
+  line-height: 0.85;
+  padding: 0.05em 0.08em 0 0;
+}
+.pull {
+  margin: 40px 0;
+  padding: 6px 0 6px 24px;
+  border-left: 3px solid var(--accent);
+  font-family: "Noto Serif JP", serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.7;
+  color: var(--navy);
+}
+.divider { width: 36px; height: 2px; background: var(--accent); margin: 44px 0; }
+.stat-link {
+  text-decoration: underline;
+  text-decoration-color: var(--border);
+  text-underline-offset: 3px;
+}
+.stat-link:hover { color: var(--accent); text-decoration-color: var(--accent); }
 
-  .term {
-    padding: 40px 0;
-    border-top: 1px solid var(--border);
-    scroll-margin-top: 24px;
-  }
-  .page > article > .term:first-child { border-top: none; padding-top: 0; }
+/* ---- Aside / sidebar ---- */
+aside { position: sticky; top: 32px; }
+.aside-block {
+  background: var(--bg-off);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 10px;
+  padding: 24px 24px 6px;
+  margin-bottom: 24px;
+}
+.aside-title {
+  font-family: "Noto Serif JP", serif;
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--navy);
+  margin: 0 0 4px;
+}
+.aside-lede {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 12.5px;
+  color: var(--text-faint);
+  margin: 0 0 18px;
+}
+.summary-lane-label {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin: 20px 0 12px;
+}
+.summary-lane-label:first-of-type { margin-top: 0; }
+.summary-item { position: relative; padding: 14px 0; border-top: 1px solid var(--border); }
+.aside-block .summary-item:first-of-type { border-top: none; padding-top: 0; }
+.summary-headline {
+  display: block;
+  font-family: "Noto Serif JP", serif;
+  font-weight: 600;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--navy);
+  text-decoration: none;
+  margin-bottom: 5px;
+}
+.summary-headline::after { content: ""; position: absolute; inset: 0; }
+.summary-headline:hover { color: var(--accent); }
+.summary-text {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: 5px;
+}
+.summary-source {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 11px;
+  color: var(--text-faint);
+}
 
-  .term-head {
-    display: flex;
-    align-items: baseline;
-    gap: 14px;
-    flex-wrap: wrap;
-    margin-bottom: 14px;
-  }
+.notes-block {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 22px 22px 20px;
+}
+.notes-label {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--text-faint);
+  margin-bottom: 14px;
+}
+.notes-block ol {
+  margin: 0;
+  padding-left: 18px;
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  line-height: 1.85;
+}
+.notes-block li { margin-bottom: 8px; }
+.notes-block a { text-decoration: underline; text-decoration-color: var(--border); text-underline-offset: 3px; }
+.notes-block a:hover { color: var(--accent); text-decoration-color: var(--accent); }
 
-  .term-name {
-    font-family: "Shippori Mincho", serif;
-    font-weight: 700;
-    font-size: 24px;
-  }
+footer {
+  margin-top: 64px;
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 12px;
+  color: var(--text-faint);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  border-top: 1px solid var(--border);
+  padding-top: 24px;
+}
+footer a { color: var(--text-faint); }
+footer a:hover { color: var(--accent); }
 
-  .term-kana {
-    font-size: 13px;
-    color: var(--text-faint);
-  }
 
-  .term-example {
-    display: inline-block;
-    margin-left: auto;
-    font-size: 13px;
-    color: var(--accent);
-    background: var(--accent-soft);
-    padding: 3px 10px;
-    border-radius: 999px;
-  }
+.narrow { max-width: 760px; }
 
-  .term p { font-size: 16px; margin: 0 0 14px; }
-  .term p:last-child { margin-bottom: 0; }
+.term {
+  padding: 36px 0;
+  border-top: 1px solid var(--border);
+  scroll-margin-top: 24px;
+}
+article > .term:first-child { border-top: none; padding-top: 0; }
 
-  .term-note {
-    font-size: 14px;
-    color: var(--text-muted);
-  }
-
-  footer {
-    margin-top: 64px;
-    font-size: 12px;
-    color: var(--text-faint);
-  }
-  footer a { color: var(--text-faint); }
-  footer a:hover { color: var(--accent); }
+.term-head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-bottom: 14px; }
+.term-name { font-family: "Noto Serif JP", serif; font-weight: 700; font-size: 22px; color: var(--navy); }
+.term-kana { font-size: 12.5px; color: var(--text-faint); }
+.term-example {
+  display: inline-block;
+  margin-left: auto;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--bg-off);
+  border: 1px solid var(--border);
+  padding: 3px 12px;
+  border-radius: 999px;
+  font-variant-numeric: tabular-nums;
+}
+.term p { font-size: 15.5px; margin: 0 0 14px; }
+.term p:last-child { margin-bottom: 0; }
+.term-note { font-size: 13.5px; color: var(--text-muted); }
 </style>
 </head>
 <body>
 
+<div class="wrap narrow">
 
-<div class="page">
-
-  <div class="nav util">
+  <div class="nav">
     <a class="nav-brand" href="/">Weekly Ohtani</a>
     <div class="nav-links">
-      <a class="nav-link" href="/stats.html">成績</a>
-      <a class="nav-link" href="/archive.html">バックナンバー</a>
-      <a class="nav-link" href="/">最新号</a>
+      <a class="nav-link util" href="/stats.html">成績</a>
+      <a class="nav-link util" href="/archive.html">バックナンバー</a>
+      <a class="nav-link util" href="/">最新号</a>
     </div>
   </div>
 
   <div class="masthead">
-    <div class="kicker util">GUIDE</div>
+    <div class="kicker">Guide</div>
     <h1 class="headline">野球を知らなくても読める、数字の話</h1>
     <p class="dek">記事の中に出てくる打率やOPS+のような数字、実はそこまで難しくありません。ここでは、野球にあまり馴染みのない方向けに、ひとつずつゆっくり説明します。</p>
   </div>
@@ -289,7 +492,8 @@
   </article>
 
   <footer class="util">
-    数字の目安は一般的な理解を助けるための簡略化した説明です。<a href="/">← 最新号に戻る</a>
+    <span>数字の目安は一般的な理解を助けるための簡略化した説明です。</span>
+    <a href="/">← 最新号に戻る</a>
   </footer>
 
 </div>
