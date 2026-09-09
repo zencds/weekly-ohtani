@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Weekly Ohtani — 打席にも、マウンドにも立たない一週間</title>
+<title>Weekly Ohtani — 先頭打者弾で通算30本——記録が積み上がる月</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Noto+Serif+JP:wght@400;500;600;700&display=swap">
 <style>
+
 :root {
   --navy: #0f172a;
   --accent: #1e3a8a;
@@ -124,6 +125,43 @@ a { color: inherit; }
   font-size: 12.5px;
   color: var(--text-faint);
   letter-spacing: 0.03em;
+}
+
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 0 0 48px;
+}
+@media (max-width: 640px) { .kpi-row { grid-template-columns: 1fr 1fr; } }
+.kpi-card {
+  background: var(--bg-off);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px 20px 18px;
+}
+.kpi-label {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--text-faint);
+  margin-bottom: 8px;
+}
+.kpi-value {
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  font-size: 28px;
+  color: var(--navy);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+.kpi-value .arrow { color: var(--accent); font-size: 20px; margin: 0 4px; }
+.kpi-sub {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 6px;
 }
 
 .layout {
@@ -249,47 +287,6 @@ aside { position: sticky; top: 32px; }
 .notes-block a { text-decoration: underline; text-decoration-color: var(--border); text-underline-offset: 3px; }
 .notes-block a:hover { color: var(--accent); text-decoration-color: var(--accent); }
 
-.stats-section {
-  margin-top: 64px;
-  padding-top: 40px;
-  border-top: 1px solid var(--border);
-}
-.stats-heading {
-  font-family: "Noto Serif JP", serif;
-  font-weight: 700;
-  font-size: 22px;
-  color: var(--navy);
-  margin: 0 0 32px;
-}
-.stats-block { margin-bottom: 36px; }
-.stats-subhead {
-  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
-  font-size: 12px; font-weight: 700; letter-spacing: 0.08em; color: var(--accent);
-  margin-bottom: 6px;
-}
-.stats-lede {
-  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
-  font-size: 12.5px; color: var(--text-faint); margin: 0 0 16px;
-}
-.stat-line { display: flex; flex-wrap: wrap; row-gap: 14px; }
-.stat-item { display: flex; align-items: baseline; gap: 7px; padding-right: 22px; margin-right: 22px; border-right: 1px solid var(--border); }
-.stat-item:last-child { border-right: none; margin-right: 0; padding-right: 0; }
-.stat-item .num { font-family: "Playfair Display", serif; font-weight: 700; font-size: 19px; color: var(--navy); font-variant-numeric: tabular-nums; }
-.stat-item .lbl { font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif; font-size: 11.5px; color: var(--text-faint); }
-.war-note { margin-top: 14px; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif; font-size: 12.5px; color: var(--text-muted); }
-.war-note b { color: var(--accent); font-weight: 700; }
-.games { display: flex; flex-direction: column; }
-.game { padding: 14px 0; border-top: 1px solid var(--border); font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif; }
-.games .game:first-child { border-top: none; }
-.game-row { display: flex; align-items: baseline; gap: 14px; font-size: 14px; }
-.game-date { font-size: 12px; color: var(--text-faint); width: 44px; flex-shrink: 0; }
-.game-opp { color: var(--text); flex: 1; }
-.game-score { font-variant-numeric: tabular-nums; font-size: 13px; }
-.game-score.win { color: var(--accent); font-weight: 700; }
-.game-score.loss { color: var(--text-faint); }
-.game-personal { margin-top: 5px; margin-left: 58px; font-size: 12.5px; color: var(--text-muted); }
-.game-personal b { color: var(--navy); font-weight: 600; }
-
 footer {
   margin-top: 64px;
   font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
@@ -304,6 +301,7 @@ footer {
 }
 footer a { color: var(--text-faint); }
 footer a:hover { color: var(--accent); }
+
 </style>
 </head>
 <body>
@@ -320,110 +318,75 @@ footer a:hover { color: var(--accent); }
   </div>
 
   <div class="masthead">
-    <div class="kicker">VOL.27 — 2026年8月31日–9月6日</div>
-    <h1 class="headline">打席にも、マウンドにも立たない一週間</h1>
-    <p class="dek">右腕の張りと、左ひざの炎症。この一週間、大谷はマウンドはおろか、打席にも立たなかった。指揮官の口からも、今シーズン中の投手復帰について慎重な言葉が増え始めている。</p>
-    <div class="masthead-meta util">投手復帰「望み薄」報道・ラインアップ離脱・MVP争いはさらに離れる</div>
+    <div class="kicker">VOL.27 — 2026年6月22日–6月30日</div>
+    <h1 class="headline">先頭打者弾で通算30本——記録が積み上がる月</h1>
+    <p class="dek">6月22日には自己新となる通算30本目のリードオフ本塁打。月末には投手として3勝0敗25奪三振という、無傷の内容で6月を締めくくった。</p>
+    <div class="masthead-meta util">通算30本目のリードオフ弾・投手6月無敗</div>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <div class="kpi-label util">通算リードオフ弾</div>
+      <div class="kpi-value serif-en">30本目</div>
+      <div class="kpi-sub util">6/22・自己新</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label util">投手6月成績</div>
+      <div class="kpi-value serif-en">3-0</div>
+      <div class="kpi-sub util">25奪三振</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label util">今季本塁打</div>
+      <div class="kpi-value serif-en">17号</div>
+      <div class="kpi-sub util">同日に記録</div>
+    </div>
   </div>
 
   <div class="layout">
 
     <article>
-    <p class="lede">8月28日のブルペン投球は、右腕の張りを理由に途中で切り上げられていた。それから一週間あまり、大谷はマウンドに戻らなかった——それだけではない。左ひざの炎症も重なり、この週はついに打者としてもラインアップから姿を消した。</p>
+    <p class="lede">6月22日、大谷は自己新となる通算30本目のリードオフ本塁打(今季17号)を放った。第二子誕生という私事を挟みながらも、記録更新のペースは落ちなかった。</p>
 
-    <p>9月2日、カージナルス戦は延長10回の末、8-6でドジャースが敗れた。大谷を欠いたままの一戦だった。指揮官デーブ・ロバーツも、今シーズン中の投手復帰についてこの週、ようやく慎重な言葉を選び始めている。米メディアの一部は「2026年中の投手復帰はもはや望み薄」という見方まで伝え始めた。</p>
+    <p>月末にかけては投手としても無傷の内容が続き、6月は3勝0敗・25奪三振という成績で終えた。登板したすべての試合で勝利投手となり、MLB.comは月末の総括動画で、その内容を淡々と積み上げて評価している。</p>
 
-    <p class="pull">"increasingly unlikely"</p>
-
-    <p>打者としては9月8日、月曜日のラインアップ復帰が見込まれている。ただし投げる大谷が、いつ戻ってくるのかは、この週の時点でもまだ誰にも分からなかった。</p>
-
-    <p>同じ週、ナ・リーグMVP争いはさらに大谷から離れていった。カブスのピート・クロウ゠アームストロングが、レッズ戦での3本塁打・6打点を受けてオッズ-1100の圧倒的本命に浮上。40本塁打・40盗塁も視野に入るシーズンで、WARはすでに9.3に達している。</p>
+    <p>投打とも安定期に入り、記者・ファンともにポジティブな論調で足並みが揃った、数少ない一月だった。この「蜜月」が長くは続かないことを、この時点ではまだ誰も知らなかった。</p>
 
     <div class="divider"></div>
 
-    <p>投げられないだけでなく、打席にも立てない。それでも、まだシーズンは終わっていない。9月に入っても、大谷にとって最大の相手は、対戦相手ではなく自分自身の体だった。</p>
+    <p>6月は、二刀流という言葉がもっともしっくりくる一月だったかもしれない。</p>
     </article>
 
     <aside>
       <div class="aside-block">
         <h2 class="aside-title">この号のサマリー</h2>
-        <p class="aside-lede">専門メディアの論調と、現地報道の要点。</p>
+        <p class="aside-lede">専門メディアの論調と、海外ファンの熱量。</p>
 
         <div class="summary-lane-label">米スポーツメディア</div>
 
         <div class="summary-item">
-          <a class="summary-headline" href="https://www.mlbtraderumors.com/2026/09/shohei-ohtani-not-likely-to-pitch-again-in-2026.html">「2026年中の投手復帰は望み薄」</a>
-          <p class="summary-text">指揮官ロバーツが慎重な発言を重ねたことを受け、今シーズン中の投手復帰に懐疑的な見方を伝えた。</p>
-          <div class="summary-source">MLB Trade Rumors・2026年9月</div>
+          <a class="summary-headline" href="https://www.mlb.com/dodgers/video/highlighting-shohei-ohtani-s-pitching-in-june-2026">投手・大谷、6月は3勝0敗25奪三振で無傷</a>
+          <p class="summary-text">シーズン全体の安定感を示す一月として、淡々とスタッツを積み上げて評価した。</p>
+          <div class="summary-source">MLB.com・2026年6月29日</div>
         </div>
 
-        <div class="summary-item">
-          <a class="summary-headline" href="https://bleacherreport.com/articles/25494104-updated-2026-mlb-nl-mvp-odds-pete-crow-armstrong-shohei-ohtani-after-cubs-stars-3-hr-game">PCA、オッズ-1100の圧倒的本命に</a>
-          <p class="summary-text">3本塁打6打点の活躍を受け、MVPオッズでクロウ゠アームストロングが独走状態になったと伝えた。</p>
-          <div class="summary-source">Bleacher Report・2026年9月</div>
-        </div>
-
-        <div class="summary-lane-label">現地報道</div>
+        <div class="summary-lane-label">海外ファンの反応</div>
 
         <div class="summary-item">
-          <a class="summary-headline" href="https://www.mlb.com/news/shohei-ohtani-progressing-toward-return-to-pitching">右腕の張りでブルペンを短縮</a>
-          <p class="summary-text">8月28日のブルペン投球が、右腕の張りを理由に予定より短く切り上げられたことを報じた。</p>
-          <div class="summary-source">MLB.com・2026年9月</div>
+          <a class="summary-headline" href="https://www.youtube.com/watch?v=xkrz-7W99N8">先頭打者弾に沸くファン</a>
+          <p class="summary-text">自己新となるリードオフ弾の記録に、海外ファンからも祝福の声が相次いだ。</p>
+          <div class="summary-source">MLB Highlights・2026年6月22日</div>
         </div>
       </div>
 
       <div class="notes-block">
         <div class="notes-label">取材ノート</div>
         <ol>
-          <li><a href="https://www.mlbtraderumors.com/2026/09/shohei-ohtani-not-likely-to-pitch-again-in-2026.html">Shohei Ohtani Not Likely To Pitch Again In 2026 — MLB Trade Rumors</a></li>
-          <li><a href="https://www.mlb.com/news/shohei-ohtani-progressing-toward-return-to-pitching">Shohei Ohtani progressing toward return to pitching — MLB.com</a></li>
-          <li><a href="https://sports.yahoo.com/articles/shohei-ohtani-expected-back-dodgers-014751463.html">Shohei Ohtani expected back in Dodgers lineup on Monday — Yahoo Sports</a></li>
-          <li><a href="https://bleacherreport.com/articles/25494104-updated-2026-mlb-nl-mvp-odds-pete-crow-armstrong-shohei-ohtani-after-cubs-stars-3-hr-game">Updated 2026 MLB NL MVP Odds — Bleacher Report</a></li>
-          <li><a href="https://www.truebluela.com/dodgers-scores-standings/112484/2026-schedule-scores">Dodgers news: 2026 schedule, game scores & results — True Blue LA</a></li>
+      <li><a href="https://www.youtube.com/watch?v=xkrz-7W99N8">LEADOFF SHO! Ohtani's 17th home run — MLB Highlights</a></li>
+      <li><a href="https://www.mlb.com/dodgers/video/highlighting-shohei-ohtani-s-pitching-in-june-2026">Highlighting Shohei Ohtani's pitching in June 2026 — MLB.com</a></li>
         </ol>
       </div>
     </aside>
 
-  </div>
-
-  <div class="stats-section">
-    <h2 class="stats-heading">今週の試合結果 &amp; 今シーズンの成績</h2>
-
-    <div class="stats-block">
-      <div class="stats-subhead">今週の試合結果</div>
-      <p class="stats-lede">8月31日〜9月6日。大谷は右腕の張りと左ひざの炎症でラインアップを外れる週が多く、確度の高い個人成績が確認できたのは限られている。</p>
-
-      <div class="games">
-        <div class="game">
-          <div class="game-row">
-            <span class="game-date">9/2</span>
-            <span class="game-opp">vs カージナルス(延長10回)</span>
-            <span class="game-score loss">6–8 L</span>
-          </div>
-          <div class="game-personal"><b>大谷:</b> ラインアップ外(右腕・左ひざの張りのため欠場)</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="stats-block">
-      <div class="stats-subhead">今シーズンの成績(打撃)</div>
-      <div class="stat-line">
-        <div class="stat-item"><span class="num">.287</span><span class="lbl">打率</span></div>
-        <div class="stat-item"><span class="num">.388</span><span class="lbl">出塁率</span></div>
-        <div class="stat-item"><span class="num">.546</span><span class="lbl">長打率</span></div>
-        <div class="stat-item"><span class="num">158</span><span class="lbl">OPS+</span></div>
-      </div>
-    </div>
-
-    <div class="stats-block">
-      <div class="stats-subhead">今シーズンの成績(投球)</div>
-      <div class="stat-line">
-        <div class="stat-item"><span class="num">1.79</span><span class="lbl">防御率</span></div>
-        <div class="stat-item"><span class="num">85⅔</span><span class="lbl">投球回</span></div>
-        <div class="stat-item"><span class="num">7/3</span><span class="lbl">最終登板</span></div>
-      </div>
-      <div class="war-note">投手としての登板は7月3日が最後。この週の時点で、2ヶ月が経過している。詳細は<a href="/stats.html" style="text-decoration:underline;text-decoration-color:var(--border);">成績ページ</a>へ</div>
-    </div>
   </div>
 
   <footer class="util">

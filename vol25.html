@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Weekly Ohtani — 同僚の投票用紙に、名前が並ばなかった</title>
+<title>Weekly Ohtani — 打撃が、脇役になっていた</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Noto+Serif+JP:wght@400;500;600;700&display=swap">
 <style>
+
 :root {
   --navy: #0f172a;
   --accent: #1e3a8a;
@@ -67,7 +68,6 @@ a { color: inherit; }
 
 .wrap { max-width: 1120px; margin: 0 auto; padding: 0 32px 120px; }
 
-/* ---- Nav ---- */
 .nav {
   display: flex;
   align-items: center;
@@ -95,7 +95,6 @@ a { color: inherit; }
 }
 .nav-link:hover { color: var(--accent); }
 
-/* ---- Masthead ---- */
 .masthead { max-width: 760px; margin: 0 0 40px; }
 .kicker {
   font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
@@ -128,30 +127,6 @@ a { color: inherit; }
   letter-spacing: 0.03em;
 }
 
-/* ---- Hero photo ---- */
-.hero-photo { margin: 0 0 44px; }
-.hero-photo .frame {
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-  border-radius: 12px;
-  box-shadow: var(--shadow);
-}
-.hero-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 30%;
-  display: block;
-}
-.hero-photo-caption {
-  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
-  font-size: 12px;
-  color: var(--text-faint);
-  margin-top: 10px;
-  text-align: right;
-}
-
-/* ---- KPI stat row ---- */
 .kpi-row {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -189,7 +164,6 @@ a { color: inherit; }
   margin-top: 6px;
 }
 
-/* ---- Two column layout ---- */
 .layout {
   display: grid;
   grid-template-columns: 1fr 320px;
@@ -200,7 +174,6 @@ a { color: inherit; }
   .layout { grid-template-columns: 1fr; }
 }
 
-/* ---- Article ---- */
 article { font-size: 17px; }
 article p { margin: 0 0 28px; }
 .lede { font-size: 19px; }
@@ -231,7 +204,6 @@ article p { margin: 0 0 28px; }
 }
 .stat-link:hover { color: var(--accent); text-decoration-color: var(--accent); }
 
-/* ---- Aside / sidebar ---- */
 aside { position: sticky; top: 32px; }
 .aside-block {
   background: var(--bg-off);
@@ -346,80 +318,70 @@ footer a:hover { color: var(--accent); }
   </div>
 
   <div class="masthead">
-    <div class="kicker">VOL.25 — 2026年8月18日–24日</div>
-    <h1 class="headline">同僚の投票用紙に、名前が並ばなかった</h1>
-    <p class="dek">記者だけでなく、同じユニフォームを着た選手たちの投票でも、大谷はクロウ゠アームストロングに水をあけられた。それでもロッキーズ戦の一発には、いつも通りの歓声が起きていた。</p>
-    <div class="masthead-meta util">選手間投票・MVP月例ウォッチ・投手復帰の助走</div>
+    <div class="kicker">VOL.25 — 2026年6月8日–6月14日</div>
+    <h1 class="headline">打撃が、脇役になっていた</h1>
+    <p class="dek">投手としての活躍があまりに大きく、67試合で本塁打11本という打撃成績が、むしろ地味に見えるという逆転現象が起きていた。</p>
+    <div class="masthead-meta util">投手成績の陰で打撃が霞む・5/12以降の反転は継続</div>
   </div>
 
   <div class="kpi-row">
     <div class="kpi-card">
-      <div class="kpi-label util">同僚投票</div>
-      <div class="kpi-value serif-en">15<span class="arrow">→</span>4</div>
-      <div class="kpi-sub util">PCA支持15票 対 大谷4票</div>
+      <div class="kpi-label util">開幕67試合HR</div>
+      <div class="kpi-value serif-en">11</div>
+      <div class="kpi-sub util">投手成績の陰に隠れがちな数字</div>
     </div>
     <div class="kpi-card">
-      <div class="kpi-label util">OPS</div>
-      <div class="kpi-value serif-en">.942</div>
-      <div class="kpi-sub util">リーグ2位の水準</div>
+      <div class="kpi-label util">5/12以降 wRC+</div>
+      <div class="kpi-value serif-en">234</div>
+      <div class="kpi-sub util">リーグ最高水準を継続</div>
     </div>
     <div class="kpi-card">
-      <div class="kpi-label util">本塁打(8/17)</div>
-      <div class="kpi-value serif-en">2本</div>
-      <div class="kpi-sub util">ロッキーズ戦・4安打</div>
+      <div class="kpi-label util">打率(5/12以降)</div>
+      <div class="kpi-value serif-en">.414</div>
+      <div class="kpi-sub util">出塁率.505 長打率.711</div>
     </div>
   </div>
 
   <div class="layout">
 
     <article>
-<p class="lede">ドジャースとカブスを除く9球団、21人の主力選手に匿名で聞いた——今シーズンのMVPは誰か。結果は、ピート・クロウ゠アームストロングが15票、大谷が4票、決めかねた選手が2人。DodgerBlueが伝えたこの数字は、記者の論評よりも、ずっと生々しく響いた。</p>
+    <p class="lede">6月11日、MLB.comはこのシーズンの奇妙な構図を指摘した。開幕から67試合で本塁打11本という、それ自体は十分に立派な数字が、投手としての史上級の活躍のせいで「むしろ地味」に見えてしまっている、というのだ。</p>
 
-    <p>もっとも、この記事の書き方はそこまで冷淡ではない。大谷のOPS.942がリーグ2位であることも、きちんと併記されている。「もう終わった」と切り捨てる論調ではなく、記者だけでなく同僚選手の目線からも、評価の重心がわずかに動き始めた、というくらいの温度感だ。</p>
+    <p>5月12日以降、打率.414・出塁率.505・長打率.711・wRC+234というリーグ最高水準の打撃を続けていたにもかかわらず、この時点での話題の中心は依然として投手・大谷にあった。二刀流の一方があまりに突出すると、もう一方が霞んで見える——これもまた、今シーズンならではの現象だった。</p>
 
-    <p class="pull">PCA支持15票・大谷支持4票</p>
-
-    <p>同じ週、ESPNの月例賞レース展望でも、8月18日のクロウ゠アームストロングのサヨナラ本塁打を境に、今季初めて本命の座が入れ替わったと整理されている。二刀流のうち片方が止まっている間は、なかなか満票をもらえない——そんな構図が、じわじわと定着し始めていた。</p>
+    <p>静かな一週間ではあったが、この「打撃が脇役化する」という視点そのものが、後のMVP争いの論調にもつながっていく伏線になる。</p>
 
     <div class="divider"></div>
 
-    <p>それでも8月17日、ロッキーズ戦で2本塁打・4安打の活躍を見せると、海外ファンからは「まだまだ健在」という歓迎ムードがすぐに戻ってきた。記者たちが数字で線を引こうとする一方、ファンの熱は一試合の結果だけで、あっさりと元に戻ってしまうものらしい。投手としての復帰も、まだブルペン前段階——8月22日には30球を投げ、34度の暑さの中、ただ親指を立てて終えている。</p>
+    <p>誰も打撃を軽視していたわけではない。ただ、投手としての大谷があまりに規格外だっただけだ。</p>
     </article>
 
     <aside>
       <div class="aside-block">
         <h2 class="aside-title">この号のサマリー</h2>
         <p class="aside-lede">専門メディアの論調と、海外ファンの熱量。</p>
-<div class="summary-lane-label">米スポーツメディア</div>
+
+        <div class="summary-lane-label">米スポーツメディア</div>
 
         <div class="summary-item">
-          <a class="summary-headline" href="https://dodgerblue.com/mlb-players-vote-pete-crow-armstrong-nl-mvp-over-shohei-ohtani/2026/08/21/">同僚投票でもPCAが上回る「大谷疲れ」</a>
-          <p class="summary-text">9球団の主力選手21人への匿名調査でPCA15票・大谷4票・拮抗2票。記者だけでなく同僚の目線も動いた。</p>
-          <div class="summary-source">DodgerBlue・2026年8月21日</div>
-        </div>
-
-        <div class="summary-item">
-          <a class="summary-headline" href="https://www.espn.com/mlb/story/_/id/49672771/mlb-2026-awards-watch-august-mvp-cy-young-al-nl-rookie-manager-year-ohtani-pca">8月18日のサヨナラ弾で、月例ウォッチの本命が入れ替わる</a>
-          <p class="summary-text">PCAの終盤サヨナラ弾を境に、今季初めて大谷から本命の座が移ったと整理された。</p>
-          <div class="summary-source">ESPN・2026年8月</div>
+          <a class="summary-headline" href="https://www.mlb.com/news/shohei-ohtani-2026-home-run-total-overall-production">11本塁打が「地味」に見える異常事態</a>
+          <p class="summary-text">投手としての活躍の大きさゆえに、打撃成績がかすんで見えるという逆転現象を指摘した。</p>
+          <div class="summary-source">MLB.com・2026年6月11日</div>
         </div>
 
         <div class="summary-lane-label">海外ファンの反応</div>
 
         <div class="summary-item">
-          <a class="summary-headline" href="https://www.wsls.com/sports/2026/08/19/ohtani-reaches-30-hrs-for-6th-straight-season-as-dodgers-beat-rockies-7-6/">8月17日、4安打2発の固め打ちに沸く</a>
-          <p class="summary-text">ロッキーズ戦での活躍に「まだまだ健在」という歓迎ムードが広がった。</p>
-          <div class="summary-source">AP / WSLS・2026年8月19日</div>
+          <a class="summary-headline" href="https://www.espn.com/mlb/player/gamelog/_/id/39832/shohei-ohtani">「打者としても十分エース級なのに」</a>
+          <p class="summary-text">投手としての注目に隠れがちな打撃成績を惜しむ声も一部にあった。</p>
+          <div class="summary-source">現地反応・2026年6月</div>
         </div>
       </div>
 
       <div class="notes-block">
         <div class="notes-label">取材ノート</div>
         <ol>
-<li><a href="https://dodgerblue.com/mlb-players-vote-pete-crow-armstrong-nl-mvp-over-shohei-ohtani/2026/08/21/">MLB players vote Pete Crow-Armstrong NL MVP over Shohei Ohtani — DodgerBlue, 2026年8月21日</a></li>
-      <li><a href="https://www.espn.com/mlb/story/_/id/49672771/mlb-2026-awards-watch-august-mvp-cy-young-al-nl-rookie-manager-year-ohtani-pca">2026 MLB Awards Watch: August — ESPN</a></li>
-      <li><a href="https://www.wsls.com/sports/2026/08/19/ohtani-reaches-30-hrs-for-6th-straight-season-as-dodgers-beat-rockies-7-6/">Ohtani reaches 30 HRs — WSLS, 2026年8月19日</a></li>
-      <li><a href="https://ny1.com/nyc/all-boroughs/ap-top-news/2026/08/22/a-thumbs-up-and-30-pitches-ohtanis-latest-step-back-toward-the-dodgers-mound">A thumbs-up and 30 pitches — AP / NY1, 2026年8月22日</a></li>
+      <li><a href="https://www.mlb.com/news/shohei-ohtani-2026-home-run-total-overall-production">Shohei Ohtani just as good in 2026 despite lower home run total — MLB.com</a></li>
         </ol>
       </div>
     </aside>
