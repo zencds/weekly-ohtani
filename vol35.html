@@ -17,6 +17,12 @@
   --text-faint: #94a3b8;
   --border: #e2e8f0;
   --shadow: 0 20px 40px -16px rgba(15, 23, 42, 0.22);
+  --red: #b3392c;
+  --red-light: #d3543f;
+  --red-wash: #fdf1ef;
+  --bg-data: #eef1f8;
+  --win: #1e6b4f;
+  --win-wash: #eaf6f0;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -31,6 +37,12 @@
     --text-faint: #6b7488;
     --border: #253046;
     --shadow: 0 20px 40px -16px rgba(0, 0, 0, 0.5);
+    --red: #ff8066;
+    --red-light: #ff9c85;
+    --red-wash: #2a1712;
+    --bg-data: #101a30;
+    --win: #55c793;
+    --win-wash: #0f2419;
   }
 }
 
@@ -45,6 +57,12 @@
   --text-faint: #6b7488;
   --border: #253046;
   --shadow: 0 20px 40px -16px rgba(0, 0, 0, 0.5);
+  --red: #ff8066;
+  --red-light: #ff9c85;
+  --red-wash: #2a1712;
+  --bg-data: #101a30;
+  --win: #55c793;
+  --win-wash: #0f2419;
 }
 
 * { box-sizing: border-box; }
@@ -249,46 +267,83 @@ aside { position: sticky; top: 32px; }
 .notes-block a { text-decoration: underline; text-decoration-color: var(--border); text-underline-offset: 3px; }
 .notes-block a:hover { color: var(--accent); text-decoration-color: var(--accent); }
 
-.stats-section {
+.footer-module {
   margin-top: 64px;
   padding-top: 40px;
   border-top: 1px solid var(--border);
 }
-.stats-heading {
-  font-family: "Noto Serif JP", serif;
-  font-weight: 700;
-  font-size: 22px;
-  color: var(--navy);
-  margin: 0 0 32px;
-}
-.stats-block { margin-bottom: 36px; }
-.stats-subhead {
+.fm-section-head { margin: 0 0 22px; }
+.fm-kicker {
   font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
-  font-size: 12px; font-weight: 700; letter-spacing: 0.08em; color: var(--accent);
-  margin-bottom: 6px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--text-faint); margin-bottom: 8px;
 }
-.stats-lede {
+.fm-title { font-family: "Noto Serif JP", serif; font-weight: 700; font-size: 21px; color: var(--navy); margin: 0; }
+.fm-block { margin-bottom: 56px; }
+.fm-block:last-child { margin-bottom: 0; }
+
+.game-strip { display: grid; grid-template-columns: repeat(6, minmax(140px, 1fr)); gap: 12px; overflow-x: auto; padding-bottom: 4px; }
+@media (max-width: 900px) { .game-strip { grid-auto-flow: column; grid-template-columns: none; grid-auto-columns: 152px; } }
+.game-card { background: var(--bg-data); border: 1px solid var(--border); border-radius: 10px; padding: 16px 14px; display: flex; flex-direction: column; gap: 10px; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif; }
+.game-card .gc-date { font-family: "Playfair Display", serif; font-weight: 700; font-size: 17px; color: var(--navy); font-variant-numeric: tabular-nums; }
+.game-card .gc-opp { font-size: 12px; color: var(--text-muted); min-height: 32px; }
+.game-card .gc-score { font-size: 13px; font-weight: 700; font-variant-numeric: tabular-nums; display: inline-flex; align-self: flex-start; padding: 2px 8px; border-radius: 5px; }
+.gc-score.win { color: var(--win); background: var(--win-wash); }
+.gc-score.pending { color: var(--text-faint); background: var(--bg-off); }
+.game-card .gc-status { font-size: 11.5px; font-weight: 700; letter-spacing: 0.02em; }
+.gc-status.played { color: var(--accent); }
+.gc-status.rest { color: var(--text-faint); }
+.gc-status.il { color: var(--red); }
+.game-card .gc-note { font-size: 11.5px; color: var(--text-muted); line-height: 1.6; }
+
+.week-stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+@media (max-width: 700px) { .week-stat-grid { grid-template-columns: 1fr; } }
+.week-card { background: var(--red-wash); border: 1px solid var(--border); border-left: 3px solid var(--red); border-radius: 10px; padding: 22px 24px; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif; }
+.week-card.is-muted { background: var(--bg-off); border-left-color: var(--border); }
+.week-card .wc-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: var(--red); margin-bottom: 4px; }
+.week-card.is-muted .wc-label { color: var(--text-faint); }
+.week-card .wc-hero { display: flex; align-items: baseline; gap: 10px; margin: 6px 0 14px; }
+.week-card .wc-hero-num { font-family: "Playfair Display", serif; font-weight: 800; font-size: 40px; color: var(--red); line-height: 1; }
+.week-card.is-muted .wc-hero-num { color: var(--text-faint); font-size: 22px; }
+.week-card .wc-hero-cap { font-size: 12.5px; color: var(--text-muted); }
+.week-card .wc-line { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 12px; }
+.week-card .wc-item { display: flex; align-items: baseline; gap: 5px; }
+.week-card .wc-item .n { font-variant-numeric: tabular-nums; font-weight: 700; font-size: 14px; color: var(--navy); }
+.week-card .wc-item .l { font-size: 11px; color: var(--text-faint); }
+.week-card .wc-empty-note { font-size: 13px; color: var(--text-muted); line-height: 1.8; margin-top: 4px; }
+
+.season-table-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+@media (max-width: 700px) { .season-table-wrap { grid-template-columns: 1fr; } }
+.season-col { padding: 22px 24px; }
+.season-col + .season-col { border-left: 1px solid var(--border); }
+@media (max-width: 700px) { .season-col + .season-col { border-left: none; border-top: 1px solid var(--border); } }
+.season-col .sc-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 14px; }
+.season-table { width: 100%; border-collapse: collapse; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif; }
+.season-table tr { border-top: 1px solid var(--border); }
+.season-table tr:first-child { border-top: none; }
+.season-table td { padding: 8px 0; font-size: 13.5px; }
+.season-table td.st-label { color: var(--text-muted); }
+.season-table td.st-val { text-align: right; font-variant-numeric: tabular-nums; font-weight: 700; color: var(--navy); }
+.season-footnote { grid-column: 1 / -1; padding: 14px 24px; border-top: 1px solid var(--border); background: var(--bg-off); font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif; font-size: 12px; color: var(--text-faint); line-height: 1.7; }
+@media (max-width: 700px) { .season-footnote { grid-column: auto; } }
+
+.column-block { background: var(--bg-off); border: 1px solid var(--border); border-left: 3px solid var(--navy); border-radius: 10px; padding: 28px 28px 26px; }
+.column-block .cb-label {
+  display: inline-flex; align-items: center; gap: 6px;
   font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
-  font-size: 12.5px; color: var(--text-faint); margin: 0 0 16px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: var(--navy);
+  background: var(--bg); border: 1px solid var(--border); border-radius: 20px; padding: 4px 12px; margin-bottom: 16px;
 }
-.stat-line { display: flex; flex-wrap: wrap; row-gap: 14px; }
-.stat-item { display: flex; align-items: baseline; gap: 7px; padding-right: 22px; margin-right: 22px; border-right: 1px solid var(--border); }
-.stat-item:last-child { border-right: none; margin-right: 0; padding-right: 0; }
-.stat-item .num { font-family: "Playfair Display", serif; font-weight: 700; font-size: 19px; color: var(--navy); font-variant-numeric: tabular-nums; }
-.stat-item .lbl { font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif; font-size: 11.5px; color: var(--text-faint); }
-.war-note { margin-top: 14px; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif; font-size: 12.5px; color: var(--text-muted); }
-.war-note b { color: var(--accent); font-weight: 700; }
-.games { display: flex; flex-direction: column; }
-.game { padding: 14px 0; border-top: 1px solid var(--border); font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif; }
-.games .game:first-child { border-top: none; }
-.game-row { display: flex; align-items: baseline; gap: 14px; font-size: 14px; }
-.game-date { font-size: 12px; color: var(--text-faint); width: 44px; flex-shrink: 0; }
-.game-opp { color: var(--text); flex: 1; }
-.game-score { font-variant-numeric: tabular-nums; font-size: 13px; }
-.game-score.win { color: var(--accent); font-weight: 700; }
-.game-score.loss { color: var(--text-faint); }
-.game-personal { margin-top: 5px; margin-left: 58px; font-size: 12.5px; color: var(--text-muted); }
-.game-personal b { color: var(--navy); font-weight: 600; }
+.column-block h3 { font-family: "Noto Serif JP", serif; font-weight: 700; font-size: 19px; color: var(--navy); margin: 0 0 14px; line-height: 1.6; }
+.column-block p { font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif; font-size: 14.5px; color: var(--text); line-height: 1.85; margin: 0 0 14px; }
+.column-block p:last-child { margin-bottom: 0; }
+.column-block .cb-quote { color: var(--text-muted); }
+.column-block .cb-quote b { color: var(--navy); }
+.stat-chip {
+  display: inline-flex; align-items: baseline; gap: 4px; font-variant-numeric: tabular-nums;
+  background: var(--bg); border: 1px solid var(--border); border-radius: 5px; padding: 1px 7px; margin: 0 1px;
+  font-size: 13.5px; font-weight: 700; color: var(--accent);
+}
 
 footer {
   margin-top: 64px;
@@ -322,43 +377,51 @@ footer a:hover { color: var(--accent); }
   <div class="masthead">
     <div class="kicker">VOL.35 — 2026年9月7日–9月13日</div>
     <h1 class="headline">たった一晩の復帰、そしてまたベンチへ</h1>
-    <p class="dek">故障者リストに入らないまま、大谷は9月8日にラインアップへ戻った。だが内容は3打数無安打。翌日には早くもベンチに座り、「時期尚早ではないか」という声が静かに広がり始めている。</p>
-    <div class="masthead-meta util">IL回避での復帰・翌日再びベンチ・ファンから懸念の声</div>
+    <p class="dek">9月7日、大谷は4日ぶりにラインアップへ戻った。だが3打数無安打に終わったその一戦が、結局この週唯一の出場になった。翌8日には早くもベンチに下がり、11日には右上腕二頭筋の炎症で故障者リスト入り。ドジャース加入後、キャリア初のIL入りとなった。</p>
+    <div class="masthead-meta util">IL入り(ドジャース加入後キャリア初)・復帰資格9/23・ファンの懸念が現実に</div>
   </div>
 
   <div class="layout">
 
     <article>
-    <p class="lede">9月8日、レッズ戦。大谷は4日間の欠場を経て、故障者リスト(IL)には入らないままラインアップに戻った。ロバーツ監督は事前に「大事な場面での代打なら起用できる」という趣旨のコメントを残しており、実際に始まったのはフル出場ではなく、様子見に近いスタートだった。</p>
+    <p class="lede">9月7日、レッズ戦。大谷は4日間の欠場を経てラインアップに戻った。ロバーツ監督は事前に「大事な場面での代打なら起用できる」という趣旨のコメントを残しており、実際に始まったのはフル出場ではなく、様子見に近いスタートだった。</p>
 
-    <p>この日の大谷は3打数無安打、四球1、三振2。ドジャースは6-3で勝ったが、派手な復帰劇にはならなかった。翌9日、大谷は早くもラインアップから外れている。トミー・エドマンが一番打者に、フレディ・フリーマンが指名打者に回り、大谷はこの日ベンチで過ごした。故障者リストに入れないまま、1試合ごとに様子を見て起用する——そのやり方に、疑問の声も上がり始めている。</p>
+    <p>この日の大谷は3打数無安打、四球1、三振2。ドジャースは6-3で勝ったが、派手な復帰劇にはならなかった。そしてこの一戦が、結果的にこの週唯一の出場になった。翌8日から大谷は再びラインアップを外れ、9日、11日と欠場が続いた。</p>
 
-    <p class="pull">"Obviously he's not healthy...Why waste time."</p>
+    <p>9月11日、ドジャースは大谷の故障者リスト入りを正式に発表した。登録は8日付に遡り、理由は右上腕二頭筋の炎症。ドジャース加入から3シーズン、大谷にとって初めてのIL入りだった。復帰資格は9月23日——そこから数えれば、レギュラーシーズンは残り5試合しかない。</p>
 
-    <p>heavy.comが伝えたファンの反応は、いつもの「もっと大谷を見たい」という声とは逆方向だった。「休ませてほしい」「プレーオフに向けて回復させてほしい」——医療スタッフの判断そのものを疑問視する声が広がっている。急かされているのはチームの判断なのか、それとも大谷自身の体なのか、その境目が曖昧になり始めていた一週間だった。</p>
+    <p class="pull">"If it were a postseason game tomorrow, he's in the lineup."</p>
+
+    <p>ロバーツ監督はそう語った上で、それでも2週間の離脱を選んだ理由を続けた。今はポストシーズンではない、というだけの言葉ではなかった。皮肉なことに、この結末は一週間前にheavy.comが伝えたファンの声——「休ませてほしい」「プレーオフに向けて回復させてほしい」——とほぼ重なる。医療スタッフの判断を疑問視していた声は、結果として一週間先を見通していたことになる。</p>
 
     <div class="divider"></div>
 
-    <p>同じ週、大谷家の財団のロゴが静かに更新されていた。6月に生まれた息子の存在が、そこに加わっていたという。グラウンドの上では出場と欠場を繰り返す日々が続く。それでも、ロゴの片隅では、彼の生活がいつも通り、静かに続いていた。</p>
+    <p>同じ週、大谷家の財団のロゴが静かに更新されていた。6月に生まれた息子の存在が、そこに加わっていたという。グラウンドに立てない日々がしばらく続く。それでも、ロゴの片隅では、彼の生活がいつも通り、静かに続いていた。</p>
     </article>
 
     <aside>
       <div class="aside-block">
         <h2 class="aside-title">この号のサマリー</h2>
-        <p class="aside-lede">現地報道と、メディアが取り上げたファンの受け止め方。</p>
+        <p class="aside-lede">現地報道と、IL入りをめぐる一週間の動き。</p>
 
         <div class="summary-lane-label">米スポーツメディア・現地報道</div>
 
         <div class="summary-item">
-          <a class="summary-headline" href="https://sports.yahoo.com/articles/shohei-ohtani-dodgers-lineup-available-012407715.html">「大事な場面での代打なら」——限定的な復帰プラン</a>
-          <p class="summary-text">ロバーツ監督が、4日間の欠場明けの大谷について代打での起用を示唆したことを伝えた。</p>
-          <div class="summary-source">Yahoo Sports・2026年9月9日</div>
+          <a class="summary-headline" href="https://www.japantimes.co.jp/sports/2026/09/08/baseball/mlb/ohtani-returns-dodgers-reds/">復帰戦は3打数無安打、それでもチームは勝利</a>
+          <p class="summary-text">9/7の復帰初戦の内容を、淡々とスコアとともに伝えた。</p>
+          <div class="summary-source">Japan Times・2026年9月8日</div>
         </div>
 
         <div class="summary-item">
-          <a class="summary-headline" href="https://www.japantimes.co.jp/sports/2026/09/08/baseball/mlb/ohtani-returns-dodgers-reds/">復帰戦は3打数無安打、それでもチームは勝利</a>
-          <p class="summary-text">IL回避での復帰初戦の内容を、淡々とスコアとともに伝えた。</p>
-          <div class="summary-source">Japan Times・2026年9月8日</div>
+          <a class="summary-headline" href="https://dodgerblue.com/shohei-ohtani-bicep-dodgers-injured-list-two-way-rule/2026/09/11/">大谷、故障者リスト入りが正式発表</a>
+          <p class="summary-text">右上腕二頭筋の炎症により、9/8付に遡ってIL入り。ドジャース加入後初めてのIL入りとなった。</p>
+          <div class="summary-source">Dodger Blue・2026年9月11日</div>
+        </div>
+
+        <div class="summary-item">
+          <a class="summary-headline" href="https://www.ibtimes.com.au/dodgers-place-shohei-ohtani-injured-list-1875406">ロバーツ監督「先延ばしにしすぎた」</a>
+          <p class="summary-text">IL入りの決定過程について、ロバーツ監督が心境を語ったコメントを伝えた。</p>
+          <div class="summary-source">International Business Times AU・2026年9月11日</div>
         </div>
 
         <div class="summary-lane-label">メディアが伝えたファンの受け止め方</div>
@@ -379,8 +442,10 @@ footer a:hover { color: var(--accent); }
       <div class="notes-block">
         <div class="notes-label">取材ノート</div>
         <ol>
-          <li><a href="https://sports.yahoo.com/articles/shohei-ohtani-dodgers-lineup-available-012407715.html">Shohei Ohtani out of the Dodgers lineup, available to pinch-hit — Yahoo Sports</a></li>
           <li><a href="https://www.japantimes.co.jp/sports/2026/09/08/baseball/mlb/ohtani-returns-dodgers-reds/">Ohtani returns to lineup as Dodgers dump Reds — Japan Times</a></li>
+          <li><a href="https://www.japantimes.co.jp/sports/2026/09/10/baseball/mlb/ohtani-dodgers-il-stint/">Dodgers star Shohei Ohtani headed to injured list — Japan Times</a></li>
+          <li><a href="https://dodgerblue.com/shohei-ohtani-bicep-dodgers-injured-list-two-way-rule/2026/09/11/">Shohei Ohtani placed on injured list — Dodger Blue</a></li>
+          <li><a href="https://www.ibtimes.com.au/dodgers-place-shohei-ohtani-injured-list-1875406">Dodgers Place Shohei Ohtani On Injured List; Roberts Says Club Tried To Kick The Can Too Long — IBTimes AU</a></li>
           <li><a href="https://heavy.com/sports/mlb/los-angeles-dodgers/dodgers-fans-react-to-sudden-shohei-ohtani-decision/">Los Angeles Dodgers Fans React to Sudden Shohei Ohtani Decision — Heavy.com</a></li>
           <li><a href="https://news.yahoo.co.jp/articles/e362bc85ae6f46e71f931b57b2af0a21fe8e25b2">大谷翔平、ファミリー財団ロゴに「長男追加」— 週刊女性PRIME</a></li>
         </ol>
@@ -389,52 +454,144 @@ footer a:hover { color: var(--accent); }
 
   </div>
 
-  <div class="stats-section">
-    <h2 class="stats-heading">今週の試合結果 &amp; 今シーズンの成績</h2>
+  <div class="footer-module">
 
-    <div class="stats-block">
-      <div class="stats-subhead">今週の試合結果</div>
-      <p class="stats-lede">9月7日〜13日。IL回避での復帰後、1試合ごとの様子見が続いた。</p>
-
-      <div class="games">
-        <div class="game">
-          <div class="game-row">
-            <span class="game-date">9/8</span>
-            <span class="game-opp">vs レッズ</span>
-            <span class="game-score win">6–3 W</span>
-          </div>
-          <div class="game-personal"><b>大谷:</b> 3打数無安打・四球1・三振2(4日ぶりの復帰戦)</div>
+    <div class="fm-block">
+      <div class="fm-section-head">
+        <div class="fm-kicker util">01 — Daily Results</div>
+        <h2 class="fm-title">今週の試合結果</h2>
+      </div>
+      <div class="game-strip">
+        <div class="game-card">
+          <div class="gc-date">9/7</div>
+          <div class="gc-opp util">vs レッズ</div>
+          <div class="gc-score win">6–3</div>
+          <div class="gc-status played util">4日ぶり出場</div>
+          <div class="gc-note util">3打数無安打・四球1・三振2</div>
         </div>
-        <div class="game">
-          <div class="game-row">
-            <span class="game-date">9/9</span>
-            <span class="game-opp">vs レッズ</span>
-            <span class="game-score loss">—</span>
-          </div>
-          <div class="game-personal"><b>大谷:</b> ラインアップ外(前日の復帰を受けての様子見)</div>
+        <div class="game-card">
+          <div class="gc-date">9/8</div>
+          <div class="gc-opp util">vs レッズ</div>
+          <div class="gc-score win">3–2</div>
+          <div class="gc-status rest util">ラインアップ外</div>
+          <div class="gc-note util">IL登録は本日付(発表は11日)</div>
+        </div>
+        <div class="game-card">
+          <div class="gc-date">9/9</div>
+          <div class="gc-opp util">vs レッズ</div>
+          <div class="gc-score win">14–1</div>
+          <div class="gc-status rest util">ラインアップ外</div>
+          <div class="gc-note util">2日連続の欠場</div>
+        </div>
+        <div class="game-card">
+          <div class="gc-date">9/11</div>
+          <div class="gc-opp util">@ マーリンズ</div>
+          <div class="gc-score win">6–2</div>
+          <div class="gc-status il util">IL入り発表</div>
+          <div class="gc-note util">故障者リスト入りが正式発表</div>
+        </div>
+        <div class="game-card">
+          <div class="gc-date">9/12</div>
+          <div class="gc-opp util">@ マーリンズ</div>
+          <div class="gc-score pending util">結果確認中</div>
+          <div class="gc-status il util">IL中</div>
+          <div class="gc-note util">大谷は帯同せず</div>
+        </div>
+        <div class="game-card">
+          <div class="gc-date">9/13</div>
+          <div class="gc-opp util">@ マーリンズ</div>
+          <div class="gc-score pending util">本日開催</div>
+          <div class="gc-status il util">IL中</div>
+          <div class="gc-note util">復帰資格は9/23〜</div>
         </div>
       </div>
     </div>
 
-    <div class="stats-block">
-      <div class="stats-subhead">今シーズンの成績(打撃)</div>
-      <div class="stat-line">
-        <div class="stat-item"><span class="num">.287</span><span class="lbl">打率</span></div>
-        <div class="stat-item"><span class="num">.388</span><span class="lbl">出塁率</span></div>
-        <div class="stat-item"><span class="num">.546</span><span class="lbl">長打率</span></div>
-        <div class="stat-item"><span class="num">158</span><span class="lbl">OPS+</span></div>
+    <div class="fm-block">
+      <div class="fm-section-head">
+        <div class="fm-kicker util">02 — This Week</div>
+        <h2 class="fm-title">今週のスタッツ(9/7–9/13)</h2>
+      </div>
+      <div class="week-stat-grid">
+        <div class="week-card">
+          <div class="wc-label util">打者</div>
+          <div class="wc-hero">
+            <span class="wc-hero-num">1</span>
+            <span class="wc-hero-cap util">試合出場 — 今季でも最少級の週間出場数</span>
+          </div>
+          <div class="wc-line util">
+            <div class="wc-item"><span class="n">3</span><span class="l">打数</span></div>
+            <div class="wc-item"><span class="n">0</span><span class="l">安打</span></div>
+            <div class="wc-item"><span class="n">.000</span><span class="l">打率</span></div>
+            <div class="wc-item"><span class="n">1</span><span class="l">四球</span></div>
+            <div class="wc-item"><span class="n">2</span><span class="l">三振</span></div>
+            <div class="wc-item"><span class="n">.250</span><span class="l">OPS</span></div>
+          </div>
+        </div>
+        <div class="week-card is-muted">
+          <div class="wc-label util">投手</div>
+          <div class="wc-hero">
+            <span class="wc-hero-num">登板なし</span>
+          </div>
+          <p class="wc-empty-note util">今週の登板はゼロ。最終登板は7月3日のまま。9/7、大谷本人が今季中の投手復帰を断念する趣旨の発言をしており、投手としての2026年シーズンは事実上終了している。</p>
+        </div>
       </div>
     </div>
 
-    <div class="stats-block">
-      <div class="stats-subhead">今シーズンの成績(投球)</div>
-      <div class="stat-line">
-        <div class="stat-item"><span class="num">1.79</span><span class="lbl">防御率</span></div>
-        <div class="stat-item"><span class="num">85⅔</span><span class="lbl">投球回</span></div>
-        <div class="stat-item"><span class="num">7/3</span><span class="lbl">最終登板</span></div>
+    <div class="fm-block">
+      <div class="fm-section-head">
+        <div class="fm-kicker util">03 — Season Totals</div>
+        <h2 class="fm-title">今シーズンの成績(9/13時点)</h2>
       </div>
-      <div class="war-note">投手としての登板は7月3日が最後。詳細は<a href="/stats.html" style="text-decoration:underline;text-decoration-color:var(--border);">成績ページ</a>へ</div>
+      <div class="season-table-wrap">
+        <div class="season-col">
+          <div class="sc-label util">打撃成績</div>
+          <table class="season-table util">
+            <tr><td class="st-label">打率</td><td class="st-val">.277</td></tr>
+            <tr><td class="st-label">出塁率</td><td class="st-val">.380</td></tr>
+            <tr><td class="st-label">長打率</td><td class="st-val">.522</td></tr>
+            <tr><td class="st-label">OPS</td><td class="st-val">.902</td></tr>
+            <tr><td class="st-label">wRC+</td><td class="st-val">143</td></tr>
+            <tr><td class="st-label">本塁打</td><td class="st-val">30</td></tr>
+            <tr><td class="st-label">打点</td><td class="st-val">80</td></tr>
+            <tr><td class="st-label">盗塁</td><td class="st-val">11</td></tr>
+            <tr><td class="st-label">安打</td><td class="st-val">139</td></tr>
+            <tr><td class="st-label">四球</td><td class="st-val">77</td></tr>
+            <tr><td class="st-label">三振</td><td class="st-val">131</td></tr>
+          </table>
+        </div>
+        <div class="season-col">
+          <div class="sc-label util">投球成績</div>
+          <table class="season-table util">
+            <tr><td class="st-label">防御率</td><td class="st-val">1.79</td></tr>
+            <tr><td class="st-label">勝敗</td><td class="st-val">8–2</td></tr>
+            <tr><td class="st-label">先発数</td><td class="st-val">14</td></tr>
+            <tr><td class="st-label">投球回</td><td class="st-val">85.2</td></tr>
+            <tr><td class="st-label">奪三振</td><td class="st-val">95</td></tr>
+            <tr><td class="st-label">与四球</td><td class="st-val">26</td></tr>
+            <tr><td class="st-label">WHIP</td><td class="st-val">0.95</td></tr>
+            <tr><td class="st-label">K/9</td><td class="st-val">9.98</td></tr>
+            <tr><td class="st-label">最終登板</td><td class="st-val">7/3</td></tr>
+          </table>
+        </div>
+        <div class="season-footnote util">打撃成績は9/7の1打席を含む9/13時点の集計値。投球成績は7/3の最終登板時点のまま更新なし(今季の投手復帰は本人が断念)。数字の意味が分からない項目は<a href="/glossary.html" style="text-decoration:underline;text-decoration-color:var(--border);">用語ガイド</a>へ。</div>
+      </div>
     </div>
+
+    <div class="fm-block">
+      <div class="fm-section-head">
+        <div class="fm-kicker util">04 — Behind the Numbers</div>
+        <h2 class="fm-title">今週の総括コラム</h2>
+      </div>
+      <div class="column-block">
+        <span class="cb-label util">編集部コラム · 数字の裏側</span>
+        <h3>「0-3」の裏にある、崩れていない中身</h3>
+        <p class="util">9/7の復帰戦、大谷のスタットラインは<span class="stat-chip">3打数0安打</span>。数字だけを見れば静かな一日だった。だが同じ夜のStatcastデータを見ると、シーズン全体のxwOBAは<span class="stat-chip">.399</span>でMLB全体の上位1%(パーセンタイル99)に位置し、平均打球速度<span class="stat-chip">93.2mph</span>・ハードヒット率<span class="stat-chip">51.5%</span>・バレル率<span class="stat-chip">15.8%</span>と、コンタクトの質そのものは崩れていない。</p>
+        <p class="util">一方で、オールスター後の42試合では打率<span class="stat-chip">.246</span>・本塁打<span class="stat-chip">8</span>本と、シーズン前半に比べて数字は明らかに落ちている。故障を抱えながらの起用が続いた結果が、成績のどこに表れているかを分けて見る必要がありそうだ。</p>
+        <p class="util">復帰資格は9月23日。そこから数えてレギュラーシーズンは残り5試合しかない。数字の「裏側」が語るのは、衰えではなく、逆算のタイミングだ。</p>
+      </div>
+    </div>
+
   </div>
 
   <footer class="util">

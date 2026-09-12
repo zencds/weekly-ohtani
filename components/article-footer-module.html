@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weekly Ohtani — 記事フッターモジュール(提案)</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Noto+Serif+JP:wght@400;500;600;700&display=swap">
+<style>
+/* ============================================================
+   Weekly Ohtani — 既存サイトのトークン(vol35.html等と同一)
+   ============================================================ */
+:root {
+  --navy: #0f172a;
+  --accent: #1e3a8a;
+  --accent-light: #3b5bc7;
+  --bg: #ffffff;
+  --bg-off: #f8fafc;
+  --text: #0f172a;
+  --text-muted: #475569;
+  --text-faint: #94a3b8;
+  --border: #e2e8f0;
+  --shadow: 0 20px 40px -16px rgba(15, 23, 42, 0.22);
+
+  /* --- 新規追加トークン(本モジュール専用) --- */
+  --red: #b3392c;
+  --red-light: #d3543f;
+  --red-wash: #fdf1ef;
+  --bg-data: #eef1f8;
+  --win: #1e6b4f;
+  --win-wash: #eaf6f0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --navy: #e6e9f0;
+    --accent: #7b9aff;
+    --accent-light: #a9bdff;
+    --bg: #0b1120;
+    --bg-off: #131b2e;
+    --text: #e6e9f0;
+    --text-muted: #a3adc2;
+    --text-faint: #6b7488;
+    --border: #253046;
+    --shadow: 0 20px 40px -16px rgba(0, 0, 0, 0.5);
+
+    --red: #ff8066;
+    --red-light: #ff9c85;
+    --red-wash: #2a1712;
+    --bg-data: #101a30;
+    --win: #55c793;
+    --win-wash: #0f2419;
+  }
+}
+
+:root[data-theme="dark"] {
+  --navy: #e6e9f0;
+  --accent: #7b9aff;
+  --accent-light: #a9bdff;
+  --bg: #0b1120;
+  --bg-off: #131b2e;
+  --text: #e6e9f0;
+  --text-muted: #a3adc2;
+  --text-faint: #6b7488;
+  --border: #253046;
+  --shadow: 0 20px 40px -16px rgba(0, 0, 0, 0.5);
+
+  --red: #ff8066;
+  --red-light: #ff9c85;
+  --red-wash: #2a1712;
+  --bg-data: #101a30;
+  --win: #55c793;
+  --win-wash: #0f2419;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Noto Serif JP", "Hiragino Mincho ProN", serif;
+  line-height: 1.85;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+.serif-en { font-family: "Playfair Display", "Noto Serif JP", serif; }
+.util {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic Medium", "Meiryo", sans-serif;
+}
+
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 32px 120px; }
+
+/* ---- ページ上部の記事チェック(デモ用の最小限の再現) ---- */
+.nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 30px 0; border-bottom: 1px solid var(--border); margin-bottom: 40px;
+}
+.nav-brand { font-family: "Playfair Display", serif; font-weight: 700; font-size: 22px; text-decoration: none; color: var(--navy); }
+.nav-links { display: flex; gap: 28px; }
+.nav-link { font-size: 13px; font-weight: 500; color: var(--text-muted); text-decoration: none; letter-spacing: 0.02em; }
+
+.recap {
+  max-width: 720px; margin: 0 0 56px; padding-bottom: 40px; border-bottom: 1px solid var(--border);
+}
+.recap .kicker {
+  font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 14px;
+}
+.recap h1 { font-size: clamp(26px, 3.6vw, 34px); line-height: 1.5; margin: 0 0 14px; color: var(--navy); text-wrap: balance; }
+.recap p { font-size: 15px; color: var(--text-muted); margin: 0; }
+
+.proposal-flag {
+  max-width: 720px; margin: 0 0 40px; padding: 14px 18px; border: 1px dashed var(--accent);
+  border-radius: 8px; font-size: 12.5px; color: var(--accent); background: var(--bg-off);
+}
+
+/* ============================================================
+   記事フッターモジュール本体
+   ============================================================ */
+.footer-module { margin-top: 8px; }
+
+.fm-section-head { margin: 0 0 22px; }
+.fm-kicker {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--text-faint); margin-bottom: 8px;
+}
+.fm-title {
+  font-family: "Noto Serif JP", serif; font-weight: 700; font-size: 21px; color: var(--navy); margin: 0;
+}
+
+.fm-block { margin-bottom: 64px; }
+.fm-block:last-child { margin-bottom: 0; }
+
+/* ---------- ① 今週の試合結果(日別) ---------- */
+.game-strip {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(140px, 1fr));
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+@media (max-width: 900px) {
+  .game-strip { grid-auto-flow: column; grid-template-columns: none; grid-auto-columns: 152px; }
+}
+.game-card {
+  background: var(--bg-data); border: 1px solid var(--border); border-radius: 10px;
+  padding: 16px 14px; display: flex; flex-direction: column; gap: 10px;
+}
+.game-card .gc-date { font-family: "Playfair Display", serif; font-weight: 700; font-size: 17px; color: var(--navy); font-variant-numeric: tabular-nums; }
+.game-card .gc-opp { font-size: 12px; color: var(--text-muted); min-height: 32px; }
+.game-card .gc-score {
+  font-size: 13px; font-weight: 700; font-variant-numeric: tabular-nums;
+  display: inline-flex; align-self: flex-start; padding: 2px 8px; border-radius: 5px;
+}
+.gc-score.win { color: var(--win); background: var(--win-wash); }
+.gc-score.pending { color: var(--text-faint); background: var(--bg-off); }
+.game-card .gc-status {
+  font-size: 11.5px; font-weight: 700; letter-spacing: 0.02em;
+}
+.gc-status.played { color: var(--accent); }
+.gc-status.rest { color: var(--text-faint); }
+.gc-status.il { color: var(--red); }
+.game-card .gc-note { font-size: 11.5px; color: var(--text-muted); line-height: 1.6; }
+
+/* ---------- ② 今週のスタッツ(週間) ---------- */
+.week-stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+@media (max-width: 700px) { .week-stat-grid { grid-template-columns: 1fr; } }
+
+.week-card {
+  background: var(--red-wash); border: 1px solid var(--border); border-left: 3px solid var(--red);
+  border-radius: 10px; padding: 22px 24px;
+}
+.week-card.is-muted { background: var(--bg-off); border-left-color: var(--border); }
+.week-card .wc-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: var(--red); margin-bottom: 4px; }
+.week-card.is-muted .wc-label { color: var(--text-faint); }
+.week-card .wc-hero { display: flex; align-items: baseline; gap: 10px; margin: 6px 0 14px; }
+.week-card .wc-hero-num { font-family: "Playfair Display", serif; font-weight: 800; font-size: 40px; color: var(--red); line-height: 1; }
+.week-card.is-muted .wc-hero-num { color: var(--text-faint); font-size: 22px; }
+.week-card .wc-hero-cap { font-size: 12.5px; color: var(--text-muted); }
+.week-card .wc-line { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 12px; }
+.week-card .wc-item { display: flex; align-items: baseline; gap: 5px; }
+.week-card .wc-item .n { font-variant-numeric: tabular-nums; font-weight: 700; font-size: 14px; color: var(--navy); }
+.week-card .wc-item .l { font-size: 11px; color: var(--text-faint); }
+.week-card .wc-empty-note { font-size: 13px; color: var(--text-muted); line-height: 1.8; margin-top: 4px; }
+
+/* ---------- ③ 今シーズンの成績(通算) ---------- */
+.season-table-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+@media (max-width: 700px) { .season-table-wrap { grid-template-columns: 1fr; } }
+.season-col { padding: 22px 24px; }
+.season-col + .season-col { border-left: 1px solid var(--border); }
+@media (max-width: 700px) { .season-col + .season-col { border-left: none; border-top: 1px solid var(--border); } }
+.season-col .sc-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 14px; }
+.season-table { width: 100%; border-collapse: collapse; }
+.season-table tr { border-top: 1px solid var(--border); }
+.season-table tr:first-child { border-top: none; }
+.season-table td { padding: 8px 0; font-size: 13.5px; }
+.season-table td.st-label { color: var(--text-muted); }
+.season-table td.st-val { text-align: right; font-variant-numeric: tabular-nums; font-weight: 700; color: var(--navy); }
+.season-footnote { grid-column: 1 / -1; padding: 14px 24px; border-top: 1px solid var(--border); background: var(--bg-off); font-size: 12px; color: var(--text-faint); line-height: 1.7; }
+@media (max-width: 700px) { .season-footnote { grid-column: auto; } }
+
+/* ---------- ④ 総括コラム「数字の裏側」 ---------- */
+.column-block {
+  background: var(--bg-off); border: 1px solid var(--border); border-left: 3px solid var(--navy);
+  border-radius: 10px; padding: 28px 28px 26px;
+}
+.column-block .cb-label {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: var(--navy);
+  background: var(--bg); border: 1px solid var(--border); border-radius: 20px; padding: 4px 12px; margin-bottom: 16px;
+}
+.column-block h3 {
+  font-family: "Noto Serif JP", serif; font-weight: 700; font-size: 19px; color: var(--navy); margin: 0 0 14px; line-height: 1.6;
+}
+.column-block p { font-size: 14.5px; color: var(--text); line-height: 1.85; margin: 0 0 14px; }
+.column-block p:last-child { margin-bottom: 0; }
+.column-block .cb-quote { color: var(--text-muted); font-style: normal; }
+.column-block .cb-quote b { color: var(--navy); }
+.stat-chip {
+  display: inline-flex; align-items: baseline; gap: 4px; font-variant-numeric: tabular-nums;
+  background: var(--bg); border: 1px solid var(--border); border-radius: 5px; padding: 1px 7px; margin: 0 1px;
+  font-size: 13.5px; font-weight: 700; color: var(--accent);
+}
+
+footer {
+  margin-top: 64px; font-size: 12px; color: var(--text-faint);
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+  border-top: 1px solid var(--border); padding-top: 24px;
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="nav">
+    <a class="nav-brand" href="/">Weekly Ohtani</a>
+    <div class="nav-links util">
+      <a class="nav-link" href="/stats.html">成績</a>
+      <a class="nav-link" href="/glossary.html">用語ガイド</a>
+      <a class="nav-link" href="/archive.html">バックナンバー</a>
+    </div>
+  </div>
+
+  <div class="recap">
+    <div class="kicker util">VOL.35 — 2026年9月7日–9月13日(本文は既存の記事を想定)</div>
+    <h1>たった一晩の復帰、そしてまたベンチへ</h1>
+    <p class="util">↑ ここまでが既存の記事本文(Noto Serif JP)。この下から提案する新フッターモジュールです。</p>
+  </div>
+
+  <div class="proposal-flag util">
+    <b>編集部注:</b> 9/11、大谷は右上腕二頭筋の炎症でドジャース加入後キャリア初の故障者リスト入り(9/8付に遡って登録)が正式発表されました。本モジュールのデータは9/13時点の最新情報で作成していますが、記事本文(Vol.35)は9/8時点の「IL回避」を前提に書かれており、内容の食い違いが生じています。本文側の訂正・続報は別途ご判断ください。
+  </div>
+
+  <div class="footer-module">
+
+    <!-- ① 今週の試合結果(日別) -->
+    <div class="fm-block">
+      <div class="fm-section-head">
+        <div class="fm-kicker util">01 — Daily Results</div>
+        <h2 class="fm-title">今週の試合結果</h2>
+      </div>
+      <div class="game-strip">
+        <div class="game-card">
+          <div class="gc-date">9/7</div>
+          <div class="gc-opp util">vs レッズ</div>
+          <div class="gc-score win">6–3</div>
+          <div class="gc-status played util">4日ぶり出場</div>
+          <div class="gc-note util">3打数無安打・四球1・三振2</div>
+        </div>
+        <div class="game-card">
+          <div class="gc-date">9/8</div>
+          <div class="gc-opp util">vs レッズ</div>
+          <div class="gc-score win">3–2</div>
+          <div class="gc-status rest util">ラインアップ外</div>
+          <div class="gc-note util">右腕の張りで様子見</div>
+        </div>
+        <div class="game-card">
+          <div class="gc-date">9/9</div>
+          <div class="gc-opp util">vs レッズ</div>
+          <div class="gc-score win">14–1</div>
+          <div class="gc-status rest util">ラインアップ外</div>
+          <div class="gc-note util">2日連続の欠場</div>
+        </div>
+        <div class="game-card">
+          <div class="gc-date">9/11</div>
+          <div class="gc-opp util">@ マーリンズ</div>
+          <div class="gc-score win">6–2</div>
+          <div class="gc-status il util">IL入り発表</div>
+          <div class="gc-note util">故障者リスト入りが正式発表</div>
+        </div>
+        <div class="game-card">
+          <div class="gc-date">9/12</div>
+          <div class="gc-opp util">@ マーリンズ</div>
+          <div class="gc-score pending util">結果確認中</div>
+          <div class="gc-status il util">IL中</div>
+          <div class="gc-note util">大谷は帯同せず</div>
+        </div>
+        <div class="game-card">
+          <div class="gc-date">9/13</div>
+          <div class="gc-opp util">@ マーリンズ</div>
+          <div class="gc-score pending util">本日開催</div>
+          <div class="gc-status il util">IL中</div>
+          <div class="gc-note util">復帰資格は9/23〜</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ② 今週のスタッツ(週間) -->
+    <div class="fm-block">
+      <div class="fm-section-head">
+        <div class="fm-kicker util">02 — This Week</div>
+        <h2 class="fm-title">今週のスタッツ(9/7–9/13)</h2>
+      </div>
+      <div class="week-stat-grid">
+        <div class="week-card">
+          <div class="wc-label util">打者</div>
+          <div class="wc-hero">
+            <span class="wc-hero-num">1</span>
+            <span class="wc-hero-cap util">試合出場 — 今季でも最少級の週間出場数</span>
+          </div>
+          <div class="wc-line util">
+            <div class="wc-item"><span class="n">3</span><span class="l">打数</span></div>
+            <div class="wc-item"><span class="n">0</span><span class="l">安打</span></div>
+            <div class="wc-item"><span class="n">.000</span><span class="l">打率</span></div>
+            <div class="wc-item"><span class="n">1</span><span class="l">四球</span></div>
+            <div class="wc-item"><span class="n">2</span><span class="l">三振</span></div>
+            <div class="wc-item"><span class="n">.250</span><span class="l">OPS</span></div>
+          </div>
+        </div>
+        <div class="week-card is-muted">
+          <div class="wc-label util">投手</div>
+          <div class="wc-hero">
+            <span class="wc-hero-num">登板なし</span>
+          </div>
+          <p class="wc-empty-note util">今週の登板はゼロ。最終登板は7月3日のまま。9/7、大谷本人が今季中の投手復帰を断念する趣旨の発言をしており、投手としての2026年シーズンは事実上終了している。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ③ 今シーズンの成績(通算) -->
+    <div class="fm-block">
+      <div class="fm-section-head">
+        <div class="fm-kicker util">03 — Season Totals</div>
+        <h2 class="fm-title">今シーズンの成績(9/13時点)</h2>
+      </div>
+      <div class="season-table-wrap">
+        <div class="season-col">
+          <div class="sc-label util">打撃成績</div>
+          <table class="season-table util">
+            <tr><td class="st-label">打率</td><td class="st-val">.277</td></tr>
+            <tr><td class="st-label">出塁率</td><td class="st-val">.380</td></tr>
+            <tr><td class="st-label">長打率</td><td class="st-val">.522</td></tr>
+            <tr><td class="st-label">OPS</td><td class="st-val">.902</td></tr>
+            <tr><td class="st-label">wRC+</td><td class="st-val">143</td></tr>
+            <tr><td class="st-label">本塁打</td><td class="st-val">30</td></tr>
+            <tr><td class="st-label">打点</td><td class="st-val">80</td></tr>
+            <tr><td class="st-label">盗塁</td><td class="st-val">11</td></tr>
+            <tr><td class="st-label">安打</td><td class="st-val">139</td></tr>
+            <tr><td class="st-label">四球</td><td class="st-val">77</td></tr>
+            <tr><td class="st-label">三振</td><td class="st-val">131</td></tr>
+          </table>
+        </div>
+        <div class="season-col">
+          <div class="sc-label util">投球成績</div>
+          <table class="season-table util">
+            <tr><td class="st-label">防御率</td><td class="st-val">1.79</td></tr>
+            <tr><td class="st-label">勝敗</td><td class="st-val">8–2</td></tr>
+            <tr><td class="st-label">先発数</td><td class="st-val">14</td></tr>
+            <tr><td class="st-label">投球回</td><td class="st-val">85.2</td></tr>
+            <tr><td class="st-label">奪三振</td><td class="st-val">95</td></tr>
+            <tr><td class="st-label">与四球</td><td class="st-val">26</td></tr>
+            <tr><td class="st-label">WHIP</td><td class="st-val">0.95</td></tr>
+            <tr><td class="st-label">K/9</td><td class="st-val">9.98</td></tr>
+            <tr><td class="st-label">最終登板</td><td class="st-val">7/3</td></tr>
+          </table>
+        </div>
+        <div class="season-footnote util">打撃成績は9/7の1打席を含む9/13時点の集計値。投球成績は7/3の最終登板時点のまま更新なし(今季の投手復帰は本人が断念)。数字の意味が分からない項目は<a href="/glossary.html" style="text-decoration:underline;text-decoration-color:var(--border);">用語ガイド</a>へ。</div>
+      </div>
+    </div>
+
+    <!-- ④ 今週の総括コラム「数字の裏側」 -->
+    <div class="fm-block">
+      <div class="fm-section-head">
+        <div class="fm-kicker util">04 — Behind the Numbers</div>
+        <h2 class="fm-title">今週の総括コラム</h2>
+      </div>
+      <div class="column-block">
+        <span class="cb-label util">編集部コラム · 数字の裏側</span>
+        <h3>「0-3」の裏にある、崩れていない中身</h3>
+        <p class="util">9/7の復帰戦、大谷のスタットラインは<span class="stat-chip">3打数0安打</span>。数字だけを見れば静かな一日だった。だが同じ夜のStatcastデータを見ると、シーズン全体のxwOBAは<span class="stat-chip">.399</span>でMLB全体の上位1%(パーセンタイル99)に位置し、平均打球速度<span class="stat-chip">93.2mph</span>・ハードヒット率<span class="stat-chip">51.5%</span>・バレル率<span class="stat-chip">15.8%</span>と、コンタクトの質そのものは崩れていない。</p>
+        <p class="util">一方で、オールスター後の42試合では打率<span class="stat-chip">.246</span>・本塁打<span class="stat-chip">8</span>本と、シーズン前半に比べて数字は明らかに落ちている。故障を抱えながらの起用が続いた結果が、成績のどこに表れているかを分けて見る必要がありそうだ。</p>
+        <p class="util cb-quote">ロバーツ監督は今回のIL入りについて、<b>"If it were a postseason game tomorrow, he's in the lineup"</b>(もし明日がポストシーズンの試合なら、大谷はラインアップに入っている)と語った。今は違う、という含みのある一言だった。</p>
+        <p class="util">復帰資格は9月23日。そこから数えてレギュラーシーズンは残り5試合しかない。数字の「裏側」が語るのは、衰えではなく、逆算のタイミングだ。</p>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="util">
+    <span>本文は各記事の事実関係に基づく独自のノンフィクション構成。引用符付きの語句のみ原文からの直接引用。SNS上の個別投稿の一般化はしていません。</span>
+    <a href="/archive.html">← バックナンバー</a>
+  </footer>
+
+</div>
+
+</body>
+</html>
