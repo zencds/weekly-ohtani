@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weekly Ohtani — MVPを手放した男が、また名前を呼ばれた</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Noto+Serif+JP:wght@400;500;600;700&display=swap">
+<style>
+:root {
+  --navy: #0f172a;
+  --accent: #1e3a8a;
+  --accent-light: #3b5bc7;
+  --bg: #ffffff;
+  --bg-off: #f8fafc;
+  --text: #0f172a;
+  --text-muted: #475569;
+  --text-faint: #94a3b8;
+  --border: #e2e8f0;
+  --shadow: 0 20px 40px -16px rgba(15, 23, 42, 0.22);
+  --red: #b3392c;
+  --red-light: #d3543f;
+  --red-wash: #fdf1ef;
+  --bg-data: #eef1f8;
+  --win: #1e6b4f;
+  --win-wash: #eaf6f0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --navy: #e6e9f0;
+    --accent: #7b9aff;
+    --accent-light: #a9bdff;
+    --bg: #0b1120;
+    --bg-off: #131b2e;
+    --text: #e6e9f0;
+    --text-muted: #a3adc2;
+    --text-faint: #6b7488;
+    --border: #253046;
+    --shadow: 0 20px 40px -16px rgba(0, 0, 0, 0.5);
+    --red: #ff8066;
+    --red-light: #ff9c85;
+    --red-wash: #2a1712;
+    --bg-data: #101a30;
+    --win: #55c793;
+    --win-wash: #0f2419;
+  }
+}
+
+:root[data-theme="dark"] {
+  --navy: #e6e9f0;
+  --accent: #7b9aff;
+  --accent-light: #a9bdff;
+  --bg: #0b1120;
+  --bg-off: #131b2e;
+  --text: #e6e9f0;
+  --text-muted: #a3adc2;
+  --text-faint: #6b7488;
+  --border: #253046;
+  --shadow: 0 20px 40px -16px rgba(0, 0, 0, 0.5);
+  --red: #ff8066;
+  --red-light: #ff9c85;
+  --red-wash: #2a1712;
+  --bg-data: #101a30;
+  --win: #55c793;
+  --win-wash: #0f2419;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Noto Serif JP", "Hiragino Mincho ProN", serif;
+  line-height: 1.85;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; }
+
+.serif-en { font-family: "Playfair Display", "Noto Serif JP", serif; }
+.util {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+}
+
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 32px 120px; }
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 48px;
+}
+.nav-brand {
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  color: var(--navy);
+}
+.nav-links { display: flex; gap: 28px; }
+.nav-link {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+.nav-link:hover { color: var(--accent); }
+
+.masthead { max-width: 760px; margin: 0 0 40px; }
+.kicker {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 18px;
+}
+.headline {
+  font-family: "Noto Serif JP", serif;
+  font-weight: 700;
+  font-size: clamp(34px, 5vw, 48px);
+  line-height: 1.4;
+  color: var(--navy);
+  margin: 0 0 20px;
+  text-wrap: balance;
+}
+.dek {
+  font-size: 17px;
+  color: var(--text-muted);
+  line-height: 1.9;
+  margin: 0 0 18px;
+}
+.masthead-meta {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 12.5px;
+  color: var(--text-faint);
+  letter-spacing: 0.03em;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 56px;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; }
+}
+
+article { font-size: 17px; }
+article p { margin: 0 0 28px; }
+.lede { font-size: 19px; }
+.lede::first-letter {
+  font-family: "Playfair Display", serif;
+  font-size: 2.5em;
+  font-weight: 700;
+  color: var(--accent);
+  float: left;
+  line-height: 0.85;
+  padding: 0.05em 0.08em 0 0;
+}
+.pull {
+  margin: 40px 0;
+  padding: 6px 0 6px 24px;
+  border-left: 3px solid var(--accent);
+  font-family: "Noto Serif JP", serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.7;
+  color: var(--navy);
+}
+.divider { width: 36px; height: 2px; background: var(--accent); margin: 44px 0; }
+.stat-link {
+  text-decoration: underline;
+  text-decoration-color: var(--border);
+  text-underline-offset: 3px;
+}
+.stat-link:hover { color: var(--accent); text-decoration-color: var(--accent); }
+
+aside { position: sticky; top: 32px; }
+.aside-block {
+  background: var(--bg-off);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 10px;
+  padding: 24px 24px 6px;
+  margin-bottom: 24px;
+}
+.aside-title {
+  font-family: "Noto Serif JP", serif;
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--navy);
+  margin: 0 0 4px;
+}
+.aside-lede {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 12.5px;
+  color: var(--text-faint);
+  margin: 0 0 18px;
+}
+.summary-lane-label {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin: 20px 0 12px;
+}
+.summary-lane-label:first-of-type { margin-top: 0; }
+.summary-item { position: relative; padding: 14px 0; border-top: 1px solid var(--border); }
+.aside-block .summary-item:first-of-type { border-top: none; padding-top: 0; }
+.summary-headline {
+  display: block;
+  font-family: "Noto Serif JP", serif;
+  font-weight: 600;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--navy);
+  text-decoration: none;
+  margin-bottom: 5px;
+}
+.summary-headline::after { content: ""; position: absolute; inset: 0; }
+.summary-headline:hover { color: var(--accent); }
+.summary-text {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: 5px;
+}
+.summary-source {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 11px;
+  color: var(--text-faint);
+}
+
+.notes-block {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 22px 22px 20px;
+}
+.notes-label {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--text-faint);
+  margin-bottom: 14px;
+}
+.notes-block ol {
+  margin: 0;
+  padding-left: 18px;
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  line-height: 1.85;
+}
+.notes-block li { margin-bottom: 8px; }
+.notes-block a { text-decoration: underline; text-decoration-color: var(--border); text-underline-offset: 3px; }
+.notes-block a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+
+.footer-module {
+  margin-top: 64px;
+  padding-top: 40px;
+  border-top: 1px solid var(--border);
+}
+.fm-section-head { margin: 0 0 22px; }
+.fm-kicker {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--text-faint); margin-bottom: 8px;
+}
+.fm-title { font-family: "Noto Serif JP", serif; font-weight: 700; font-size: 21px; color: var(--navy); margin: 0; }
+.fm-block { margin-bottom: 56px; }
+.fm-block:last-child { margin-bottom: 0; }
+
+.game-strip { display: flex; flex-wrap: wrap; gap: 12px; }
+.game-card { background: var(--bg-data); border: 1px solid var(--border); border-radius: 10px; padding: 16px 14px; display: flex; flex-direction: column; gap: 10px; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif; flex: 1 1 160px; max-width: 200px; }
+.game-card .gc-date { font-family: "Playfair Display", serif; font-weight: 700; font-size: 17px; color: var(--navy); font-variant-numeric: tabular-nums; }
+.game-card .gc-opp { font-size: 12px; color: var(--text-muted); min-height: 32px; }
+.game-card .gc-score { font-size: 13px; font-weight: 700; font-variant-numeric: tabular-nums; display: inline-flex; align-self: flex-start; padding: 2px 8px; border-radius: 5px; }
+.gc-score.win { color: var(--win); background: var(--win-wash); }
+.gc-score.pending { color: var(--text-faint); background: var(--bg-off); }
+.game-card .gc-status { font-size: 11.5px; font-weight: 700; letter-spacing: 0.02em; }
+.gc-status.played { color: var(--accent); }
+.gc-status.rest { color: var(--text-faint); }
+.gc-status.il { color: var(--red); }
+.game-card .gc-note { font-size: 11.5px; color: var(--text-muted); line-height: 1.6; }
+
+.week-stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+@media (max-width: 700px) { .week-stat-grid { grid-template-columns: 1fr; } }
+.week-card { background: var(--red-wash); border: 1px solid var(--border); border-left: 3px solid var(--red); border-radius: 10px; padding: 22px 24px; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif; }
+.week-card.is-muted { background: var(--bg-off); border-left-color: var(--border); }
+.week-card .wc-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: var(--red); margin-bottom: 4px; }
+.week-card.is-muted .wc-label { color: var(--text-faint); }
+.week-card .wc-hero { display: flex; align-items: baseline; gap: 10px; margin: 6px 0 14px; }
+.week-card .wc-hero-num { font-family: "Playfair Display", serif; font-weight: 800; font-size: 40px; color: var(--red); line-height: 1; }
+.week-card.is-muted .wc-hero-num { color: var(--text-faint); font-size: 22px; }
+.week-card .wc-hero-cap { font-size: 12.5px; color: var(--text-muted); }
+.week-card .wc-line { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 12px; }
+.week-card .wc-item { display: flex; align-items: baseline; gap: 5px; }
+.week-card .wc-item .n { font-variant-numeric: tabular-nums; font-weight: 700; font-size: 14px; color: var(--navy); }
+.week-card .wc-item .l { font-size: 11px; color: var(--text-faint); }
+.week-card .wc-empty-note { font-size: 13px; color: var(--text-muted); line-height: 1.8; margin-top: 4px; }
+
+.season-table-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+@media (max-width: 700px) { .season-table-wrap { grid-template-columns: 1fr; } }
+.season-col { padding: 22px 24px; }
+.season-col + .season-col { border-left: 1px solid var(--border); }
+@media (max-width: 700px) { .season-col + .season-col { border-left: none; border-top: 1px solid var(--border); } }
+.season-col .sc-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 14px; }
+.season-table { width: 100%; border-collapse: collapse; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif; }
+.season-table tr { border-top: 1px solid var(--border); }
+.season-table tr:first-child { border-top: none; }
+.season-table td { padding: 8px 0; font-size: 13.5px; }
+.season-table td.st-label { color: var(--text-muted); }
+.season-table td.st-val { text-align: right; font-variant-numeric: tabular-nums; font-weight: 700; color: var(--navy); }
+.season-footnote { grid-column: 1 / -1; padding: 14px 24px; border-top: 1px solid var(--border); background: var(--bg-off); font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif; font-size: 12px; color: var(--text-faint); line-height: 1.7; }
+@media (max-width: 700px) { .season-footnote { grid-column: auto; } }
+
+.column-block { background: var(--bg-off); border: 1px solid var(--border); border-left: 3px solid var(--navy); border-radius: 10px; padding: 28px 28px 26px; }
+.column-block .cb-label {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: var(--navy);
+  background: var(--bg); border: 1px solid var(--border); border-radius: 20px; padding: 4px 12px; margin-bottom: 16px;
+}
+.column-block h3 { font-family: "Noto Serif JP", serif; font-weight: 700; font-size: 19px; color: var(--navy); margin: 0 0 14px; line-height: 1.6; }
+.column-block p { font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif; font-size: 14.5px; color: var(--text); line-height: 1.85; margin: 0 0 14px; }
+.column-block p:last-child { margin-bottom: 0; }
+.column-block .cb-quote { color: var(--text-muted); }
+.column-block .cb-quote b { color: var(--navy); }
+.stat-chip {
+  display: inline-flex; align-items: baseline; gap: 4px; font-variant-numeric: tabular-nums;
+  background: var(--bg); border: 1px solid var(--border); border-radius: 5px; padding: 1px 7px; margin: 0 1px;
+  font-size: 13.5px; font-weight: 700; color: var(--accent);
+}
+
+footer {
+  margin-top: 64px;
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 12px;
+  color: var(--text-faint);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  border-top: 1px solid var(--border);
+  padding-top: 24px;
+}
+footer a { color: var(--text-faint); }
+footer a:hover { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="nav">
+    <a class="nav-brand" href="/">Weekly Ohtani</a>
+    <div class="nav-links">
+      <a class="nav-link util" href="/stats.html">成績</a>
+      <a class="nav-link util" href="/glossary.html">用語ガイド</a>
+      <a class="nav-link util" href="/archive.html">バックナンバー</a>
+    </div>
+  </div>
+
+  <div class="masthead">
+    <div class="kicker">VOL.36 — 2026年9月21日–9月27日</div>
+    <h1 class="headline">MVPを手放した男が、また名前を呼ばれた</h1>
+    <p class="dek">9月23日、大谷は16日ぶりにドジャースのラインアップへ復帰した。その間にNL MVP争いはクロウ゠アームストロングの独走で事実上決着し、大谷は遠い2番手に退いていた。それでも彼の名前がラインアップに戻ってきたという事実だけで、ワイルドカード争いの渦中にいるパドレスの一週間は、重みを増した。</p>
+    <div class="masthead-meta util">MVP争い事実上決着・16日ぶりのライン復帰・パドレスの現実</div>
+  </div>
+
+  <div class="layout">
+
+    <article>
+    <p class="lede">9月11日のIL入りから16日。大谷は9月23日、パドレス戦でラインアップに復帰した。ロバーツ監督は前日、状態についてこう語っていた——「以前は5段階の5だったが、今はもう8か9くらいだ」。</p>
+
+    <p>この16日間で、状況は大きく動いていた。大谷を欠いたまま、NL MVP争いはカブスのピート・クロウ゠アームストロングが独走。WAR9.4、長打率.576、OPS.948、本塁打44、盗塁37——複数のメディアが「もう決着した」と報じるところまでオッズは開き、大谷は+750の「遠い2番手」に退いていた。彼が不在の間に、レースそのものが終わっていたことになる。</p>
+
+    <p>だが、大谷の名前が再びラインアップに現れたことの意味は、個人賞レースの外側にあった。この週の相手は、ワイルドカード争いの渦中にいるパドレス。ドジャースはすでにプレーオフ進出を決めており、消化試合に近い余裕を持って一戦に臨める立場にある。後がないパドレスにとって、大谷という存在がラインアップに戻ってくること自体が、重みを増す材料になった。</p>
+
+    <p class="pull">"If he was a five, he's probably an eight or a nine right now."</p>
+
+    <p>ロバーツ監督のこの言葉が語っていたのは、マウンドではなく打席に立つための体のことだった。投手としては、今季もプレーオフでも登板の予定はない。大谷はもう、賞レースを争う男ではなく、戻ってくること自体が意味を持つ男になっていた。</p>
+
+    <div class="divider"></div>
+
+    <p>この記事の締め切り時点で、大谷の16日ぶりの一打席は、まだ結果が出ていない。それでも、彼の名前がラインアップに載っているという一行だけで、パドレスの一週間は、すでに少しだけ重くなっていた。</p>
+    </article>
+
+    <aside>
+      <div class="aside-block">
+        <h2 class="aside-title">この号のサマリー</h2>
+        <p class="aside-lede">復帰の経緯、MVP争いの行方、パドレス側の視点。</p>
+
+        <div class="summary-lane-label">現地報道・復帰の経緯</div>
+
+        <div class="summary-item">
+          <a class="summary-headline" href="https://www.espn.com/mlb/story/_/id/50010114/ohtani-considerably-healthier-expected-back-dodgers-lineup-wednesday">「かなり良くなった」——復帰前日のロバーツ発言</a>
+          <p class="summary-text">状態を1〜10段階で「以前は5、今は8か9」と表現したコメントを伝えた。</p>
+          <div class="summary-source">ESPN・2026年9月22日</div>
+        </div>
+
+        <div class="summary-item">
+          <a class="summary-headline" href="https://sports.yahoo.com/articles/dodgers-news-shohei-ohtanis-return-065942057.html">復帰日程がついに固まる</a>
+          <p class="summary-text">15日間のIL明け、9月23日を最短の復帰日として起用する方針を報じた。</p>
+          <div class="summary-source">Yahoo Sports・2026年9月</div>
+        </div>
+
+        <div class="summary-lane-label">MVP争いの行方</div>
+
+        <div class="summary-item">
+          <a class="summary-headline" href="https://www.espn.com/mlb/story/_/id/49648813/2026-national-league-mvp-shohei-ohtani-pete-crow-armstrong-pca-award">クロウ゠アームストロング、独走態勢に</a>
+          <p class="summary-text">WAR・長打率・OPSでNL首位を走るPCAが、大谷を大きく突き放したと分析した。</p>
+          <div class="summary-source">ESPN・2026年9月</div>
+        </div>
+
+        <div class="summary-lane-label">パドレス側の視点</div>
+
+        <div class="summary-item">
+          <a class="summary-headline" href="https://friarsonbase.com/padres-nl-wild-card-push-runs-straight-into-shohei-ohtani-s-return-from-injury">パドレスのワイルドカード争い、大谷の復帰と正面衝突</a>
+          <p class="summary-text">ドジャース目線ではなく、後がないパドレス側から見た大谷復帰の重みを伝えた。</p>
+          <div class="summary-source">FriarsOnBase・2026年9月</div>
+        </div>
+      </div>
+
+      <div class="notes-block">
+        <div class="notes-label">取材ノート</div>
+        <ol>
+          <li><a href="https://www.espn.com/mlb/story/_/id/50010114/ohtani-considerably-healthier-expected-back-dodgers-lineup-wednesday">Ohtani 'considerably' healthier, expected back Dodgers lineup Wednesday — ESPN</a></li>
+          <li><a href="https://www.nbcsports.com/fantasy/baseball/player-news/2026-09-22/roberts-shohei-ohtani-likely-to-return-wednesday">Roberts: Shohei Ohtani likely to return Wednesday — NBC Sports</a></li>
+          <li><a href="https://sports.yahoo.com/articles/dodgers-news-shohei-ohtanis-return-065942057.html">Dodgers news: Shohei Ohtani's return date from injured list finally revealed — Yahoo Sports</a></li>
+          <li><a href="https://www.espn.com/mlb/story/_/id/49648813/2026-national-league-mvp-shohei-ohtani-pete-crow-armstrong-pca-award">Crow-Armstrong vs. Ohtani: Who has the edge in NL MVP race? — ESPN</a></li>
+          <li><a href="https://www.foxsports.com/stories/mlb/2026-al-nl-mvp-odds">2026 AL, NL MVP Odds: PCA, Alvarez Running Away With Awards — FOX Sports</a></li>
+          <li><a href="https://friarsonbase.com/padres-nl-wild-card-push-runs-straight-into-shohei-ohtani-s-return-from-injury">Padres' NL Wild Card push runs straight into Shohei Ohtani's return from injury — FriarsOnBase</a></li>
+        </ol>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="footer-module">
+
+    <div class="fm-block">
+      <div class="fm-section-head">
+        <div class="fm-kicker util">01 — Daily Results</div>
+        <h2 class="fm-title">今週の試合結果</h2>
+      </div>
+      <div class="game-strip">
+        <div class="game-card">
+          <div class="gc-date">9/22</div>
+          <div class="gc-opp util">vs パドレス</div>
+          <div class="gc-score win">7–0</div>
+          <div class="gc-status rest util">大谷は出場せず</div>
+          <div class="gc-note util">山本由伸が好投、佐々木朗希も1回2K</div>
+        </div>
+        <div class="game-card">
+          <div class="gc-date">9/23</div>
+          <div class="gc-opp util">vs パドレス</div>
+          <div class="gc-score pending">結果は締切後</div>
+          <div class="gc-status played util">16日ぶりスタメン</div>
+          <div class="gc-note util">IL明け最短での復帰</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fm-block">
+      <div class="fm-section-head">
+        <div class="fm-kicker util">02 — This Week</div>
+        <h2 class="fm-title">今週のスタッツ(9/21–9/27)</h2>
+      </div>
+      <div class="week-stat-grid">
+        <div class="week-card">
+          <div class="wc-label util">打者</div>
+          <div class="wc-hero">
+            <span class="wc-hero-num">16</span>
+            <span class="wc-hero-cap util">日ぶりのスタメン復帰</span>
+          </div>
+          <p class="wc-empty-note util">9月23日、IL入りから最短でラインアップに復帰。この号の締め切り時点では試合結果が確定しておらず、個人成績は次号でお伝えします。</p>
+        </div>
+        <div class="week-card is-muted">
+          <div class="wc-label util">投手</div>
+          <div class="wc-hero">
+            <span class="wc-hero-num">登板なし</span>
+          </div>
+          <p class="wc-empty-note util">今週も登板はゼロ。最終登板は7月3日のまま。今季(プレーオフ含む)の投手復帰はなし。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="fm-block">
+      <div class="fm-section-head">
+        <div class="fm-kicker util">03 — Season Totals</div>
+        <h2 class="fm-title">今シーズンの成績(9/22時点)</h2>
+      </div>
+      <div class="season-table-wrap">
+        <div class="season-col">
+          <div class="sc-label util">打撃成績</div>
+          <table class="season-table util">
+            <tr><td class="st-label">打率</td><td class="st-val">.277</td></tr>
+            <tr><td class="st-label">出塁率</td><td class="st-val">.380</td></tr>
+            <tr><td class="st-label">長打率</td><td class="st-val">.522</td></tr>
+            <tr><td class="st-label">OPS</td><td class="st-val">.902</td></tr>
+            <tr><td class="st-label">wRC+</td><td class="st-val">143</td></tr>
+            <tr><td class="st-label">本塁打</td><td class="st-val">30</td></tr>
+            <tr><td class="st-label">打点</td><td class="st-val">80</td></tr>
+            <tr><td class="st-label">盗塁</td><td class="st-val">11</td></tr>
+            <tr><td class="st-label">安打</td><td class="st-val">139</td></tr>
+            <tr><td class="st-label">四球</td><td class="st-val">77</td></tr>
+            <tr><td class="st-label">三振</td><td class="st-val">131</td></tr>
+          </table>
+        </div>
+        <div class="season-col">
+          <div class="sc-label util">投球成績</div>
+          <table class="season-table util">
+            <tr><td class="st-label">防御率</td><td class="st-val">1.79</td></tr>
+            <tr><td class="st-label">勝敗</td><td class="st-val">8–2</td></tr>
+            <tr><td class="st-label">先発数</td><td class="st-val">14</td></tr>
+            <tr><td class="st-label">投球回</td><td class="st-val">85.2</td></tr>
+            <tr><td class="st-label">奪三振</td><td class="st-val">95</td></tr>
+            <tr><td class="st-label">与四球</td><td class="st-val">26</td></tr>
+            <tr><td class="st-label">WHIP</td><td class="st-val">0.95</td></tr>
+            <tr><td class="st-label">K/9</td><td class="st-val">9.98</td></tr>
+            <tr><td class="st-label">最終登板</td><td class="st-val">7/3</td></tr>
+          </table>
+        </div>
+        <div class="season-footnote util">打撃成績はIL入り直前の9/7時点から更新なし(9/22までの2週間超、試合出場がなかったため)。投球成績も7/3の最終登板時点のまま。数字の意味が分からない項目は<a href="/glossary.html" style="text-decoration:underline;text-decoration-color:var(--border);">用語ガイド</a>へ。</div>
+      </div>
+    </div>
+
+    <div class="fm-block">
+      <div class="fm-section-head">
+        <div class="fm-kicker util">04 — Behind the Numbers</div>
+        <h2 class="fm-title">今週の総括コラム</h2>
+      </div>
+      <div class="column-block">
+        <span class="cb-label util">編集部コラム · 数字の裏側</span>
+        <h3>「-1500」という数字の重み</h3>
+        <p class="util">大谷が3週間近く離脱している間に、NL MVP争いを示すオッズは劇的に動いた。クロウ゠アームストロングは<span class="stat-chip">-1500</span>、大谷は<span class="stat-chip">+750</span>。-1500という数字は、100ドル賭けて15ドルしか儲からないほどの「ほぼ確実」を意味する。対して+750は、100ドルで750ドル——大穴に近い水準だ。開幕前まで互角と言われていた争いは、大谷が試合から消えていたわずか数週間で、この差にまで開いた。</p>
+        <p class="util">クロウ゠アームストロングはこの間、WAR<span class="stat-chip">9.4</span>・長打率<span class="stat-chip">.576</span>・OPS<span class="stat-chip">.948</span>・本塁打<span class="stat-chip">44</span>・盗塁<span class="stat-chip">37</span>とNL屈指の数字を積み上げていた。大谷が仮に健康だったとしても、この勢いを止められたかは分からない。だが「不在」という条件が、レースを動かす最後の一押しになったことは間違いなさそうだ。</p>
+        <p class="util">賞レースの数字は、もう大谷のものではない。それでも、彼がラインアップに名前を連ねるという一行が、まだニュースになる——それこそが、彼がまだ特別な選手である証拠なのかもしれない。</p>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="util">
+    <span>本文は各記事の事実関係に基づく独自のノンフィクション構成。引用符付きの語句のみ原文からの直接引用。SNS上の個別投稿の一般化はしていません。</span>
+    <a href="/archive.html">← バックナンバー</a>
+  </footer>
+
+</div>
+
+</body>
+</html>
