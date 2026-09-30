@@ -1,0 +1,568 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weekly Ohtani — 休めない男と、隙だらけの王者</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Noto+Serif+JP:wght@400;500;600;700&display=swap">
+<style>
+:root {
+  --navy: #0f172a;
+  --accent: #1e3a8a;
+  --accent-light: #3b5bc7;
+  --bg: #ffffff;
+  --bg-off: #f8fafc;
+  --text: #0f172a;
+  --text-muted: #475569;
+  --text-faint: #94a3b8;
+  --border: #e2e8f0;
+  --shadow: 0 20px 40px -16px rgba(15, 23, 42, 0.22);
+  --red: #b3392c;
+  --red-light: #d3543f;
+  --red-wash: #fdf1ef;
+  --bg-data: #eef1f8;
+  --win: #1e6b4f;
+  --win-wash: #eaf6f0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --navy: #e6e9f0;
+    --accent: #7b9aff;
+    --accent-light: #a9bdff;
+    --bg: #0b1120;
+    --bg-off: #131b2e;
+    --text: #e6e9f0;
+    --text-muted: #a3adc2;
+    --text-faint: #6b7488;
+    --border: #253046;
+    --shadow: 0 20px 40px -16px rgba(0, 0, 0, 0.5);
+    --red: #ff8066;
+    --red-light: #ff9c85;
+    --red-wash: #2a1712;
+    --bg-data: #101a30;
+    --win: #55c793;
+    --win-wash: #0f2419;
+  }
+}
+
+:root[data-theme="dark"] {
+  --navy: #e6e9f0;
+  --accent: #7b9aff;
+  --accent-light: #a9bdff;
+  --bg: #0b1120;
+  --bg-off: #131b2e;
+  --text: #e6e9f0;
+  --text-muted: #a3adc2;
+  --text-faint: #6b7488;
+  --border: #253046;
+  --shadow: 0 20px 40px -16px rgba(0, 0, 0, 0.5);
+  --red: #ff8066;
+  --red-light: #ff9c85;
+  --red-wash: #2a1712;
+  --bg-data: #101a30;
+  --win: #55c793;
+  --win-wash: #0f2419;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Noto Serif JP", "Hiragino Mincho ProN", serif;
+  line-height: 1.85;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; }
+
+.serif-en { font-family: "Playfair Display", "Noto Serif JP", serif; }
+.util {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+}
+
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 32px 120px; }
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 48px;
+}
+.nav-brand {
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  color: var(--navy);
+}
+.nav-links { display: flex; gap: 28px; }
+.nav-link {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+.nav-link:hover { color: var(--accent); }
+
+.masthead { max-width: 760px; margin: 0 0 40px; }
+.kicker {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 18px;
+}
+.headline {
+  font-family: "Noto Serif JP", serif;
+  font-weight: 700;
+  font-size: clamp(34px, 5vw, 48px);
+  line-height: 1.4;
+  color: var(--navy);
+  margin: 0 0 20px;
+  text-wrap: balance;
+}
+.dek {
+  font-size: 17px;
+  color: var(--text-muted);
+  line-height: 1.9;
+  margin: 0 0 18px;
+}
+.masthead-meta {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 12.5px;
+  color: var(--text-faint);
+  letter-spacing: 0.03em;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 56px;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; }
+}
+
+article { font-size: 17px; }
+article p { margin: 0 0 28px; }
+.lede { font-size: 19px; }
+.lede::first-letter {
+  font-family: "Playfair Display", serif;
+  font-size: 2.5em;
+  font-weight: 700;
+  color: var(--accent);
+  float: left;
+  line-height: 0.85;
+  padding: 0.05em 0.08em 0 0;
+}
+.pull {
+  margin: 40px 0;
+  padding: 6px 0 6px 24px;
+  border-left: 3px solid var(--accent);
+  font-family: "Noto Serif JP", serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.7;
+  color: var(--navy);
+}
+.divider { width: 36px; height: 2px; background: var(--accent); margin: 44px 0; }
+.stat-link {
+  text-decoration: underline;
+  text-decoration-color: var(--border);
+  text-underline-offset: 3px;
+}
+.stat-link:hover { color: var(--accent); text-decoration-color: var(--accent); }
+
+aside { position: sticky; top: 32px; }
+.aside-block {
+  background: var(--bg-off);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 10px;
+  padding: 24px 24px 6px;
+  margin-bottom: 24px;
+}
+.aside-title {
+  font-family: "Noto Serif JP", serif;
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--navy);
+  margin: 0 0 4px;
+}
+.aside-lede {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 12.5px;
+  color: var(--text-faint);
+  margin: 0 0 18px;
+}
+.summary-lane-label {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin: 20px 0 12px;
+}
+.summary-lane-label:first-of-type { margin-top: 0; }
+.summary-item { position: relative; padding: 14px 0; border-top: 1px solid var(--border); }
+.aside-block .summary-item:first-of-type { border-top: none; padding-top: 0; }
+.summary-headline {
+  display: block;
+  font-family: "Noto Serif JP", serif;
+  font-weight: 600;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--navy);
+  text-decoration: none;
+  margin-bottom: 5px;
+}
+.summary-headline::after { content: ""; position: absolute; inset: 0; }
+.summary-headline:hover { color: var(--accent); }
+.summary-text {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: 5px;
+}
+.summary-source {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 11px;
+  color: var(--text-faint);
+}
+
+.notes-block {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 22px 22px 20px;
+}
+.notes-label {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--text-faint);
+  margin-bottom: 14px;
+}
+.notes-block ol {
+  margin: 0;
+  padding-left: 18px;
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  line-height: 1.85;
+}
+.notes-block li { margin-bottom: 8px; }
+.notes-block a { text-decoration: underline; text-decoration-color: var(--border); text-underline-offset: 3px; }
+.notes-block a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+
+.footer-module {
+  margin-top: 64px;
+  padding-top: 40px;
+  border-top: 1px solid var(--border);
+}
+.fm-section-head { margin: 0 0 22px; }
+.fm-kicker {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--text-faint); margin-bottom: 8px;
+}
+.fm-title { font-family: "Noto Serif JP", serif; font-weight: 700; font-size: 21px; color: var(--navy); margin: 0; }
+.fm-block { margin-bottom: 56px; }
+.fm-block:last-child { margin-bottom: 0; }
+
+.game-strip { display: flex; flex-wrap: wrap; gap: 12px; }
+.game-card { background: var(--bg-data); border: 1px solid var(--border); border-radius: 10px; padding: 16px 14px; display: flex; flex-direction: column; gap: 10px; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif; flex: 1 1 160px; max-width: 200px; }
+.game-card .gc-date { font-family: "Playfair Display", serif; font-weight: 700; font-size: 17px; color: var(--navy); font-variant-numeric: tabular-nums; }
+.game-card .gc-opp { font-size: 12px; color: var(--text-muted); min-height: 32px; }
+.game-card .gc-score { font-size: 13px; font-weight: 700; font-variant-numeric: tabular-nums; display: inline-flex; align-self: flex-start; padding: 2px 8px; border-radius: 5px; }
+.gc-score.win { color: var(--win); background: var(--win-wash); }
+.gc-score.pending { color: var(--text-faint); background: var(--bg-off); }
+.game-card .gc-status { font-size: 11.5px; font-weight: 700; letter-spacing: 0.02em; }
+.gc-status.played { color: var(--accent); }
+.gc-status.rest { color: var(--text-faint); }
+.gc-status.il { color: var(--red); }
+.game-card .gc-note { font-size: 11.5px; color: var(--text-muted); line-height: 1.6; }
+
+.week-stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+@media (max-width: 700px) { .week-stat-grid { grid-template-columns: 1fr; } }
+.week-card { background: var(--red-wash); border: 1px solid var(--border); border-left: 3px solid var(--red); border-radius: 10px; padding: 22px 24px; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif; }
+.week-card.is-muted { background: var(--bg-off); border-left-color: var(--border); }
+.week-card .wc-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: var(--red); margin-bottom: 4px; }
+.week-card.is-muted .wc-label { color: var(--text-faint); }
+.week-card .wc-hero { display: flex; align-items: baseline; gap: 10px; margin: 6px 0 14px; }
+.week-card .wc-hero-num { font-family: "Playfair Display", serif; font-weight: 800; font-size: 40px; color: var(--red); line-height: 1; }
+.week-card.is-muted .wc-hero-num { color: var(--text-faint); font-size: 22px; }
+.week-card .wc-hero-cap { font-size: 12.5px; color: var(--text-muted); }
+.week-card .wc-line { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 12px; }
+.week-card .wc-item { display: flex; align-items: baseline; gap: 5px; }
+.week-card .wc-item .n { font-variant-numeric: tabular-nums; font-weight: 700; font-size: 14px; color: var(--navy); }
+.week-card .wc-item .l { font-size: 11px; color: var(--text-faint); }
+.week-card .wc-empty-note { font-size: 13px; color: var(--text-muted); line-height: 1.8; margin-top: 4px; }
+
+.season-table-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+@media (max-width: 700px) { .season-table-wrap { grid-template-columns: 1fr; } }
+.season-col { padding: 22px 24px; }
+.season-col + .season-col { border-left: 1px solid var(--border); }
+@media (max-width: 700px) { .season-col + .season-col { border-left: none; border-top: 1px solid var(--border); } }
+.season-col .sc-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 14px; }
+.season-table { width: 100%; border-collapse: collapse; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif; }
+.season-table tr { border-top: 1px solid var(--border); }
+.season-table tr:first-child { border-top: none; }
+.season-table td { padding: 8px 0; font-size: 13.5px; }
+.season-table td.st-label { color: var(--text-muted); }
+.season-table td.st-val { text-align: right; font-variant-numeric: tabular-nums; font-weight: 700; color: var(--navy); }
+.season-footnote { grid-column: 1 / -1; padding: 14px 24px; border-top: 1px solid var(--border); background: var(--bg-off); font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif; font-size: 12px; color: var(--text-faint); line-height: 1.7; }
+@media (max-width: 700px) { .season-footnote { grid-column: auto; } }
+
+.column-block { background: var(--bg-off); border: 1px solid var(--border); border-left: 3px solid var(--navy); border-radius: 10px; padding: 28px 28px 26px; }
+.column-block .cb-label {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: var(--navy);
+  background: var(--bg); border: 1px solid var(--border); border-radius: 20px; padding: 4px 12px; margin-bottom: 16px;
+}
+.column-block h3 { font-family: "Noto Serif JP", serif; font-weight: 700; font-size: 19px; color: var(--navy); margin: 0 0 14px; line-height: 1.6; }
+.column-block p { font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif; font-size: 14.5px; color: var(--text); line-height: 1.85; margin: 0 0 14px; }
+.column-block p:last-child { margin-bottom: 0; }
+.column-block .cb-quote { color: var(--text-muted); }
+.column-block .cb-quote b { color: var(--navy); }
+.stat-chip {
+  display: inline-flex; align-items: baseline; gap: 4px; font-variant-numeric: tabular-nums;
+  background: var(--bg); border: 1px solid var(--border); border-radius: 5px; padding: 1px 7px; margin: 0 1px;
+  font-size: 13.5px; font-weight: 700; color: var(--accent);
+}
+
+footer {
+  margin-top: 64px;
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 12px;
+  color: var(--text-faint);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  border-top: 1px solid var(--border);
+  padding-top: 24px;
+}
+footer a { color: var(--text-faint); }
+footer a:hover { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="nav">
+    <a class="nav-brand" href="/">Weekly Ohtani</a>
+    <div class="nav-links">
+      <a class="nav-link util" href="/stats.html">成績</a>
+      <a class="nav-link util" href="/glossary.html">用語ガイド</a>
+      <a class="nav-link util" href="/archive.html">バックナンバー</a>
+    </div>
+  </div>
+
+  <div class="masthead">
+    <div class="kicker">VOL.37 — 2026年9月28日–10月4日</div>
+    <h1 class="headline">休めない男と、隙だらけの王者</h1>
+    <p class="dek">「一番の回復方法は、完全にプレーしないことだ」——IL明け最後の5試合を21打数5安打・三振8に終えた大谷は、そう語った。それでもプレーオフは待ってくれない。ESPNが挙げた3連覇への不安要素には、打線の不振や投手陣の不安と並んで、大谷自身の状態が挙がっていた。王者は、隙を抱えたまま開幕を迎える。</p>
+    <div class="masthead-meta util">大谷「プレーしないことが一番の回復」・3連覇への4つの不安要素・NLDS開幕は10/3</div>
+  </div>
+
+  <div class="layout">
+
+    <article>
+    <p class="lede">IL明けの復帰から数えて最後の5試合、大谷は21打数5安打・打率.238、三振8、四球1に終えた。仕上がりを聞かれた本人は、「一番の回復方法は、完全にプレーしないことだ」と答えている。</p>
+
+    <p>ロバーツ監督は不振の理由を、故障ではなく「力み」や「追いかけすぎ」だと説明している。9月27日のレギュラーシーズン最終戦(ジャイアンツ戦、延長10回の末5-1で勝利)では3打数1安打を記録し、わずかに上向きの兆しも見せた。ドジャースはこの試合でシーズンを終え、ロバーツ体制6度目となる100勝に到達している。</p>
+
+    <p>だが、大谷の状態は3連覇に向けた懸念材料の一つに過ぎない。ESPNは、王者の不安要素として4つを列挙した——9月に入り得点圏打率.214まで落ち込んだ打線、故障がちなグラスノーとスネル(過去2年で先発合わせて51試合)、守護神不在のまま6900万ドルを投じたブルペン、そして大谷自身の状態。個人の物語だった「治りきらない体」は、いつの間にかチーム全体の課題の一部として語られるようになっていた。</p>
+
+    <p class="pull">"I don't put any stock into it. Once you get to the postseason, it's a different season."</p>
+
+    <p>ロバーツ監督のこの楽観は、選手個人の状態への処方箋ではない。それでも、10月3日にドジャースタジアムで始まるNLDS(相手はブレーブスとフィリーズのワイルドカードシリーズ勝者)を前に、チームが抱える不安を「別のシーズンだから」の一言で片付けようとしているようにも聞こえる。</p>
+
+    <div class="divider"></div>
+
+    <p>「完全にプレーしないこと」が一番の回復だと知りながら、大谷はこれからも毎試合、バットを持ってボックスに立つ。王者の3連覇は、そういう矛盾を抱えたまま始まる。</p>
+    </article>
+
+    <aside>
+      <div class="aside-block">
+        <h2 class="aside-title">この号のサマリー</h2>
+        <p class="aside-lede">本人・監督の言葉と、3連覇への不安要素。</p>
+
+        <div class="summary-lane-label">本人・監督の言葉</div>
+
+        <div class="summary-item">
+          <a class="summary-headline" href="https://www.espn.com/mlb/story/_/id/50022995/mlb-2026-playoffs-postseason-world-series-los-angeles-dodgers-three-peat-shohei-ohtani">大谷「一番の回復方法は、プレーしないこと」</a>
+          <p class="summary-text">取材に対し、休養こそが最善の治療法だと語ったコメントを伝えた。</p>
+          <div class="summary-source">ESPN・2026年9月</div>
+        </div>
+
+        <div class="summary-item">
+          <a class="summary-headline" href="https://sports.yahoo.com/articles/shohei-ohtani-play-dodgers-regular-020137914.html">「最終戦は休ませるべきだった」という論調</a>
+          <p class="summary-text">1-9・5三振という内容を踏まえ、最終戦の起用に疑問を投げかけた。</p>
+          <div class="summary-source">Yahoo Sports・2026年9月27日</div>
+        </div>
+
+        <div class="summary-lane-label">3連覇への不安要素</div>
+
+        <div class="summary-item">
+          <a class="summary-headline" href="https://www.espn.com/mlb/story/_/id/50022995/mlb-2026-playoffs-postseason-world-series-los-angeles-dodgers-three-peat-shohei-ohtani">打線・投手陣・大谷——王者に挙がった4つの弱点</a>
+          <p class="summary-text">得点圏打率の低迷、先発陣の登板数、ブルペン、そして大谷の状態を列挙した分析記事。</p>
+          <div class="summary-source">ESPN・2026年9月</div>
+        </div>
+
+        <div class="summary-item">
+          <a class="summary-headline" href="https://www.truebluela.com/los-angeles-dodgers-schedule/124879/dodgers-nlds-schedule-home-field-advantage">NLDS開幕は10/3、地の利はドジャースに</a>
+          <p class="summary-text">ドジャースタジアムでの初戦日程と、ワイルドカードシリーズの行方を伝えた。</p>
+          <div class="summary-source">True Blue LA・2026年9月</div>
+        </div>
+      </div>
+
+      <div class="notes-block">
+        <div class="notes-label">取材ノート</div>
+        <ol>
+          <li><a href="https://www.espn.com/mlb/story/_/id/50022995/mlb-2026-playoffs-postseason-world-series-los-angeles-dodgers-three-peat-shohei-ohtani">Could Dodgers be more vulnerable than you think? — ESPN</a></li>
+          <li><a href="https://sports.yahoo.com/articles/shohei-ohtani-play-dodgers-regular-020137914.html">Shohei Ohtani will play in Dodgers' regular-season finale — but shouldn't — Yahoo Sports</a></li>
+          <li><a href="https://sports.yahoo.com/articles/dodgers-encouraging-shohei-ohtani-ahead-150151489.html">Dodgers Get Encouraging Shohei Ohtani Update Ahead of MLB Playoffs — Yahoo Sports</a></li>
+          <li><a href="https://www.truebluela.com/los-angeles-dodgers-schedule/124879/dodgers-nlds-schedule-home-field-advantage">Dodgers NLDS schedule: Postseason opens October 3 at Dodger Stadium — True Blue LA</a></li>
+          <li><a href="https://dodgersdigest.com/2026/09/27/the-2026-dodgers-playoff-roster-another-look-after-game-162/">The 2026 Dodgers playoff roster, another look after Game 162 — Dodgers Digest</a></li>
+          <li><a href="https://www.mlb.com/amp/news/shohei-ohtani-hopes-to-shake-off-rust-heading-into-2026-postseason.html">Shohei Ohtani hopes to shake off rust heading into 2026 postseason — MLB.com</a></li>
+        </ol>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="footer-module">
+
+    <div class="fm-block">
+      <div class="fm-section-head">
+        <div class="fm-kicker util">01 — Daily Results</div>
+        <h2 class="fm-title">今週の試合結果</h2>
+      </div>
+      <div class="game-strip">
+        <div class="game-card">
+          <div class="gc-date">9/27</div>
+          <div class="gc-opp util">@ ジャイアンツ</div>
+          <div class="gc-score win">5–1</div>
+          <div class="gc-status played util">シーズン最終戦</div>
+          <div class="gc-note util">大谷: 3打数1安打(延長10回)</div>
+        </div>
+        <div class="game-card">
+          <div class="gc-date">10/3</div>
+          <div class="gc-opp util">vs ブレーブス/フィリーズ</div>
+          <div class="gc-score pending">開幕前</div>
+          <div class="gc-status played util">NLDS Game 1</div>
+          <div class="gc-note util">ドジャースタジアムで開幕</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fm-block">
+      <div class="fm-section-head">
+        <div class="fm-kicker util">02 — Final Stretch</div>
+        <h2 class="fm-title">IL明け最終5試合</h2>
+      </div>
+      <div class="week-stat-grid">
+        <div class="week-card">
+          <div class="wc-label util">打者</div>
+          <div class="wc-hero">
+            <span class="wc-hero-num">.238</span>
+            <span class="wc-hero-cap util">打率(21打数5安打) — IL明けの5試合</span>
+          </div>
+          <div class="wc-line util">
+            <div class="wc-item"><span class="n">21</span><span class="l">打数</span></div>
+            <div class="wc-item"><span class="n">5</span><span class="l">安打</span></div>
+            <div class="wc-item"><span class="n">8</span><span class="l">三振</span></div>
+            <div class="wc-item"><span class="n">1</span><span class="l">四球</span></div>
+          </div>
+        </div>
+        <div class="week-card is-muted">
+          <div class="wc-label util">投手</div>
+          <div class="wc-hero">
+            <span class="wc-hero-num">登板なし</span>
+          </div>
+          <p class="wc-empty-note util">今季の投手登板はここで終了。最終登板は7月3日のまま、通算8勝2敗・防御率1.79でレギュラーシーズンを終えた。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="fm-block">
+      <div class="fm-section-head">
+        <div class="fm-kicker util">03 — Season Totals</div>
+        <h2 class="fm-title">レギュラーシーズン最終成績</h2>
+      </div>
+      <div class="season-table-wrap">
+        <div class="season-col">
+          <div class="sc-label util">打撃成績</div>
+          <table class="season-table util">
+            <tr><td class="st-label">打率</td><td class="st-val">.277</td></tr>
+            <tr><td class="st-label">出塁率</td><td class="st-val">.380</td></tr>
+            <tr><td class="st-label">長打率</td><td class="st-val">.522</td></tr>
+            <tr><td class="st-label">OPS</td><td class="st-val">.902</td></tr>
+            <tr><td class="st-label">wRC+</td><td class="st-val">143</td></tr>
+            <tr><td class="st-label">本塁打</td><td class="st-val">30</td></tr>
+            <tr><td class="st-label">打点</td><td class="st-val">80</td></tr>
+            <tr><td class="st-label">盗塁</td><td class="st-val">11</td></tr>
+            <tr><td class="st-label">安打</td><td class="st-val">139</td></tr>
+            <tr><td class="st-label">四球</td><td class="st-val">77</td></tr>
+            <tr><td class="st-label">三振</td><td class="st-val">131</td></tr>
+          </table>
+        </div>
+        <div class="season-col">
+          <div class="sc-label util">投球成績</div>
+          <table class="season-table util">
+            <tr><td class="st-label">防御率</td><td class="st-val">1.79</td></tr>
+            <tr><td class="st-label">勝敗</td><td class="st-val">8–2</td></tr>
+            <tr><td class="st-label">先発数</td><td class="st-val">14</td></tr>
+            <tr><td class="st-label">投球回</td><td class="st-val">85.2</td></tr>
+            <tr><td class="st-label">奪三振</td><td class="st-val">95</td></tr>
+            <tr><td class="st-label">与四球</td><td class="st-val">26</td></tr>
+            <tr><td class="st-label">WHIP</td><td class="st-val">0.95</td></tr>
+            <tr><td class="st-label">K/9</td><td class="st-val">9.98</td></tr>
+            <tr><td class="st-label">最終登板</td><td class="st-val">7/3</td></tr>
+          </table>
+        </div>
+        <div class="season-footnote util">打撃成績は9/22時点の集計値(IL入り直前)で、最終5試合(21打数5安打・三振8・四球1、上のカード参照)は反映前の数値。投球成績は7月3日の最終登板時点でレギュラーシーズンを終えた確定値。数字の意味が分からない項目は<a href="/glossary.html" style="text-decoration:underline;text-decoration-color:var(--border);">用語ガイド</a>へ。</div>
+      </div>
+    </div>
+
+    <div class="fm-block">
+      <div class="fm-section-head">
+        <div class="fm-kicker util">04 — Behind the Numbers</div>
+        <h2 class="fm-title">今週の総括コラム</h2>
+      </div>
+      <div class="column-block">
+        <span class="cb-label util">編集部コラム · 数字の裏側</span>
+        <h3>王者の隙は、4つの数字でできている</h3>
+        <p class="util">ESPNが3連覇に不安を投げかけた記事で最初に挙げたのは、打線の失速だった。9月、得点圏での打率は<span class="stat-chip">.214</span>・出塁率<span class="stat-chip">.317</span>・長打率<span class="stat-chip">.376</span>。フリーマンに至っては月間打率<span class="stat-chip">.184</span>まで落ち込んでいる。チャンスでの一本が出ない状態のまま、ポストシーズンに入ろうとしていた。</p>
+        <p class="util">先発陣も盤石ではない。グラスノーとスネルは、過去2年間で合わせてわずか<span class="stat-chip">51</span>先発。守護神には6900万ドルを投じたが、ディアスは苦しんだ立ち上がりから持ち直しつつあるとはいえ、まだロー・レバレッジの場面での実績にとどまる。打線・先発・ブルペン・大谷の状態——4つの不安要素が、同じ秋に重なっていた。</p>
+        <p class="util">それでもロバーツ監督は「レギュラーシーズンの数字は参考にならない」と語る。不安要素のリストが正しいかどうかは、10月3日からの数試合で証明されることになる。</p>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="util">
+    <span>本文は各記事の事実関係に基づく独自のノンフィクション構成。引用符付きの語句のみ原文からの直接引用。SNS上の個別投稿の一般化はしていません。</span>
+    <a href="/archive.html">← バックナンバー</a>
+  </footer>
+
+</div>
+
+</body>
+</html>
