@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Weekly Ohtani — 同僚の投票用紙に、名前が並ばなかった</title>
+<title>Weekly Ohtani — 七連敗を止めたのは、内野安打だった</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Noto+Serif+JP:wght@400;500;600;700&display=swap">
 <style>
 :root {
@@ -17,6 +17,12 @@
   --text-faint: #94a3b8;
   --border: #e2e8f0;
   --shadow: 0 20px 40px -16px rgba(15, 23, 42, 0.22);
+  --red: #b3392c;
+  --red-light: #d3543f;
+  --red-wash: #fdf1ef;
+  --bg-data: #eef1f8;
+  --win: #1e6b4f;
+  --win-wash: #eaf6f0;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -31,6 +37,12 @@
     --text-faint: #6b7488;
     --border: #253046;
     --shadow: 0 20px 40px -16px rgba(0, 0, 0, 0.5);
+    --red: #ff8066;
+    --red-light: #ff9c85;
+    --red-wash: #2a1712;
+    --bg-data: #101a30;
+    --win: #55c793;
+    --win-wash: #0f2419;
   }
 }
 
@@ -45,6 +57,12 @@
   --text-faint: #6b7488;
   --border: #253046;
   --shadow: 0 20px 40px -16px rgba(0, 0, 0, 0.5);
+  --red: #ff8066;
+  --red-light: #ff9c85;
+  --red-wash: #2a1712;
+  --bg-data: #101a30;
+  --win: #55c793;
+  --win-wash: #0f2419;
 }
 
 * { box-sizing: border-box; }
@@ -67,7 +85,6 @@ a { color: inherit; }
 
 .wrap { max-width: 1120px; margin: 0 auto; padding: 0 32px 120px; }
 
-/* ---- Nav ---- */
 .nav {
   display: flex;
   align-items: center;
@@ -95,7 +112,6 @@ a { color: inherit; }
 }
 .nav-link:hover { color: var(--accent); }
 
-/* ---- Masthead ---- */
 .masthead { max-width: 760px; margin: 0 0 40px; }
 .kicker {
   font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
@@ -128,68 +144,6 @@ a { color: inherit; }
   letter-spacing: 0.03em;
 }
 
-/* ---- Hero photo ---- */
-.hero-photo { margin: 0 0 44px; }
-.hero-photo .frame {
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-  border-radius: 12px;
-  box-shadow: var(--shadow);
-}
-.hero-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 30%;
-  display: block;
-}
-.hero-photo-caption {
-  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
-  font-size: 12px;
-  color: var(--text-faint);
-  margin-top: 10px;
-  text-align: right;
-}
-
-/* ---- KPI stat row ---- */
-.kpi-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin: 0 0 48px;
-}
-@media (max-width: 640px) { .kpi-row { grid-template-columns: 1fr 1fr; } }
-.kpi-card {
-  background: var(--bg-off);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 20px 20px 18px;
-}
-.kpi-label {
-  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
-  font-size: 11.5px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  color: var(--text-faint);
-  margin-bottom: 8px;
-}
-.kpi-value {
-  font-family: "Playfair Display", serif;
-  font-weight: 700;
-  font-size: 28px;
-  color: var(--navy);
-  font-variant-numeric: tabular-nums;
-  line-height: 1.1;
-}
-.kpi-value .arrow { color: var(--accent); font-size: 20px; margin: 0 4px; }
-.kpi-sub {
-  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
-  font-size: 12px;
-  color: var(--text-muted);
-  margin-top: 6px;
-}
-
-/* ---- Two column layout ---- */
 .layout {
   display: grid;
   grid-template-columns: 1fr 320px;
@@ -200,7 +154,6 @@ a { color: inherit; }
   .layout { grid-template-columns: 1fr; }
 }
 
-/* ---- Article ---- */
 article { font-size: 17px; }
 article p { margin: 0 0 28px; }
 .lede { font-size: 19px; }
@@ -231,7 +184,6 @@ article p { margin: 0 0 28px; }
 }
 .stat-link:hover { color: var(--accent); text-decoration-color: var(--accent); }
 
-/* ---- Aside / sidebar ---- */
 aside { position: sticky; top: 32px; }
 .aside-block {
   background: var(--bg-off);
@@ -315,6 +267,84 @@ aside { position: sticky; top: 32px; }
 .notes-block a { text-decoration: underline; text-decoration-color: var(--border); text-underline-offset: 3px; }
 .notes-block a:hover { color: var(--accent); text-decoration-color: var(--accent); }
 
+.footer-module {
+  margin-top: 64px;
+  padding-top: 40px;
+  border-top: 1px solid var(--border);
+}
+.fm-section-head { margin: 0 0 22px; }
+.fm-kicker {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--text-faint); margin-bottom: 8px;
+}
+.fm-title { font-family: "Noto Serif JP", serif; font-weight: 700; font-size: 21px; color: var(--navy); margin: 0; }
+.fm-block { margin-bottom: 56px; }
+.fm-block:last-child { margin-bottom: 0; }
+
+.game-strip { display: flex; flex-wrap: wrap; gap: 12px; }
+.game-card { background: var(--bg-data); border: 1px solid var(--border); border-radius: 10px; padding: 16px 14px; display: flex; flex-direction: column; gap: 10px; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif; flex: 1 1 160px; max-width: 200px; }
+.game-card .gc-date { font-family: "Playfair Display", serif; font-weight: 700; font-size: 17px; color: var(--navy); font-variant-numeric: tabular-nums; }
+.game-card .gc-opp { font-size: 12px; color: var(--text-muted); min-height: 32px; }
+.game-card .gc-score { font-size: 13px; font-weight: 700; font-variant-numeric: tabular-nums; display: inline-flex; align-self: flex-start; padding: 2px 8px; border-radius: 5px; }
+.gc-score.win { color: var(--win); background: var(--win-wash); }
+.gc-score.loss { color: var(--red); background: var(--red-wash); }
+.gc-score.pending { color: var(--text-faint); background: var(--bg-off); }
+.game-card .gc-status { font-size: 11.5px; font-weight: 700; letter-spacing: 0.02em; }
+.gc-status.played { color: var(--accent); }
+.gc-status.rest { color: var(--text-faint); }
+.gc-status.il { color: var(--red); }
+.game-card .gc-note { font-size: 11.5px; color: var(--text-muted); line-height: 1.6; }
+
+.week-stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+@media (max-width: 700px) { .week-stat-grid { grid-template-columns: 1fr; } }
+.week-card { background: var(--red-wash); border: 1px solid var(--border); border-left: 3px solid var(--red); border-radius: 10px; padding: 22px 24px; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif; }
+.week-card.is-muted { background: var(--bg-off); border-left-color: var(--border); }
+.week-card .wc-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: var(--red); margin-bottom: 4px; }
+.week-card.is-muted .wc-label { color: var(--text-faint); }
+.week-card .wc-hero { display: flex; align-items: baseline; gap: 10px; margin: 6px 0 14px; }
+.week-card .wc-hero-num { font-family: "Playfair Display", serif; font-weight: 800; font-size: 40px; color: var(--red); line-height: 1; }
+.week-card.is-muted .wc-hero-num { color: var(--text-faint); font-size: 22px; }
+.week-card .wc-hero-cap { font-size: 12.5px; color: var(--text-muted); }
+.week-card .wc-line { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 12px; }
+.week-card .wc-item { display: flex; align-items: baseline; gap: 5px; }
+.week-card .wc-item .n { font-variant-numeric: tabular-nums; font-weight: 700; font-size: 14px; color: var(--navy); }
+.week-card .wc-item .l { font-size: 11px; color: var(--text-faint); }
+.week-card .wc-empty-note { font-size: 13px; color: var(--text-muted); line-height: 1.8; margin-top: 4px; }
+
+.season-table-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+@media (max-width: 700px) { .season-table-wrap { grid-template-columns: 1fr; } }
+.season-col { padding: 22px 24px; }
+.season-col + .season-col { border-left: 1px solid var(--border); }
+@media (max-width: 700px) { .season-col + .season-col { border-left: none; border-top: 1px solid var(--border); } }
+.season-col .sc-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 14px; }
+.season-table { width: 100%; border-collapse: collapse; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif; }
+.season-table tr { border-top: 1px solid var(--border); }
+.season-table tr:first-child { border-top: none; }
+.season-table td { padding: 8px 0; font-size: 13.5px; }
+.season-table td.st-label { color: var(--text-muted); }
+.season-table td.st-val { text-align: right; font-variant-numeric: tabular-nums; font-weight: 700; color: var(--navy); }
+.season-footnote { grid-column: 1 / -1; padding: 14px 24px; border-top: 1px solid var(--border); background: var(--bg-off); font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif; font-size: 12px; color: var(--text-faint); line-height: 1.7; }
+@media (max-width: 700px) { .season-footnote { grid-column: auto; } }
+
+.column-block { background: var(--bg-off); border: 1px solid var(--border); border-left: 3px solid var(--navy); border-radius: 10px; padding: 28px 28px 26px; }
+.column-block .cb-label {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: var(--navy);
+  background: var(--bg); border: 1px solid var(--border); border-radius: 20px; padding: 4px 12px; margin-bottom: 16px;
+}
+.column-block h3 { font-family: "Noto Serif JP", serif; font-weight: 700; font-size: 19px; color: var(--navy); margin: 0 0 14px; line-height: 1.6; }
+.column-block p { font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif; font-size: 14.5px; color: var(--text); line-height: 1.85; margin: 0 0 14px; }
+.column-block p:last-child { margin-bottom: 0; }
+.column-block .cb-quote { color: var(--text-muted); }
+.column-block .cb-quote b { color: var(--navy); }
+.stat-chip {
+  display: inline-flex; align-items: baseline; gap: 4px; font-variant-numeric: tabular-nums;
+  background: var(--bg); border: 1px solid var(--border); border-radius: 5px; padding: 1px 7px; margin: 0 1px;
+  font-size: 13.5px; font-weight: 700; color: var(--accent);
+}
+
 footer {
   margin-top: 64px;
   font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
@@ -329,7 +359,6 @@ footer {
 }
 footer a { color: var(--text-faint); }
 footer a:hover { color: var(--accent); }
-
 </style>
 </head>
 <body>
@@ -346,88 +375,189 @@ footer a:hover { color: var(--accent); }
   </div>
 
   <div class="masthead">
-    <div class="kicker">VOL.32 — 2026年8月18日–24日</div>
-    <h1 class="headline">同僚の投票用紙に、名前が並ばなかった</h1>
-    <p class="dek">記者だけでなく、同じユニフォームを着た選手たちの投票でも、大谷はクロウ゠アームストロングに水をあけられた。それでもロッキーズ戦の一発には、いつも通りの歓声が起きていた。</p>
-    <div class="masthead-meta util">選手間投票・MVP月例ウォッチ・投手復帰の助走</div>
-  </div>
-
-  <div class="kpi-row">
-    <div class="kpi-card">
-      <div class="kpi-label util">同僚投票</div>
-      <div class="kpi-value serif-en">15<span class="arrow">→</span>4</div>
-      <div class="kpi-sub util">PCA支持15票 対 大谷4票</div>
-    </div>
-    <div class="kpi-card">
-      <div class="kpi-label util">OPS</div>
-      <div class="kpi-value serif-en">.942</div>
-      <div class="kpi-sub util">リーグ2位の水準</div>
-    </div>
-    <div class="kpi-card">
-      <div class="kpi-label util">本塁打(8/17)</div>
-      <div class="kpi-value serif-en">2本</div>
-      <div class="kpi-sub util">ロッキーズ戦・4安打</div>
-    </div>
+    <div class="kicker">VOL.32 — 2026年8月1日–8月9日</div>
+    <h1 class="headline">七連敗を止めたのは、内野安打だった</h1>
+    <p class="dek">ボストンに3連敗、シカゴでも3連敗。ドジャースの連敗は7まで伸びた。それを止めたのは、8月8日、延長10回に大谷が放った内野安打だった。その3日前には、カブス戦で2本塁打を打ちながら、勝てなかった。</p>
+    <div class="masthead-meta util">2カード連続スイープ負け・7連敗・延長10回の内野安打</div>
   </div>
 
   <div class="layout">
 
     <article>
-<p class="lede">ドジャースとカブスを除く9球団、21人の主力選手に匿名で聞いた——今シーズンのMVPは誰か。結果は、ピート・クロウ゠アームストロングが15票、大谷が4票、決めかねた選手が2人。DodgerBlueが伝えたこの数字は、記者の論評よりも、ずっと生々しく響いた。</p>
+    <p class="lede">8月5日、シカゴ。大谷は初回先頭打者本塁打と、8回の2ラン(今季26号)で2本のアーチを描いた。それでもドジャースは6-7で敗れ、連敗は6に伸びた。前のカード、ボストン戦でのスイープ負けに続く、2カード連続の3連敗だった。</p>
 
-    <p>もっとも、この記事の書き方はそこまで冷淡ではない。大谷のOPS.942がリーグ2位であることも、きちんと併記されている。「もう終わった」と切り捨てる論調ではなく、記者だけでなく同僚選手の目線からも、評価の重心がわずかに動き始めた、というくらいの温度感だ。</p>
+    <p>ドジャースが6連敗を喫したのは、2025年7月の7連敗以来。この日はマックス・マンシーの3ランなどで8回に5点を奪う猛攻も見せたが、届かなかった。クロウ゠アームストロングは2本塁打・4打点でカブスを勝たせている。フリーマンは5回、ファウルボールを右手に受けて途中交代した(X線検査は陰性)。</p>
 
-    <p class="pull">PCA支持15票・大谷支持4票</p>
+    <p>連敗が7で止まったのは、8月8日、アリゾナでの一戦だった。スコアレスの均衡を破ったのは8回のカイル・タッカーのソロ。しかし9回、守護神エドウィン・ディアスがペルドモとキャロルの連続三塁打で同点を許し、2試合連続でセーブを逃す。ゲームは延長に入った。</p>
 
-    <p>同じ週、ESPNの月例賞レース展望でも、8月18日のクロウ゠アームストロングのサヨナラ本塁打を境に、今季初めて本命の座が入れ替わったと整理されている。二刀流のうち片方が止まっている間は、なかなか満票をもらえない——そんな構図が、じわじわと定着し始めていた。</p>
+    <p>10回、四球とワイルドピッチで三塁に進んだ走者を、大谷の内野安打が迎え入れた。一塁手ティム・タワが処理に追いつけない当たりだった。勝ち越しの1点を守り抜いたのは、ジャック・ドライヤー。ダブルプレーを奪い、今季初セーブを挙げた。ドジャースは2-1で連敗を止めた。</p>
+
+    <p class="pull">"we're headed in the right direction"</p>
+
+    <p>同じ8日、大谷は投手としての復帰に向けて、約90フィート(約27メートル)のキャッチボールを再開している。8月5日には、焦らず「正しい方向に進んでいる」ことを確かめたい、という趣旨の発言をしていた。ホームランを2本打っても止まらなかった連敗と、焦らないと言い続ける腕。同じ週に、その両方が進んでいた。</p>
 
     <div class="divider"></div>
 
-    <p>それでも8月17日、ロッキーズ戦で2本塁打・4安打の活躍を見せると、海外ファンからは「まだまだ健在」という歓迎ムードがすぐに戻ってきた。記者たちが数字で線を引こうとする一方、ファンの熱は一試合の結果だけで、あっさりと元に戻ってしまうものらしい。投手としての復帰も、まだブルペン前段階——8月22日には30球を投げ、34度の暑さの中、ただ親指を立てて終えている。</p>
+    <p>派手な一撃ではなく、内野安打1本。7連敗の終わりは、いつも劇的とは限らない。8月9日時点で、ドジャースは70勝48敗。NL西地区の2位には7ゲーム半の差をつけていた。</p>
     </article>
 
     <aside>
       <div class="aside-block">
         <h2 class="aside-title">この号のサマリー</h2>
-        <p class="aside-lede">専門メディアの論調と、海外ファンの熱量。</p>
-<div class="summary-lane-label">米スポーツメディア</div>
+        <p class="aside-lede">連敗の経緯と、投手復帰への歩み。</p>
+
+        <div class="summary-lane-label">試合の経緯</div>
 
         <div class="summary-item">
-          <a class="summary-headline" href="https://dodgerblue.com/mlb-players-vote-pete-crow-armstrong-nl-mvp-over-shohei-ohtani/2026/08/21/">同僚投票でもPCAが上回る「大谷疲れ」</a>
-          <p class="summary-text">9球団の主力選手21人への匿名調査でPCA15票・大谷4票・拮抗2票。記者だけでなく同僚の目線も動いた。</p>
-          <div class="summary-source">DodgerBlue・2026年8月21日</div>
+          <a class="summary-headline" href="https://www.espn.com/mlb/recap/_/gameId/401816406">カブス戦で2本塁打も、6連敗に</a>
+          <p class="summary-text">8/5、大谷は2本塁打を放ったが、カブスにスイープされた。</p>
+          <div class="summary-source">ESPN・2026年8月5日</div>
         </div>
 
         <div class="summary-item">
-          <a class="summary-headline" href="https://www.espn.com/mlb/story/_/id/49672771/mlb-2026-awards-watch-august-mvp-cy-young-al-nl-rookie-manager-year-ohtani-pca">8月18日のサヨナラ弾で、月例ウォッチの本命が入れ替わる</a>
-          <p class="summary-text">PCAの終盤サヨナラ弾を境に、今季初めて大谷から本命の座が移ったと整理された。</p>
-          <div class="summary-source">ESPN・2026年8月</div>
+          <a class="summary-headline" href="https://www.espn.com/mlb/recap/_/gameId/401816452">延長10回の内野安打で連敗ストップ</a>
+          <p class="summary-text">8/8、ダイヤモンドバックス戦で大谷の内野安打が決勝点になった。</p>
+          <div class="summary-source">ESPN・2026年8月8日</div>
         </div>
 
-        <div class="summary-lane-label">海外ファンの反応</div>
+        <div class="summary-lane-label">投手復帰への歩み</div>
 
         <div class="summary-item">
-          <a class="summary-headline" href="https://www.wsls.com/sports/2026/08/19/ohtani-reaches-30-hrs-for-6th-straight-season-as-dodgers-beat-rockies-7-6/">8月17日、4安打2発の固め打ちに沸く</a>
-          <p class="summary-text">ロッキーズ戦での活躍に「まだまだ健在」という歓迎ムードが広がった。</p>
-          <div class="summary-source">AP / WSLS・2026年8月19日</div>
+          <a class="summary-headline" href="https://sports.yahoo.com/articles/shohei-ohtani-pitching-return-date-152611065.html">投手復帰の目安は「9月」</a>
+          <p class="summary-text">8/8にキャッチボールを再開。復帰時期は未定ながら、9月が目安と報じられた。</p>
+          <div class="summary-source">Yahoo Sports・2026年8月10日</div>
         </div>
       </div>
 
       <div class="notes-block">
         <div class="notes-label">取材ノート</div>
         <ol>
-<li><a href="https://dodgerblue.com/mlb-players-vote-pete-crow-armstrong-nl-mvp-over-shohei-ohtani/2026/08/21/">MLB players vote Pete Crow-Armstrong NL MVP over Shohei Ohtani — DodgerBlue, 2026年8月21日</a></li>
-      <li><a href="https://www.espn.com/mlb/story/_/id/49672771/mlb-2026-awards-watch-august-mvp-cy-young-al-nl-rookie-manager-year-ohtani-pca">2026 MLB Awards Watch: August — ESPN</a></li>
-      <li><a href="https://www.wsls.com/sports/2026/08/19/ohtani-reaches-30-hrs-for-6th-straight-season-as-dodgers-beat-rockies-7-6/">Ohtani reaches 30 HRs — WSLS, 2026年8月19日</a></li>
-      <li><a href="https://ny1.com/nyc/all-boroughs/ap-top-news/2026/08/22/a-thumbs-up-and-30-pitches-ohtanis-latest-step-back-toward-the-dodgers-mound">A thumbs-up and 30 pitches — AP / NY1, 2026年8月22日</a></li>
+          <li><a href="https://www.espn.com/mlb/recap/_/gameId/401816406">Cubs 7-6 Dodgers (Aug 5, 2026) Game Recap — ESPN</a></li>
+          <li><a href="https://www.espn.com/mlb/recap/_/gameId/401816452">Dodgers 2-1 Diamondbacks (Aug 8, 2026) Game Recap — ESPN</a></li>
+          <li><a href="https://www.espn.com/mlb/recap/_/gameId/401816357">Red Sox 3-2 Dodgers (Aug 1, 2026) Game Recap — ESPN</a></li>
+          <li><a href="https://www.espn.com/mlb/game/_/gameId/401816372/red-sox-dodgers">Red Sox 8-4 Dodgers (Aug 2, 2026) Final Score — ESPN</a></li>
+          <li><a href="https://sports.yahoo.com/articles/shohei-ohtani-pitching-return-date-152611065.html">Shohei Ohtani Pitching Return Date: Latest September Timeline 8/10/26 — Yahoo Sports</a></li>
         </ol>
       </div>
     </aside>
 
   </div>
 
+  <div class="footer-module">
+
+    <div class="fm-block">
+      <div class="fm-section-head">
+        <div class="fm-kicker util">01 — Daily Results</div>
+        <h2 class="fm-title">今週の試合結果</h2>
+      </div>
+      <div class="game-strip">
+        <div class="game-card">
+          <div class="gc-date">8/1</div>
+          <div class="gc-opp util">vs レッドソックス</div>
+          <div class="gc-score loss">2–3</div>
+          <div class="gc-status rest util">連敗は2に</div>
+          <div class="gc-note util">山本由伸が敗戦投手</div>
+        </div>
+        <div class="game-card">
+          <div class="gc-date">8/2</div>
+          <div class="gc-opp util">vs レッドソックス</div>
+          <div class="gc-score loss">4–8</div>
+          <div class="gc-status rest util">ボストンにスイープ負け</div>
+          <div class="gc-note util">連敗は3に</div>
+        </div>
+        <div class="game-card">
+          <div class="gc-date">8/5</div>
+          <div class="gc-opp util">@ カブス</div>
+          <div class="gc-score loss">6–7</div>
+          <div class="gc-status played util">大谷が2本塁打(26号)</div>
+          <div class="gc-note util">連敗は6。カブスにも3連敗</div>
+        </div>
+        <div class="game-card">
+          <div class="gc-date">8/8</div>
+          <div class="gc-opp util">@ ダイヤモンドバックス</div>
+          <div class="gc-score win">2–1</div>
+          <div class="gc-status played util">決勝の内野安打</div>
+          <div class="gc-note util">延長10回、連敗は7でストップ</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fm-block">
+      <div class="fm-section-head">
+        <div class="fm-kicker util">02 — This Week</div>
+        <h2 class="fm-title">今週のスタッツ(8/1–8/9)</h2>
+      </div>
+      <div class="week-stat-grid">
+        <div class="week-card">
+          <div class="wc-label util">打者</div>
+          <div class="wc-hero">
+            <span class="wc-hero-num">2</span>
+            <span class="wc-hero-cap util">本塁打(8/5・カブス戦) — 試合には敗れた</span>
+          </div>
+          <div class="wc-line util">
+            <div class="wc-item"><span class="n">8/5</span><span class="l">2本塁打(26号)</span></div>
+            <div class="wc-item"><span class="n">8/8</span><span class="l">決勝の内野安打</span></div>
+          </div>
+          <p class="wc-empty-note util">この週に公式で確認できた大谷の個人成績のみ掲載しています。</p>
+        </div>
+        <div class="week-card is-muted">
+          <div class="wc-label util">投手</div>
+          <div class="wc-hero">
+            <span class="wc-hero-num">登板なし</span>
+          </div>
+          <p class="wc-empty-note util">今週も登板はなし。8/8にキャッチボールを再開(約90フィート)。復帰の目安は9月とされるが、日程は未定。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="fm-block">
+      <div class="fm-section-head">
+        <div class="fm-kicker util">03 — Season Totals</div>
+        <h2 class="fm-title">今シーズンの成績(8/9時点)</h2>
+      </div>
+      <div class="season-table-wrap">
+        <div class="season-col">
+          <div class="sc-label util">打撃成績</div>
+          <table class="season-table util">
+            <tr><td class="st-label">打率</td><td class="st-val">.292</td></tr>
+            <tr><td class="st-label">本塁打</td><td class="st-val">26</td></tr>
+          </table>
+        </div>
+        <div class="season-col">
+          <div class="sc-label util">投球成績</div>
+          <table class="season-table util">
+            <tr><td class="st-label">防御率</td><td class="st-val">1.79</td></tr>
+            <tr><td class="st-label">勝敗</td><td class="st-val">8–2</td></tr>
+            <tr><td class="st-label">先発数</td><td class="st-val">14</td></tr>
+            <tr><td class="st-label">投球回</td><td class="st-val">85.2</td></tr>
+            <tr><td class="st-label">奪三振</td><td class="st-val">95</td></tr>
+            <tr><td class="st-label">与四球</td><td class="st-val">26</td></tr>
+            <tr><td class="st-label">WHIP</td><td class="st-val">0.95</td></tr>
+            <tr><td class="st-label">K/9</td><td class="st-val">9.98</td></tr>
+            <tr><td class="st-label">最終登板</td><td class="st-val">7/3</td></tr>
+          </table>
+        </div>
+        <div class="season-footnote util">打撃成績は8/9時点で公式に確認できた項目のみ掲載(Yahoo Sports)。投球成績は7/3の最終登板時点のまま。数字の意味が分からない項目は<a href="/glossary.html" style="text-decoration:underline;text-decoration-color:var(--border);">用語ガイド</a>へ。</div>
+      </div>
+    </div>
+
+    <div class="fm-block">
+      <div class="fm-section-head">
+        <div class="fm-kicker util">04 — Behind the Numbers</div>
+        <h2 class="fm-title">今週の総括コラム</h2>
+      </div>
+      <div class="column-block">
+        <span class="cb-label util">編集部コラム · 数字の裏側</span>
+        <h3>「6連敗」は、いつ以来の数字か</h3>
+        <p class="util">ドジャースが6連敗を喫したのは2025年7月以来。その時の連敗は<span class="stat-chip">7</span>だった。今回も、8月8日に止まった時点で連敗は<span class="stat-chip">7</span>。昨季の底と同じ数字に並んだことになる。</p>
+        <p class="util">その間、大谷は決して沈んでいたわけではない。8/5の2本塁打で今季は<span class="stat-chip">26</span>本、打率は<span class="stat-chip">.292</span>。打てば勝つ、とはいかない7日間だった。逆に言えば、1人の打者の好調だけでは連敗は止まらず、止めたのは延長10回の内野安打1本と、ドライヤーの併殺。野球の勝ち負けは、いつも小さな場面に宿る。</p>
+      </div>
+    </div>
+
+  </div>
+
   <footer class="util">
-    <span>本文は各記事の事実関係に基づく独自のノンフィクション構成。引用符付きの語句のみ原文からの直接引用。</span>
+    <span>本文は各記事の事実関係に基づく独自のノンフィクション構成。引用符付きの語句のみ原文からの直接引用。SNS上の個別投稿の一般化はしていません。</span>
     <a href="/archive.html">← バックナンバー</a>
   </footer>
 

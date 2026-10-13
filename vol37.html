@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Weekly Ohtani — 休めない男と、隙だらけの王者</title>
+<title>Weekly Ohtani — たった一晩の復帰、そしてまたベンチへ</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Noto+Serif+JP:wght@400;500;600;700&display=swap">
 <style>
 :root {
@@ -282,8 +282,9 @@ aside { position: sticky; top: 32px; }
 .fm-block { margin-bottom: 56px; }
 .fm-block:last-child { margin-bottom: 0; }
 
-.game-strip { display: flex; flex-wrap: wrap; gap: 12px; }
-.game-card { background: var(--bg-data); border: 1px solid var(--border); border-radius: 10px; padding: 16px 14px; display: flex; flex-direction: column; gap: 10px; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif; flex: 1 1 160px; max-width: 200px; }
+.game-strip { display: grid; grid-template-columns: repeat(6, minmax(140px, 1fr)); gap: 12px; overflow-x: auto; padding-bottom: 4px; }
+@media (max-width: 900px) { .game-strip { grid-auto-flow: column; grid-template-columns: none; grid-auto-columns: 152px; } }
+.game-card { background: var(--bg-data); border: 1px solid var(--border); border-radius: 10px; padding: 16px 14px; display: flex; flex-direction: column; gap: 10px; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif; }
 .game-card .gc-date { font-family: "Playfair Display", serif; font-weight: 700; font-size: 17px; color: var(--navy); font-variant-numeric: tabular-nums; }
 .game-card .gc-opp { font-size: 12px; color: var(--text-muted); min-height: 32px; }
 .game-card .gc-score { font-size: 13px; font-weight: 700; font-variant-numeric: tabular-nums; display: inline-flex; align-self: flex-start; padding: 2px 8px; border-radius: 5px; }
@@ -374,73 +375,79 @@ footer a:hover { color: var(--accent); }
   </div>
 
   <div class="masthead">
-    <div class="kicker">VOL.37 — 2026年9月28日–10月4日</div>
-    <h1 class="headline">休めない男と、隙だらけの王者</h1>
-    <p class="dek">「一番の回復方法は、完全にプレーしないことだ」——IL明け最後の5試合を21打数5安打・三振8に終えた大谷は、そう語った。それでもプレーオフは待ってくれない。ESPNが挙げた3連覇への不安要素には、打線の不振や投手陣の不安と並んで、大谷自身の状態が挙がっていた。王者は、隙を抱えたまま開幕を迎える。</p>
-    <div class="masthead-meta util">大谷「プレーしないことが一番の回復」・3連覇への4つの不安要素・NLDS開幕は10/3</div>
+    <div class="kicker">VOL.37 — 2026年9月7日–9月13日</div>
+    <h1 class="headline">たった一晩の復帰、そしてまたベンチへ</h1>
+    <p class="dek">9月7日、大谷は4日ぶりにラインアップへ戻った。だが3打数無安打に終わったその一戦が、結局この週唯一の出場になった。翌8日には早くもベンチに下がり、11日には右上腕二頭筋の炎症で故障者リスト入り。ドジャース加入後、キャリア初のIL入りとなった。</p>
+    <div class="masthead-meta util">IL入り(ドジャース加入後キャリア初)・復帰資格9/23・ファンの懸念が現実に</div>
   </div>
 
   <div class="layout">
 
     <article>
-    <p class="lede">IL明けの復帰から数えて最後の5試合、大谷は21打数5安打・打率.238、三振8、四球1に終えた。仕上がりを聞かれた本人は、「一番の回復方法は、完全にプレーしないことだ」と答えている。</p>
+    <p class="lede">9月7日、レッズ戦。大谷は4日間の欠場を経てラインアップに戻った。ロバーツ監督は事前に「大事な場面での代打なら起用できる」という趣旨のコメントを残しており、実際に始まったのはフル出場ではなく、様子見に近いスタートだった。</p>
 
-    <p>ロバーツ監督は不振の理由を、故障ではなく「力み」や「追いかけすぎ」だと説明している。9月27日のレギュラーシーズン最終戦(ジャイアンツ戦、延長10回の末5-1で勝利)では3打数1安打を記録し、わずかに上向きの兆しも見せた。ドジャースはこの試合でシーズンを終え、ロバーツ体制6度目となる100勝に到達している。</p>
+    <p>この日の大谷は3打数無安打、四球1、三振2。ドジャースは6-3で勝ったが、派手な復帰劇にはならなかった。そしてこの一戦が、結果的にこの週唯一の出場になった。翌8日から大谷は再びラインアップを外れ、9日、11日と欠場が続いた。</p>
 
-    <p>だが、大谷の状態は3連覇に向けた懸念材料の一つに過ぎない。ESPNは、王者の不安要素として4つを列挙した——9月に入り得点圏打率.214まで落ち込んだ打線、故障がちなグラスノーとスネル(過去2年で先発合わせて51試合)、守護神不在のまま6900万ドルを投じたブルペン、そして大谷自身の状態。個人の物語だった「治りきらない体」は、いつの間にかチーム全体の課題の一部として語られるようになっていた。</p>
+    <p>9月11日、ドジャースは大谷の故障者リスト入りを正式に発表した。登録は8日付に遡り、理由は右上腕二頭筋の炎症。ドジャース加入から3シーズン、大谷にとって初めてのIL入りだった。復帰資格は9月23日——そこから数えれば、レギュラーシーズンは残り5試合しかない。</p>
 
-    <p class="pull">"I don't put any stock into it. Once you get to the postseason, it's a different season."</p>
+    <p class="pull">"If it were a postseason game tomorrow, he's in the lineup."</p>
 
-    <p>ロバーツ監督のこの楽観は、選手個人の状態への処方箋ではない。それでも、10月3日にドジャースタジアムで始まるNLDS(相手はブレーブスとフィリーズのワイルドカードシリーズ勝者)を前に、チームが抱える不安を「別のシーズンだから」の一言で片付けようとしているようにも聞こえる。</p>
+    <p>ロバーツ監督はそう語った上で、それでも2週間の離脱を選んだ理由を続けた。今はポストシーズンではない、というだけの言葉ではなかった。皮肉なことに、この結末は一週間前にheavy.comが伝えたファンの声——「休ませてほしい」「プレーオフに向けて回復させてほしい」——とほぼ重なる。医療スタッフの判断を疑問視していた声は、結果として一週間先を見通していたことになる。</p>
 
     <div class="divider"></div>
 
-    <p>「完全にプレーしないこと」が一番の回復だと知りながら、大谷はこれからも毎試合、バットを持ってボックスに立つ。王者の3連覇は、そういう矛盾を抱えたまま始まる。</p>
+    <p>同じ週、大谷家の財団のロゴが静かに更新されていた。6月に生まれた息子の存在が、そこに加わっていたという。グラウンドに立てない日々がしばらく続く。それでも、ロゴの片隅では、彼の生活がいつも通り、静かに続いていた。</p>
     </article>
 
     <aside>
       <div class="aside-block">
         <h2 class="aside-title">この号のサマリー</h2>
-        <p class="aside-lede">本人・監督の言葉と、3連覇への不安要素。</p>
+        <p class="aside-lede">現地報道と、IL入りをめぐる一週間の動き。</p>
 
-        <div class="summary-lane-label">本人・監督の言葉</div>
+        <div class="summary-lane-label">米スポーツメディア・現地報道</div>
 
         <div class="summary-item">
-          <a class="summary-headline" href="https://www.espn.com/mlb/story/_/id/50022995/mlb-2026-playoffs-postseason-world-series-los-angeles-dodgers-three-peat-shohei-ohtani">大谷「一番の回復方法は、プレーしないこと」</a>
-          <p class="summary-text">取材に対し、休養こそが最善の治療法だと語ったコメントを伝えた。</p>
-          <div class="summary-source">ESPN・2026年9月</div>
+          <a class="summary-headline" href="https://www.japantimes.co.jp/sports/2026/09/08/baseball/mlb/ohtani-returns-dodgers-reds/">復帰戦は3打数無安打、それでもチームは勝利</a>
+          <p class="summary-text">9/7の復帰初戦の内容を、淡々とスコアとともに伝えた。</p>
+          <div class="summary-source">Japan Times・2026年9月8日</div>
         </div>
 
         <div class="summary-item">
-          <a class="summary-headline" href="https://sports.yahoo.com/articles/shohei-ohtani-play-dodgers-regular-020137914.html">「最終戦は休ませるべきだった」という論調</a>
-          <p class="summary-text">1-9・5三振という内容を踏まえ、最終戦の起用に疑問を投げかけた。</p>
-          <div class="summary-source">Yahoo Sports・2026年9月27日</div>
-        </div>
-
-        <div class="summary-lane-label">3連覇への不安要素</div>
-
-        <div class="summary-item">
-          <a class="summary-headline" href="https://www.espn.com/mlb/story/_/id/50022995/mlb-2026-playoffs-postseason-world-series-los-angeles-dodgers-three-peat-shohei-ohtani">打線・投手陣・大谷——王者に挙がった4つの弱点</a>
-          <p class="summary-text">得点圏打率の低迷、先発陣の登板数、ブルペン、そして大谷の状態を列挙した分析記事。</p>
-          <div class="summary-source">ESPN・2026年9月</div>
+          <a class="summary-headline" href="https://dodgerblue.com/shohei-ohtani-bicep-dodgers-injured-list-two-way-rule/2026/09/11/">大谷、故障者リスト入りが正式発表</a>
+          <p class="summary-text">右上腕二頭筋の炎症により、9/8付に遡ってIL入り。ドジャース加入後初めてのIL入りとなった。</p>
+          <div class="summary-source">Dodger Blue・2026年9月11日</div>
         </div>
 
         <div class="summary-item">
-          <a class="summary-headline" href="https://www.truebluela.com/los-angeles-dodgers-schedule/124879/dodgers-nlds-schedule-home-field-advantage">NLDS開幕は10/3、地の利はドジャースに</a>
-          <p class="summary-text">ドジャースタジアムでの初戦日程と、ワイルドカードシリーズの行方を伝えた。</p>
-          <div class="summary-source">True Blue LA・2026年9月</div>
+          <a class="summary-headline" href="https://www.ibtimes.com.au/dodgers-place-shohei-ohtani-injured-list-1875406">ロバーツ監督「先延ばしにしすぎた」</a>
+          <p class="summary-text">IL入りの決定過程について、ロバーツ監督が心境を語ったコメントを伝えた。</p>
+          <div class="summary-source">International Business Times AU・2026年9月11日</div>
+        </div>
+
+        <div class="summary-lane-label">メディアが伝えたファンの受け止め方</div>
+
+        <div class="summary-item">
+          <a class="summary-headline" href="https://heavy.com/sports/mlb/los-angeles-dodgers/dodgers-fans-react-to-sudden-shohei-ohtani-decision/">「なぜ急ぐのか」——懸念の声を特集</a>
+          <p class="summary-text">個別の投稿ではなく、メディアが記事としてまとめた懸念の広がりとして紹介。IL入りを求める声が中心だった。</p>
+          <div class="summary-source">Heavy.com・2026年9月8日</div>
+        </div>
+
+        <div class="summary-item">
+          <a class="summary-headline" href="https://news.yahoo.co.jp/articles/e362bc85ae6f46e71f931b57b2af0a21fe8e25b2">財団ロゴに、6月生まれの息子が加わる</a>
+          <p class="summary-text">大谷家の財団ロゴが更新され、今季生まれた息子の存在が反映されたことを紹介した。</p>
+          <div class="summary-source">週刊女性PRIME・2026年9月9日</div>
         </div>
       </div>
 
       <div class="notes-block">
         <div class="notes-label">取材ノート</div>
         <ol>
-          <li><a href="https://www.espn.com/mlb/story/_/id/50022995/mlb-2026-playoffs-postseason-world-series-los-angeles-dodgers-three-peat-shohei-ohtani">Could Dodgers be more vulnerable than you think? — ESPN</a></li>
-          <li><a href="https://sports.yahoo.com/articles/shohei-ohtani-play-dodgers-regular-020137914.html">Shohei Ohtani will play in Dodgers' regular-season finale — but shouldn't — Yahoo Sports</a></li>
-          <li><a href="https://sports.yahoo.com/articles/dodgers-encouraging-shohei-ohtani-ahead-150151489.html">Dodgers Get Encouraging Shohei Ohtani Update Ahead of MLB Playoffs — Yahoo Sports</a></li>
-          <li><a href="https://www.truebluela.com/los-angeles-dodgers-schedule/124879/dodgers-nlds-schedule-home-field-advantage">Dodgers NLDS schedule: Postseason opens October 3 at Dodger Stadium — True Blue LA</a></li>
-          <li><a href="https://dodgersdigest.com/2026/09/27/the-2026-dodgers-playoff-roster-another-look-after-game-162/">The 2026 Dodgers playoff roster, another look after Game 162 — Dodgers Digest</a></li>
-          <li><a href="https://www.mlb.com/amp/news/shohei-ohtani-hopes-to-shake-off-rust-heading-into-2026-postseason.html">Shohei Ohtani hopes to shake off rust heading into 2026 postseason — MLB.com</a></li>
+          <li><a href="https://www.japantimes.co.jp/sports/2026/09/08/baseball/mlb/ohtani-returns-dodgers-reds/">Ohtani returns to lineup as Dodgers dump Reds — Japan Times</a></li>
+          <li><a href="https://www.japantimes.co.jp/sports/2026/09/10/baseball/mlb/ohtani-dodgers-il-stint/">Dodgers star Shohei Ohtani headed to injured list — Japan Times</a></li>
+          <li><a href="https://dodgerblue.com/shohei-ohtani-bicep-dodgers-injured-list-two-way-rule/2026/09/11/">Shohei Ohtani placed on injured list — Dodger Blue</a></li>
+          <li><a href="https://www.ibtimes.com.au/dodgers-place-shohei-ohtani-injured-list-1875406">Dodgers Place Shohei Ohtani On Injured List; Roberts Says Club Tried To Kick The Can Too Long — IBTimes AU</a></li>
+          <li><a href="https://heavy.com/sports/mlb/los-angeles-dodgers/dodgers-fans-react-to-sudden-shohei-ohtani-decision/">Los Angeles Dodgers Fans React to Sudden Shohei Ohtani Decision — Heavy.com</a></li>
+          <li><a href="https://news.yahoo.co.jp/articles/e362bc85ae6f46e71f931b57b2af0a21fe8e25b2">大谷翔平、ファミリー財団ロゴに「長男追加」— 週刊女性PRIME</a></li>
         </ol>
       </div>
     </aside>
@@ -456,39 +463,69 @@ footer a:hover { color: var(--accent); }
       </div>
       <div class="game-strip">
         <div class="game-card">
-          <div class="gc-date">9/27</div>
-          <div class="gc-opp util">@ ジャイアンツ</div>
-          <div class="gc-score win">5–1</div>
-          <div class="gc-status played util">シーズン最終戦</div>
-          <div class="gc-note util">大谷: 3打数1安打(延長10回)</div>
+          <div class="gc-date">9/7</div>
+          <div class="gc-opp util">vs レッズ</div>
+          <div class="gc-score win">6–3</div>
+          <div class="gc-status played util">4日ぶり出場</div>
+          <div class="gc-note util">3打数無安打・四球1・三振2</div>
         </div>
         <div class="game-card">
-          <div class="gc-date">10/3</div>
-          <div class="gc-opp util">vs ブレーブス/フィリーズ</div>
-          <div class="gc-score pending">開幕前</div>
-          <div class="gc-status played util">NLDS Game 1</div>
-          <div class="gc-note util">ドジャースタジアムで開幕</div>
+          <div class="gc-date">9/8</div>
+          <div class="gc-opp util">vs レッズ</div>
+          <div class="gc-score win">3–2</div>
+          <div class="gc-status rest util">ラインアップ外</div>
+          <div class="gc-note util">IL登録は本日付(発表は11日)</div>
+        </div>
+        <div class="game-card">
+          <div class="gc-date">9/9</div>
+          <div class="gc-opp util">vs レッズ</div>
+          <div class="gc-score win">14–1</div>
+          <div class="gc-status rest util">ラインアップ外</div>
+          <div class="gc-note util">2日連続の欠場</div>
+        </div>
+        <div class="game-card">
+          <div class="gc-date">9/11</div>
+          <div class="gc-opp util">@ マーリンズ</div>
+          <div class="gc-score win">6–2</div>
+          <div class="gc-status il util">IL入り発表</div>
+          <div class="gc-note util">故障者リスト入りが正式発表</div>
+        </div>
+        <div class="game-card">
+          <div class="gc-date">9/12</div>
+          <div class="gc-opp util">@ マーリンズ</div>
+          <div class="gc-score pending util">結果確認中</div>
+          <div class="gc-status il util">IL中</div>
+          <div class="gc-note util">大谷は帯同せず</div>
+        </div>
+        <div class="game-card">
+          <div class="gc-date">9/13</div>
+          <div class="gc-opp util">@ マーリンズ</div>
+          <div class="gc-score pending util">本日開催</div>
+          <div class="gc-status il util">IL中</div>
+          <div class="gc-note util">復帰資格は9/23〜</div>
         </div>
       </div>
     </div>
 
     <div class="fm-block">
       <div class="fm-section-head">
-        <div class="fm-kicker util">02 — Final Stretch</div>
-        <h2 class="fm-title">IL明け最終5試合</h2>
+        <div class="fm-kicker util">02 — This Week</div>
+        <h2 class="fm-title">今週のスタッツ(9/7–9/13)</h2>
       </div>
       <div class="week-stat-grid">
         <div class="week-card">
           <div class="wc-label util">打者</div>
           <div class="wc-hero">
-            <span class="wc-hero-num">.238</span>
-            <span class="wc-hero-cap util">打率(21打数5安打) — IL明けの5試合</span>
+            <span class="wc-hero-num">1</span>
+            <span class="wc-hero-cap util">試合出場 — 今季でも最少級の週間出場数</span>
           </div>
           <div class="wc-line util">
-            <div class="wc-item"><span class="n">21</span><span class="l">打数</span></div>
-            <div class="wc-item"><span class="n">5</span><span class="l">安打</span></div>
-            <div class="wc-item"><span class="n">8</span><span class="l">三振</span></div>
+            <div class="wc-item"><span class="n">3</span><span class="l">打数</span></div>
+            <div class="wc-item"><span class="n">0</span><span class="l">安打</span></div>
+            <div class="wc-item"><span class="n">.000</span><span class="l">打率</span></div>
             <div class="wc-item"><span class="n">1</span><span class="l">四球</span></div>
+            <div class="wc-item"><span class="n">2</span><span class="l">三振</span></div>
+            <div class="wc-item"><span class="n">.250</span><span class="l">OPS</span></div>
           </div>
         </div>
         <div class="week-card is-muted">
@@ -496,7 +533,7 @@ footer a:hover { color: var(--accent); }
           <div class="wc-hero">
             <span class="wc-hero-num">登板なし</span>
           </div>
-          <p class="wc-empty-note util">今季の投手登板はここで終了。最終登板は7月3日のまま、通算8勝2敗・防御率1.79でレギュラーシーズンを終えた。</p>
+          <p class="wc-empty-note util">今週の登板はゼロ。最終登板は7月3日のまま。9/7、大谷本人が今季中の投手復帰を断念する趣旨の発言をしており、投手としての2026年シーズンは事実上終了している。</p>
         </div>
       </div>
     </div>
@@ -504,7 +541,7 @@ footer a:hover { color: var(--accent); }
     <div class="fm-block">
       <div class="fm-section-head">
         <div class="fm-kicker util">03 — Season Totals</div>
-        <h2 class="fm-title">レギュラーシーズン最終成績</h2>
+        <h2 class="fm-title">今シーズンの成績(9/13時点)</h2>
       </div>
       <div class="season-table-wrap">
         <div class="season-col">
@@ -537,7 +574,7 @@ footer a:hover { color: var(--accent); }
             <tr><td class="st-label">最終登板</td><td class="st-val">7/3</td></tr>
           </table>
         </div>
-        <div class="season-footnote util">打撃成績は9/22時点の集計値(IL入り直前)で、最終5試合(21打数5安打・三振8・四球1、上のカード参照)は反映前の数値。投球成績は7月3日の最終登板時点でレギュラーシーズンを終えた確定値。数字の意味が分からない項目は<a href="/glossary.html" style="text-decoration:underline;text-decoration-color:var(--border);">用語ガイド</a>へ。</div>
+        <div class="season-footnote util">打撃成績は9/7の1打席を含む9/13時点の集計値。投球成績は7/3の最終登板時点のまま更新なし(今季の投手復帰は本人が断念)。数字の意味が分からない項目は<a href="/glossary.html" style="text-decoration:underline;text-decoration-color:var(--border);">用語ガイド</a>へ。</div>
       </div>
     </div>
 
@@ -548,10 +585,10 @@ footer a:hover { color: var(--accent); }
       </div>
       <div class="column-block">
         <span class="cb-label util">編集部コラム · 数字の裏側</span>
-        <h3>王者の隙は、4つの数字でできている</h3>
-        <p class="util">ESPNが3連覇に不安を投げかけた記事で最初に挙げたのは、打線の失速だった。9月、得点圏での打率は<span class="stat-chip">.214</span>・出塁率<span class="stat-chip">.317</span>・長打率<span class="stat-chip">.376</span>。フリーマンに至っては月間打率<span class="stat-chip">.184</span>まで落ち込んでいる。チャンスでの一本が出ない状態のまま、ポストシーズンに入ろうとしていた。</p>
-        <p class="util">先発陣も盤石ではない。グラスノーとスネルは、過去2年間で合わせてわずか<span class="stat-chip">51</span>先発。守護神には6900万ドルを投じたが、ディアスは苦しんだ立ち上がりから持ち直しつつあるとはいえ、まだロー・レバレッジの場面での実績にとどまる。打線・先発・ブルペン・大谷の状態——4つの不安要素が、同じ秋に重なっていた。</p>
-        <p class="util">それでもロバーツ監督は「レギュラーシーズンの数字は参考にならない」と語る。不安要素のリストが正しいかどうかは、10月3日からの数試合で証明されることになる。</p>
+        <h3>「0-3」の裏にある、崩れていない中身</h3>
+        <p class="util">9/7の復帰戦、大谷のスタットラインは<span class="stat-chip">3打数0安打</span>。数字だけを見れば静かな一日だった。だが同じ夜のStatcastデータを見ると、シーズン全体のxwOBAは<span class="stat-chip">.399</span>でMLB全体の上位1%(パーセンタイル99)に位置し、平均打球速度<span class="stat-chip">93.2mph</span>・ハードヒット率<span class="stat-chip">51.5%</span>・バレル率<span class="stat-chip">15.8%</span>と、コンタクトの質そのものは崩れていない。</p>
+        <p class="util">一方で、オールスター後の42試合では打率<span class="stat-chip">.246</span>・本塁打<span class="stat-chip">8</span>本と、シーズン前半に比べて数字は明らかに落ちている。故障を抱えながらの起用が続いた結果が、成績のどこに表れているかを分けて見る必要がありそうだ。</p>
+        <p class="util">復帰資格は9月23日。そこから数えてレギュラーシーズンは残り5試合しかない。数字の「裏側」が語るのは、衰えではなく、逆算のタイミングだ。</p>
       </div>
     </div>
 
